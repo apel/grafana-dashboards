@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568198125107,
+  "iteration": 1568278366704,
   "links": [],
   "panels": [
     {
@@ -409,10 +409,10 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "IRIS Grid MySQL Database",
+      "datasource": "-- Mixed --",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -421,7 +421,7 @@
         "x": 0,
         "y": 23
       },
-      "id": 2,
+      "id": 19,
       "legend": {
         "avg": false,
         "current": false,
@@ -433,7 +433,7 @@
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -447,10 +447,11 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
+          "datasource": "IRIS Grid MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -468,6 +469,35 @@
             ]
           ],
           "table": "VNormalisedSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, SiteName\nORDER BY time;",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
           "where": [
@@ -522,10 +552,11 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
+      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "IRIS Grid MySQL Database",
+      "datasource": "-- Mixed --",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -534,7 +565,7 @@
         "x": 12,
         "y": 23
       },
-      "id": 4,
+      "id": 21,
       "legend": {
         "avg": false,
         "current": false,
@@ -544,7 +575,7 @@
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -553,6 +584,7 @@
       },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "6.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -562,6 +594,7 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": "IRIS Grid MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -588,13 +621,42 @@
               "type": "macro"
             }
           ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nORDER BY time;",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time by VO and Month",
+      "title": "Elapsed time (months) by VO and Month",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -633,10 +695,10 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "IRIS Grid MySQL Database",
+      "datasource": "-- Mixed --",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -645,7 +707,7 @@
         "x": 0,
         "y": 32
       },
-      "id": 6,
+      "id": 20,
       "legend": {
         "avg": false,
         "current": false,
@@ -655,7 +717,7 @@
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -673,6 +735,7 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": "IRIS Grid MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -699,13 +762,42 @@
               "type": "macro"
             }
           ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, SiteName\nORDER BY time;\n",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU time by Site and Month",
+      "title": "CPU time (months) by Site and Month",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -744,10 +836,10 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "IRIS Grid MySQL Database",
+      "datasource": "-- Mixed --",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -756,7 +848,7 @@
         "x": 12,
         "y": 32
       },
-      "id": 8,
+      "id": 22,
       "legend": {
         "avg": false,
         "current": false,
@@ -766,7 +858,7 @@
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -784,6 +876,7 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": "IRIS Grid MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -810,13 +903,42 @@
               "type": "macro"
             }
           ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nORDER BY time;",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU time by VO and Month",
+      "title": "CPU time (months) by VO and Month",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -863,18 +985,21 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
-          "value": "$__all"
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": "IRIS Grid MySQL Database",
-        "definition": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2'",
+        "definition": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2' OR name='None'",
         "hide": 0,
         "includeAll": true,
         "label": "Grid Site",
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2'",
+        "query": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2' OR name='None'",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -888,6 +1013,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -915,20 +1041,19 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "value": "$__all"
         },
         "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM Sites",
+        "definition": "SELECT name FROM Sites WHERE name='ral-cloud' OR name='None'",
         "hide": 0,
         "includeAll": true,
         "label": "Cloud Site",
-        "multi": true,
+        "multi": false,
         "name": "Cloud_Site",
         "options": [],
-        "query": "SELECT name FROM Sites",
+        "query": "SELECT name FROM Sites WHERE name='ral-cloud' OR name='None'",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1000,5 +1125,5 @@
   "timezone": "",
   "title": "Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 18
+  "version": 1
 }
