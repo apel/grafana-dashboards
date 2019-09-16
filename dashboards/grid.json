@@ -421,7 +421,7 @@
         "x": 0,
         "y": 23
       },
-      "id": 19,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -565,7 +565,7 @@
         "x": 12,
         "y": 23
       },
-      "id": 21,
+      "id": 4,
       "legend": {
         "avg": false,
         "current": false,
@@ -584,7 +584,6 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "6.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -707,7 +706,7 @@
         "x": 0,
         "y": 32
       },
-      "id": 20,
+      "id": 6,
       "legend": {
         "avg": false,
         "current": false,
@@ -848,7 +847,7 @@
         "x": 12,
         "y": 32
       },
-      "id": 22,
+      "id": 8,
       "legend": {
         "avg": false,
         "current": false,
@@ -985,7 +984,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1013,7 +1011,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1046,14 +1043,14 @@
           "value": "$__all"
         },
         "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM Sites WHERE name='ral-cloud' OR name='None'",
+        "definition": "SELECT name FROM Site",
         "hide": 0,
         "includeAll": true,
         "label": "Cloud Site",
-        "multi": false,
+        "multi": true,
         "name": "Cloud_Site",
         "options": [],
-        "query": "SELECT name FROM Sites WHERE name='ral-cloud' OR name='None'",
+        "query": "SELECT name FROM Sites",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1125,5 +1122,5 @@
   "timezone": "",
   "title": "Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 1
+  "version": 19
 }
