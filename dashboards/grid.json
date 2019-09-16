@@ -1043,7 +1043,7 @@
           "value": "$__all"
         },
         "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM Site",
+        "definition": "SELECT name FROM Sites",
         "hide": 0,
         "includeAll": true,
         "label": "Cloud Site",
