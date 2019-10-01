@@ -15,9 +15,10 @@ import configparser
 
 # retrieve config
 configParser = configparser.RawConfigParser()
+configParser.optionxform = str
 configFilePath = 'colourmapper.ini'
 configParser.read(configFilePath)
-aliasColors = configParser.get('Colours', 'aliasColors')
+aliasColors = dict(configParser.items('Colours'))
 
 # retrieve argument (filepath)
 parser = argparse.ArgumentParser()
