@@ -16,7 +16,16 @@
   "gnetId": null,
   "graphTooltip": 0,
   "iteration": 1568278366704,
-  "links": [],
+  "links": [
+    {
+      "icon": "info",
+      "tags": [],
+      "targetBlank": true,
+      "title": "IRIS",
+      "type": "link",
+      "url": "https://www.iris.ac.uk/"
+    }
+  ],
   "panels": [
     {
       "aliasColors": {},
