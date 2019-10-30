@@ -1,9 +1,8 @@
 --------------------------------------------------------------------------------
 -- View on Sites
-CREATE VIEW AllSites AS
+CREATE VIEW VAllSites AS
     SELECT iris_grid.Sites.name AS name, 'Grid' AS tag
     FROM iris_grid.Sites
-    WHERE ((iris_grid.Sites.name LIKE 'UKI-%') OR (iris_grid.Sites.name = 'RAL-LCG2'))
     UNION
     SELECT iris_cloud.Sites.name AS name, 'Cloud' AS tag
     FROM iris_cloud.Sites WHERE (iris_cloud.Sites.name <> 'None');
@@ -11,9 +10,9 @@ CREATE VIEW AllSites AS
 --------------------------------------------------------------------------------
 -- View on VOs
 
-CREATE VIEW AllVOs AS
+CREATE VIEW VAllVOs AS
     SELECT iris_grid.VOs.name AS name, 'Grid' AS tag
     FROM iris_grid.VOs
     UNION
     SELECT iris_cloud.VOs.name AS name, 'Cloud' AS tag
-    FROM iris_cloud.VOs WHERE (iris_cloud.VOs.name <> 'DAFNI');
+    FROM iris_cloud.VOs;
