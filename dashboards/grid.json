@@ -117,7 +117,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -159,7 +159,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -331,7 +331,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, Site\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -360,7 +360,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, SiteName\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -474,7 +474,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -503,7 +503,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -621,7 +621,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, Site\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -650,7 +650,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, SiteName\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -802,7 +802,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, VO\nORDER BY time",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
           "refId": "A",
           "select": [
             [
@@ -831,7 +831,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -982,7 +982,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, Site\nORDER BY time",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time",
           "refId": "A",
           "select": [
             [
@@ -1011,7 +1011,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, SiteName\nORDER BY time;\n",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;\n",
           "refId": "B",
           "select": [
             [
@@ -1162,7 +1162,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, VO\nORDER BY time",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
           "refId": "A",
           "select": [
             [
@@ -1191,7 +1191,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Cloud_Site) and VO in ($Cloud_VO)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -1266,109 +1266,64 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
           ]
         },
-        "datasource": "IRIS Grid MySQL Database",
-        "definition": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2' OR name='None'",
+        "datasource": "Grafana_Views",
+        "definition": "SELECT name FROM AllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
         "hide": 0,
         "includeAll": true,
-        "label": "Grid Site",
+        "label": "Site",
         "multi": true,
-        "name": "Site",
+        "name": "All_Sites",
         "options": [],
-        "query": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2' OR name='None'",
-        "refresh": 1,
+        "query": "SELECT name FROM AllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
+        "sort": 0,
+        "tagValuesQuery": "SELECT name FROM AllSites WHERE tag = '$tag'",
+        "tags": [
+          "Grid",
+          "Cloud"
+        ],
+        "tagsQuery": "SELECT tag FROM AllSites",
         "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "IRIS Grid MySQL Database",
-        "definition": "SELECT name FROM VOs",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Grid VO",
-        "multi": true,
-        "name": "VO",
-        "options": [],
-        "query": "SELECT name FROM VOs",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "useTags": true
       },
       {
         "allValue": null,
         "current": {
           "tags": [],
           "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM Sites",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Cloud Site",
-        "multi": true,
-        "name": "Cloud_Site",
-        "options": [],
-        "query": "SELECT name FROM Sites",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "All",
           "value": [
             "$__all"
           ]
         },
-        "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM VOs WHERE name<>'DAFNI'",
+        "datasource": "Grafana_Views",
+        "definition": "SELECT name FROM AllVOs WHERE (name <> 'DAFNI')",
         "hide": 0,
         "includeAll": true,
-        "label": "Cloud VO",
+        "label": "VO",
         "multi": true,
-        "name": "Cloud_VO",
+        "name": "All_VOs",
         "options": [],
-        "query": "SELECT name FROM VOs WHERE name<>'DAFNI'",
-        "refresh": 1,
+        "query": "SELECT name FROM AllVOs WHERE (name <> 'DAFNI')",
+        "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
+        "sort": 0,
+        "tagValuesQuery": "SELECT name FROM AllVOs WHERE tag = '$tag'",
+        "tags": [
+          "Grid",
+          "Cloud"
+        ],
+        "tagsQuery": "SELECT tag FROM AllVOs",
         "type": "query",
-        "useTags": false
+        "useTags": true
       }
     ]
   },
