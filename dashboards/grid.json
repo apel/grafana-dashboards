@@ -1272,25 +1272,25 @@
             "$__all"
           ]
         },
-        "datasource": "Grafana_Views",
-        "definition": "SELECT name FROM AllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "datasource": "iris_shared",
+        "definition": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
         "name": "All_Sites",
         "options": [],
-        "query": "SELECT name FROM AllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "query": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "SELECT name FROM AllSites WHERE tag = '$tag'",
+        "tagValuesQuery": "SELECT name FROM VAllSites WHERE tag = '$tag'",
         "tags": [
           "Grid",
           "Cloud"
         ],
-        "tagsQuery": "SELECT tag FROM AllSites",
+        "tagsQuery": "SELECT tag FROM VAllSites",
         "type": "query",
         "useTags": true
       },
@@ -1303,25 +1303,25 @@
             "$__all"
           ]
         },
-        "datasource": "Grafana_Views",
-        "definition": "SELECT name FROM AllVOs WHERE (name <> 'DAFNI')",
+        "datasource": "iris_shared",
+        "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
         "hide": 0,
         "includeAll": true,
         "label": "VO",
         "multi": true,
         "name": "All_VOs",
         "options": [],
-        "query": "SELECT name FROM AllVOs WHERE (name <> 'DAFNI')",
+        "query": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "SELECT name FROM AllVOs WHERE tag = '$tag'",
+        "tagValuesQuery": "SELECT name FROM VAllVOs WHERE tag = '$tag'",
         "tags": [
           "Grid",
           "Cloud"
         ],
-        "tagsQuery": "SELECT tag FROM AllVOs",
+        "tagsQuery": "SELECT tag FROM VAllVOs",
         "type": "query",
         "useTags": true
       }
