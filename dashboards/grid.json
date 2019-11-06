@@ -1266,7 +1266,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1281,7 +1280,7 @@
         "name": "All_Sites",
         "options": [],
         "query": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1297,7 +1296,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1312,7 +1310,7 @@
         "name": "All_VOs",
         "options": [],
         "query": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1359,5 +1357,5 @@
   "timezone": "",
   "title": "Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 19
+  "version": 21
 }
