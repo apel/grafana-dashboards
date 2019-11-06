@@ -8,7 +8,7 @@
 
    Note:
 
-   - Redirect URI: http:// <hostname> /login/generic_oath
+   - Redirect URI: http:// \<hostname> /login/generic_oath
    - Take a note of whichever scope options you have chosen, and the client ID and secret, to be      entered in the config file in the next step.
    - You will have the option to save a client info file: do so, as you need to the Client ID and      Registration Access Token to go back and edit an existing client.
 
