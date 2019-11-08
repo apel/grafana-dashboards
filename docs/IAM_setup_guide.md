@@ -29,7 +29,7 @@
    allowed_domains = stfc.ac.uk
    ```
 
-  (remove ';' characters in .ini file to uncomment lines)
+   (remove ';' characters in .ini file to uncomment lines)
 
    Edit the root_url, client_id, client_secret, scopes, and allowed_domains as required.
 
