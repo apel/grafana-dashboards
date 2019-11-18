@@ -1,10 +1,9 @@
 CREATE TABLE Allocations (
-    AllocID INT AUTO_INCREMENT,
     Date TIMESTAMP NOT NULL,
     Activity VARCHAR(255) NOT NULL,
-    Alloc BIGINT,
-    
-    PRIMARY KEY (AllocID)
+    Allocation BIGINT,
+
+    PRIMARY KEY (Date,Activity)
 );
 
 --------------------------------------------------------------------------------
