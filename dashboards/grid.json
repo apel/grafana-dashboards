@@ -136,7 +136,17 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Alloc",
+          "bars": false,
+          "fill": 0,
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "steppedLine": true
+        }
+      ],
       "spaceLength": 10,
       "stack": true,
       "steppedLine": false,
@@ -215,6 +225,35 @@
           ],
           "table": "VCloudSummaries",
           "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "iris_alloc",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Alloc\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity IN ($All_VOs)\nGROUP BY Date\nORDER BY Date ASC\n",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
+          "timeColumn": "Date",
           "timeColumnType": "timestamp",
           "where": [
             {
