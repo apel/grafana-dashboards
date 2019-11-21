@@ -124,7 +124,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "Alloc",
+          "alias": "Allocation",
           "bars": false,
           "fill": 0,
           "lines": true,
@@ -226,7 +226,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Alloc\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity IN ($All_VOs)\nGROUP BY Date\nORDER BY Date ASC\n",
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity IN ($All_VOs)\nGROUP BY Date\nORDER BY Date ASC\n",
           "refId": "C",
           "select": [
             [
