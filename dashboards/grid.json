@@ -58,6 +58,9 @@
         "jintrac": "#E24D42",
         "casu": "#F0FFFF",
         "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
         "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
         "ral-cloud": "#E02F44",
@@ -77,7 +80,8 @@
         "UKI-SCOTGRID-GLASGOW": "#000075",
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000"
+        "UKI-LT2-RHUL": "#800000",
+        "Allocation": "#629E51"
       },
       "bars": true,
       "dashLength": 10,
@@ -284,6 +288,9 @@
         "jintrac": "#E24D42",
         "casu": "#F0FFFF",
         "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
         "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
         "ral-cloud": "#E02F44",
@@ -303,7 +310,8 @@
         "UKI-SCOTGRID-GLASGOW": "#000075",
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000"
+        "UKI-LT2-RHUL": "#800000",
+        "Allocation": "#629E51"
       },
       "breakPoint": "50%",
       "cacheTimeout": null,
@@ -433,6 +441,9 @@
         "jintrac": "#E24D42",
         "casu": "#F0FFFF",
         "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
         "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
         "ral-cloud": "#E02F44",
@@ -452,7 +463,8 @@
         "UKI-SCOTGRID-GLASGOW": "#000075",
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000"
+        "UKI-LT2-RHUL": "#800000",
+        "Allocation": "#629E51"
       },
       "breakPoint": "50%",
       "cacheTimeout": null,
