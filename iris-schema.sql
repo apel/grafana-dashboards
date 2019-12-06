@@ -1,3 +1,11 @@
+CREATE TABLE Allocations (
+    Date TIMESTAMP NOT NULL,
+    Activity VARCHAR(255) NOT NULL,
+    Allocation BIGINT,
+
+    PRIMARY KEY (Date,Activity)
+);
+
 --------------------------------------------------------------------------------
 -- View on Sites
 CREATE VIEW VAllSites AS
