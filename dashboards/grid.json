@@ -233,7 +233,7 @@
       "timeShift": null,
       "title": "Elapsed time * Number of Processors (months) by VO and Month",
       "tooltip": {
-        "shared": true,
+        "shared": false,
         "sort": 0,
         "value_type": "individual"
       },
