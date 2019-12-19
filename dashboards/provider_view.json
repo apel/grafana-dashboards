@@ -219,7 +219,7 @@
       "timeShift": null,
       "title": "Elapsed time * Number of Processors (months) by Site and Month",
       "tooltip": {
-        "shared": true,
+        "shared": false,
         "sort": 0,
         "value_type": "individual"
       },
@@ -405,7 +405,7 @@
       "timeShift": null,
       "title": "Elapsed time (months) by Site and Month",
       "tooltip": {
-        "shared": true,
+        "shared": false,
         "sort": 0,
         "value_type": "individual"
       },
@@ -589,7 +589,7 @@
       "timeShift": null,
       "title": "CPU time (months) by Site and Month",
       "tooltip": {
-        "shared": true,
+        "shared": false,
         "sort": 0,
         "value_type": "individual"
       },
