@@ -27,6 +27,15 @@
       ],
       "title": "",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "targetBlank": true,
+      "title": "Help",
+      "tooltip": "",
+      "type": "link",
+      "url": "../d/3FEa2VaZz/guide"
     }
   ],
   "panels": [
