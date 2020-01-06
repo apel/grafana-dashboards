@@ -36,7 +36,7 @@
       "type": "text"
     },
     {
-      "content": "\n## Navigation\n\nThe easiest way to navigate between these three dashboards is through the buttons in the top right. \n\n![nav](/public/img/nav.PNG)\n\nIf you are on the main Accounting Dashboard view, and would like to view the Activity View focused on one specific VO, one option is to left click on the appropriate coloured bar on the main graph, and select 'Activity Drilldown' which will open a new tab with the Activity View focused on that VO.\n\n![drilldown](/public/img/drilldown.PNG)",
+      "content": "\n## Navigation\n\nThe easiest way to navigate between these three dashboards is through the buttons in the top right. \n\n![nav](/public/img/nav.png)\n\nIf you are on the main Accounting Dashboard view, and would like to view the Activity View focused on one specific VO, one option is to left click on the appropriate coloured bar on the main graph, and select 'Activity Drilldown' which will open a new tab with the Activity View focused on that VO.\n\n![drilldown](/public/img/drilldown.png)",
       "gridPos": {
         "h": 12,
         "w": 12,
@@ -53,7 +53,7 @@
       "type": "text"
     },
     {
-      "content": "\n## Filters\n\nFilters (or variables as they are called by Grafana) on this dashboard can be used to choose a subset of Sites and VOs to view in the graphs and charts.\n\n![filters](/public/img/filters.PNG)\n\nYou can also choose to select all the Grid or all the Cloud Sites or VOs using the 'Tags' feature:\n\n![tags](/public/img/tags.PNG)\n",
+      "content": "\n## Filters\n\nFilters (or variables as they are called by Grafana) on this dashboard can be used to choose a subset of Sites and VOs to view in the graphs and charts.\n\n![filters](/public/img/filters.png)\n\nYou can also choose to select all the Grid or all the Cloud Sites or VOs using the 'Tags' feature:\n\n![tags](/public/img/tags.png)\n",
       "gridPos": {
         "h": 15,
         "w": 12,
@@ -70,7 +70,7 @@
       "type": "text"
     },
     {
-      "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.PNG)\n\n",
+      "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.png)\n\n",
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -87,7 +87,7 @@
       "type": "text"
     },
     {
-      "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.PNG)",
+      "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
       "gridPos": {
         "h": 6,
         "w": 11,
