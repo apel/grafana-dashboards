@@ -1,3 +1,9 @@
+CREATE TABLE IrisVOs (
+    VO VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (VO)
+);
+
 CREATE TABLE Allocations (
     Date TIMESTAMP NOT NULL,
     Activity VARCHAR(255) NOT NULL,
