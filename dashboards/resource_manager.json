@@ -695,26 +695,23 @@
           ]
         },
         "datasource": "iris_shared",
-        "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
+        "definition": "SELECT * FROM IrisVOs",
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
         "multi": true,
         "name": "All_VOs",
         "options": [],
-        "query": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
+        "query": "SELECT * FROM IrisVOs",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "SELECT name FROM VAllVOs WHERE tag = '$tag'",
-        "tags": [
-          "Grid",
-          "Cloud"
-        ],
-        "tagsQuery": "SELECT tag FROM VAllVOs",
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
         "type": "query",
-        "useTags": true
+        "useTags": false
       }
     ]
   },
