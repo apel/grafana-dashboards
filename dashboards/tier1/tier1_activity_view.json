@@ -15,9 +15,18 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 34,
-  "iteration": 1578493699536,
-  "links": [],
+  "id": 38,
+  "iteration": 1578926546103,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "tags": [
+        "tier-1"
+      ],
+      "type": "dashboards"
+    }
+  ],
   "panels": [
     {
       "aliasColors": {
@@ -76,7 +85,8 @@
         "x": 0,
         "y": 0
       },
-      "id": 10,
+      "hiddenSeries": false,
+      "id": 2,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -95,13 +105,7 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": [
-          {
-            "targetBlank": true,
-            "title": "Activity Drilldown",
-            "url": "../d/TfxgjgJZk/activity-view?&var-All_Sites=All&var-All_VOs=${__series_name}"
-          }
-        ]
+        "dataLinks": []
       },
       "paceLength": 10,
       "percentage": false,
@@ -113,6 +117,35 @@
       "stack": true,
       "steppedLine": false,
       "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "HybridSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
         {
           "datasource": "IRIS Cloud MySQL Database",
           "format": "time_series",
@@ -168,11 +201,22 @@
           ]
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "ok",
+          "fill": false,
+          "fillColor": "rgba(50, 116, 217, 0.2)",
+          "line": true,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": 7718,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time * Number of Processors (months) by VO and Month",
+      "title": "Average Core Usage by Activity and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -254,49 +298,83 @@
         "virgo": "#8F6A23",
         "vo.cta.in2p3.fr": "#23628F"
       },
-      "breakPoint": "50%",
+      "bars": true,
       "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": "0"
-      },
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "-- Mixed --",
-      "decimals": null,
-      "fontSize": "80%",
-      "format": "short",
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 13,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 12
       },
-      "id": 12,
-      "interval": null,
+      "hiddenSeries": false,
+      "id": 4,
       "legend": {
-        "header": "",
-        "percentage": true,
-        "percentageDecimals": null,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
         "show": true,
-        "sideWidth": null,
-        "sort": "total",
-        "sortDesc": true,
-        "values": true
+        "total": false,
+        "values": false
       },
-      "legendType": "Right side",
+      "lines": false,
+      "linewidth": 1,
       "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "options": {},
-      "pieType": "pie",
-      "strokeWidth": "1",
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
       "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Month"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VNormalisedSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
         {
           "datasource": "IRIS Cloud MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -320,11 +398,46 @@
           ]
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time * Number of Processors (months) by Site",
-      "type": "grafana-piechart-panel",
-      "valueName": "total"
+      "title": "Elapsed time (months) by Activity and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Elapsed time (months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -371,49 +484,82 @@
         "virgo": "#8F6A23",
         "vo.cta.in2p3.fr": "#23628F"
       },
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": "0"
-      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "-- Mixed --",
-      "decimals": null,
-      "fontSize": "80%",
-      "format": "short",
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 13,
+        "h": 9,
         "w": 12,
         "x": 12,
         "y": 12
       },
-      "id": 14,
-      "interval": null,
+      "hiddenSeries": false,
+      "id": 6,
       "legend": {
-        "header": "",
-        "percentage": true,
-        "percentageDecimals": null,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
         "show": true,
-        "sideWidth": null,
-        "sort": "total",
-        "sortDesc": true,
-        "values": true
+        "total": false,
+        "values": false
       },
-      "legendType": "Right side",
+      "lines": false,
+      "linewidth": 1,
       "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "options": {},
-      "pieType": "pie",
-      "strokeWidth": "1",
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
       "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Month"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VNormalisedSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
         {
           "datasource": "IRIS Cloud MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -437,17 +583,53 @@
           ]
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time * Number of Processors (months) by VO",
-      "type": "grafana-piechart-panel",
-      "valueName": "total"
+      "title": "CPU time (months) by Activity and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "CPU time (months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "refresh": false,
-  "schemaVersion": 19,
+  "schemaVersion": 21,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "tier-1"
+  ],
   "templating": {
     "list": [
       {
@@ -458,15 +640,15 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM Sites",
+        "datasource": "IRIS Grid MySQL Database",
+        "definition": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2'",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
         "name": "All_Sites",
         "options": [],
-        "query": "SELECT name FROM Sites",
+        "query": "SELECT name FROM Sites WHERE name LIKE 'UKI-%' OR name='RAL-LCG2'",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -485,15 +667,15 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Cloud MySQL Database",
-        "definition": "SELECT name FROM VOs WHERE name<>'DAFNI'",
+        "datasource": "IRIS Grid MySQL Database",
+        "definition": "SELECT name FROM VOs",
         "hide": 0,
         "includeAll": true,
         "label": "VO",
         "multi": true,
         "name": "All_VOs",
         "options": [],
-        "query": "SELECT name FROM VOs WHERE name<>'DAFNI'",
+        "query": "SELECT name FROM VOs",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -525,7 +707,7 @@
     ]
   },
   "timezone": "",
-  "title": "SCD Cloud Accounting Dashboard",
-  "uid": "beTpkMumkc",
-  "version": 10
+  "title": "RAL Tier-1 Activity View",
+  "uid": "TfxgjgJZkt",
+  "version": 5
 }

@@ -1,0 +1,705 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 40,
+  "iteration": 1578927431851,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "tags": [
+        "cloud"
+      ],
+      "title": "",
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "aliasColors": {
+        "AENEAS": "#f58231",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
+        "LSST": "#8bbaf0",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
+        "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
+        "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
+        "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
+        "ral-cloud": "#E02F44",
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "-- Mixed --",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "HybridSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "SiteName"
+              ],
+              "type": "column"
+            },
+            {
+              "params": [
+                "VO"
+              ],
+              "type": "column"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "WallDuration"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "sum"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "Benchmark"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VCloudSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Core Usage by Site and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Elapsed time * Number of Processors (months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "AENEAS": "#f58231",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
+        "LSST": "#8bbaf0",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
+        "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
+        "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
+        "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
+        "ral-cloud": "#E02F44",
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "-- Mixed --",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 12
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Month"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VNormalisedSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Elapsed time (months) by Site and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Elapsed time (months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "AENEAS": "#f58231",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
+        "LSST": "#8bbaf0",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
+        "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
+        "gaia": "#B7DBAB",
+        "gaia-dev": "#B7DBAB",
+        "gaia-prod": "#B7DBAB",
+        "gaia-test": "#B7DBAB",
+        "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
+        "ral-cloud": "#E02F44",
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "-- Mixed --",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Month"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VNormalisedSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;\n",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU time (months) by Site and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "CPU time (months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 21,
+  "style": "dark",
+  "tags": [
+    "cloud"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "IRIS Cloud MySQL Database",
+        "definition": "SELECT name FROM Sites",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Site",
+        "multi": true,
+        "name": "All_Sites",
+        "options": [],
+        "query": "SELECT name FROM Sites",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "SELECT name FROM VAllSites WHERE tag = '$tag'",
+        "tags": [],
+        "tagsQuery": "SELECT tag FROM VAllSites",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "IRIS Cloud MySQL Database",
+        "definition": "SELECT name FROM VOs WHERE name<>'DAFNI'",
+        "hide": 0,
+        "includeAll": true,
+        "label": "VO",
+        "multi": true,
+        "name": "All_VOs",
+        "options": [],
+        "query": "SELECT name FROM VOs WHERE name<>'DAFNI'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "SELECT name FROM VAllVOs WHERE tag = '$tag'",
+        "tags": [],
+        "tagsQuery": "SELECT tag FROM VAllVOs",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "2018-01-01T00:00:00.000Z",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "SCD Cloud Provider View",
+  "uid": "TEXgjgJZkc",
+  "version": 6
+}
