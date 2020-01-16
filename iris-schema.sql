@@ -21,6 +21,7 @@ CREATE TABLE Capacity (
 
 --------------------------------------------------------------------------------
 -- View on Sites
+
 CREATE VIEW VAllSites AS
     SELECT iris_grid.Sites.name AS name, 'Grid' AS tag
     FROM iris_grid.Sites
