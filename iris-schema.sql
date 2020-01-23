@@ -12,6 +12,13 @@ CREATE TABLE Allocations (
     PRIMARY KEY (Date,Activity)
 );
 
+CREATE TABLE Capacity (
+    Date TIMESTAMP NOT NULL,
+    Capacity BIGINT,
+
+​	   PRIMARY KEY (Date)
+);
+
 --------------------------------------------------------------------------------
 -- View on Sites
 CREATE VIEW VAllSites AS
