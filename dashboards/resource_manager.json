@@ -698,7 +698,7 @@
         "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI')",
         "hide": 0,
         "includeAll": true,
-        "label": "VO",
+        "label": "Activity",
         "multi": true,
         "name": "All_VOs",
         "options": [],

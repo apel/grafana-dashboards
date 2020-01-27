@@ -226,7 +226,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time * Number of Processors (months) by Site and Month",
+      "title": "Average Core Usage by Site and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -951,7 +951,7 @@
         "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI') AND (name <> 'None')",
         "hide": 0,
         "includeAll": true,
-        "label": "VO",
+        "label": "Activity",
         "multi": true,
         "name": "All_VOs",
         "options": [],
