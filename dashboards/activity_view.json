@@ -224,7 +224,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time * Number of Processors (months) by VO and Month",
+      "title": "Average Core Usage by Activity and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -409,7 +409,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time (months) by VO and Month",
+      "title": "Elapsed time (months) by Activity and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -593,7 +593,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU time (months) by VO and Month",
+      "title": "CPU time (months) by Activity and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -680,7 +680,7 @@
         "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI') AND (name <> 'None')",
         "hide": 0,
         "includeAll": true,
-        "label": "VO",
+        "label": "Activity",
         "multi": true,
         "name": "All_VOs",
         "options": [],
