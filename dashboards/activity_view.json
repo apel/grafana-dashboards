@@ -80,7 +80,8 @@
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
         "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#629E51"
+        "Allocation": "#B877D9",
+        "Capacity": "#629E51"
       },
       "bars": true,
       "dashLength": 10,
@@ -120,7 +121,17 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Allocation",
+          "bars": false,
+          "fill": 0,
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "steppedLine": true
+        }
+      ],
       "spaceLength": 10,
       "stack": true,
       "steppedLine": false,
@@ -207,20 +218,38 @@
               "type": "macro"
             }
           ]
-        }
-      ],
-      "thresholds": [
+        },
         {
-          "colorMode": "ok",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "rgba(31, 96, 196, 0.6)",
-          "op": "gt",
-          "value": 7718,
-          "yaxis": "left"
+          "datasource": "iris_shared",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity IN ($All_VOs)\nGROUP BY Date\nUNION \nSELECT\n  CURRENT_DATE,\n  (SELECT SUM(Allocation)\n   FROM Allocations\n   WHERE Activity IN ($All_VOs) \n   GROUP BY Date desc LIMIT 1)",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -304,7 +333,8 @@
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
         "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#629E51"
+        "Allocation": "#B877D9",
+        "Capacity": "#629E51"
       },
       "bars": true,
       "cacheTimeout": null,
@@ -489,7 +519,8 @@
         "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
         "UKI-SOUTHGRID-CAM-HEP": "#808000",
         "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#629E51"
+        "Allocation": "#B877D9",
+        "Capacity": "#629E51"
       },
       "bars": true,
       "dashLength": 10,
