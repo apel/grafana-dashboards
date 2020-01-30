@@ -72,7 +72,7 @@
     {
       "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.png)\n\n",
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 12,
         "x": 0,
         "y": 18
@@ -89,12 +89,30 @@
     {
       "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
       "gridPos": {
-        "h": 6,
+        "h": 5,
         "w": 11,
         "x": 12,
         "y": 21
       },
       "id": 4,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "content": "## Allocation and Capacity lines\n\nThe green line on the main graphs of the home view and the Provider View shows IRIS Capacity over time. \n\n![capacity](/public/img/capacity.png)\n\nThe purple line on the main graph in the Activity View shows the allocation for the currently selected Activities. By default this is showing the sum of the allocation across all Activities, but the total will adjust depending on which Activities are selected using the filter.\n\n![allocation](/public/img/allocation.png)\n",
+      "datasource": null,
+      "gridPos": {
+        "h": 15,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 11,
       "mode": "markdown",
       "options": {},
       "timeFrom": null,
