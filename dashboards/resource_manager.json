@@ -473,11 +473,12 @@
       "gridPos": {
         "h": 10,
         "w": 4,
-        "x": 9,
+        "x": 13,
         "y": 0
       },
+      "hiddenSeries": false,
       "hideTimeOverride": true,
-      "id": 16,
+      "id": 17,
       "interval": "",
       "legend": {
         "alignAsTable": false,
