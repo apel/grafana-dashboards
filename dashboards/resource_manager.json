@@ -405,7 +405,6 @@
       },
       "yaxes": [
         {
-          "decimals": 2,
           "format": "short",
           "label": "",
           "logBase": 1,
