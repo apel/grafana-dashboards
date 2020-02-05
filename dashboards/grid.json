@@ -374,7 +374,7 @@
       "legend": {
         "header": "",
         "percentage": true,
-        "percentageDecimals": null,
+        "percentageDecimals": 1,
         "show": true,
         "sideWidth": null,
         "sort": "total",
@@ -528,7 +528,7 @@
       "legend": {
         "header": "",
         "percentage": true,
-        "percentageDecimals": null,
+        "percentageDecimals": 1,
         "show": true,
         "sideWidth": null,
         "sort": "total",
