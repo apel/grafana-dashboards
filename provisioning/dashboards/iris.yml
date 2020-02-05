@@ -1,0 +1,38 @@
+apiVersion: 1
+
+providers:
+- name: IRIS Grid Accounting Dashboard
+  folder: 'IRIS'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/iris/grid.json
+- name: IRIS Provider View
+  folder: 'IRIS'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/iris/provider_view.json
+- name: IRIS Activity View
+  folder: 'IRIS'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/iris/activity_view.json
+- name: IRIS Resource Manager View
+  folder: 'IRIS'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/iris/resource_manager.json
+- name: IRIS User Guide
+  folder: 'IRIS'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/iris/guide.json
