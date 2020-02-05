@@ -1,0 +1,30 @@
+apiVersion: 1
+
+datasources:
+  - name: IRIS Grid MySQL Database
+    type: mysql
+    url:
+    database: iris_grid
+    user:
+    password:
+
+  - name: IRIS Cloud MySQL Database
+    type: mysql
+    url:
+    database: iris_cloud
+    user:
+    password:
+
+  - name: IRIS Storage MySQL Database
+    type: mysql
+    url:
+    database: iris_storage
+    user:
+    password:
+
+  - name: iris_shared
+    type: mysql
+    url:
+    database: iris_shared
+    user:
+    password:
