@@ -386,7 +386,7 @@
         {
           "targetBlank": true,
           "title": "Provider View",
-          "url": "../d/TEXgjgJZk/provider-view"
+          "url": "/d/TEXgjgJZk/provider-view"
         }
       ],
       "maxDataPoints": 3,
@@ -540,7 +540,7 @@
         {
           "targetBlank": true,
           "title": "Activity View",
-          "url": "../d/TfxgjgJZk/activity-view"
+          "url": "/d/TfxgjgJZk/activity-view"
         }
       ],
       "maxDataPoints": 3,
