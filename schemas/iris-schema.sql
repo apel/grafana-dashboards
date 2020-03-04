@@ -14,9 +14,17 @@ CREATE TABLE Allocations (
 
 CREATE TABLE Capacity (
     Date TIMESTAMP NOT NULL,
+    Project VARCHAR(255) NOT NULL,
     Capacity BIGINT,
 
-​	   PRIMARY KEY (Date)
+    PRIMARY KEY (Date,Project)
+);
+
+CREATE TABLE Projects (
+    Site VARCHAR(255) NOT NULL,
+    Project VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (Site,Project)
 );
 
 --------------------------------------------------------------------------------
