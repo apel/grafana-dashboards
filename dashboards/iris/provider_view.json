@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 27,
-  "iteration": 1573229160443,
+  "id": 23,
+  "iteration": 1583341703496,
   "links": [
     {
       "asDropdown": false,
@@ -33,12 +33,185 @@
       "tags": [],
       "targetBlank": true,
       "title": "Help",
-      "tooltip": "",
       "type": "link",
       "url": "../d/3FEa2VaZz/guide"
     }
   ],
   "panels": [
+    {
+      "aliasColors": {
+        "GridPP": "blue",
+        "SCD": "semi-dark-red",
+		    "DiRAC": "#35586C"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "-- Mixed --",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Capacity",
+          "bars": false,
+          "fill": 0,
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "steppedLine": true
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": true,
+      "targets": [
+        {
+          "datasource": "iris_shared",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc \n   LIMIT 1)\n",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Capacity",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "iris_shared",
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "$__interval",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "Project",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  Project,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "refId": "D",
+          "select": [
+            [
+              {
+                "params": [
+                  "(WallDuration*CpuCount)/2628000"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "sum"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "Elapsed time * Number of processors / 2628000"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VCombinedSummaries",
+          "timeColumn": "Date",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Core Usage by Provider Project and Month",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Elapsed time * Number of Processors (Months)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
     {
       "aliasColors": {
         "lsst": "#8bbaf0",
@@ -95,9 +268,10 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 12
       },
-      "id": 2,
+      "hiddenSeries": false,
+      "id": 10,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -139,79 +313,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Grid MySQL Database",
+          "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
-          "refId": "A",
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc \n   LIMIT 1)",
+          "refId": "C",
           "select": [
             [
               {
                 "params": [
-                  "SiteID"
+                  "value"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "HybridSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [
-            {
-              "params": [
-                "SiteName"
-              ],
-              "type": "column"
-            },
-            {
-              "params": [
-                "VO"
-              ],
-              "type": "column"
-            }
-          ],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              },
-              {
-                "params": [
-                  "sum"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "Benchmark"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "table": "VCloudSummaries",
-          "timeColumn": "UpdateTime",
+          "table": "Capacity",
+          "timeColumn": "Date",
           "timeColumnType": "timestamp",
           "where": [
             {
@@ -225,23 +345,22 @@
           "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
-          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Capacity\nFROM Capacity\nWHERE $__timeFilter(Date)\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT Capacity\n   FROM Capacity\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "CpuCount"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "Capacity",
-          "timeColumn": "Date",
+          "table": "VCombinedSummaries",
+          "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
           "where": [
             {
@@ -273,7 +392,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "Elapsed time * Number of Processors (months)",
+          "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -349,8 +468,9 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 24
       },
+      "hiddenSeries": false,
       "id": 4,
       "legend": {
         "avg": false,
@@ -381,53 +501,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Grid MySQL Database",
+          "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    Site\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
-          "refId": "A",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "refId": "C",
           "select": [
             [
               {
                 "params": [
-                  "Month"
+                  "CpuCount"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "VNormalisedSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "SiteID"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "CloudRecords",
+          "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
           "where": [
@@ -536,8 +627,9 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 24
       },
+      "hiddenSeries": false,
       "id": 6,
       "legend": {
         "avg": false,
@@ -566,53 +658,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Grid MySQL Database",
+          "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    Site\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time",
-          "refId": "A",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((CpuDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "refId": "C",
           "select": [
             [
               {
                 "params": [
-                  "Month"
+                  "CpuCount"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "VNormalisedSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;\n",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "SiteID"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "CloudRecords",
+          "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
           "where": [
@@ -721,9 +784,10 @@
         "h": 15,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 33
       },
-      "id": 8,
+      "hiddenSeries": false,
+      "id": 7,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -760,7 +824,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(NumberOfJobs),\n    SubmitHost\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SubmitHost\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(NumberOfJobs),\n    SubmitHost\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, SubmitHost\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -834,9 +898,9 @@
         "h": 15,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 33
       },
-      "id": 10,
+      "id": 8,
       "links": [],
       "options": {},
       "pageSize": 16,
@@ -849,6 +913,7 @@
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD",
           "link": false,
           "pattern": "Time",
@@ -856,6 +921,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -872,6 +938,7 @@
         },
         {
           "alias": "Time",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -888,6 +955,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -908,7 +976,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SubmitHost,\n    Site,\n    SUM(NumberOfJobs) as \"Total Jobs\"\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SubmitHost\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SubmitHost,\n    Site,\n    SUM(NumberOfJobs) as \"Total Jobs\"\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO)\nGROUP BY time, SubmitHost\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -936,55 +1004,11 @@
       "timeShift": null,
       "title": "SubmitHost Job Count (Grid)",
       "transform": "table",
-      "type": "table",
-      "aliasColors": {
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "skatelescope.eu": "#DCB9ED",
-        "dune": "#8F2323",
-        "vo.cta.in2p3.fr": "#23628F",
-        "virgo": "#8F6A23",
-        "ISIS": "#4F8F23",
-        "Diamond": "#737373",
-        "CLF": "#FF00AA",
-        "CCFE": "#469990",
-        "EUCLID": "#bfef45",
-        "AENEAS": "#f58231",
-        "eMERLIN": "#ffd8b1",
-        "LSST": "#8bbaf0",
-        "dirac": "#FFA6B0",
-        "jintrac": "#E24D42",
-        "casu": "#F0FFFF",
-        "gaia": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "vcycle": "#8A2BE2",
-        "iris.ac.uk": "#6D1F62",
-        "ral-cloud": "#E02F44",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "RAL-LCG2": "#AA00FF",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#B877D9",
-        "Capacity": "#629E51"
-      }
+      "type": "table"
     }
   ],
-  "schemaVersion": 19,
+  "refresh": false,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "main"
@@ -1000,26 +1024,50 @@
           ]
         },
         "datasource": "iris_shared",
-        "definition": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "definition": "SELECT DISTINCT Project FROM Projects",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Project",
+        "options": [],
+        "query": "SELECT DISTINCT Project FROM Projects",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "iris_shared",
+        "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
-        "name": "All_Sites",
+        "name": "Site",
         "options": [],
-        "query": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
-        "refresh": 1,
+        "query": "SELECT Site FROM Projects WHERE Project in ($Project)",
+        "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "SELECT name FROM VAllSites WHERE tag = '$tag'",
-        "tags": [
-          "Grid",
-          "Cloud"
-        ],
-        "tagsQuery": "SELECT tag FROM VAllSites",
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
         "type": "query",
-        "useTags": true
+        "useTags": false
       },
       {
         "allValue": null,
@@ -1035,7 +1083,7 @@
         "includeAll": true,
         "label": "Activity",
         "multi": true,
-        "name": "All_VOs",
+        "name": "VO",
         "options": [],
         "query": "SELECT * FROM IrisVOs",
         "refresh": 1,
@@ -1071,5 +1119,5 @@
   "timezone": "",
   "title": "Provider View",
   "uid": "TEXgjgJZk",
-  "version": 1
+  "version": 35
 }
