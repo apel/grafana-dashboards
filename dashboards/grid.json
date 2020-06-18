@@ -158,7 +158,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -402,7 +402,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -556,7 +556,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
           "refId": "A",
           "select": [
             [
