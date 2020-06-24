@@ -29,22 +29,22 @@ CREATE TABLE Projects (
 
 CREATE VIEW VCombinedSummaries AS
 SELECT
-  iris_grid.Summaries.UpdateTime,
+  iris_grid.HybridSuperSummaries.UpdateTime,
   iris_grid.site.name Site,
   STR_TO_DATE(
-          CONCAT(iris_grid.Summaries.Year, "-", iris_grid.Summaries.Month, "-01 00:00:00"),
+          CONCAT(iris_grid.HybridSuperSummaries.Year, "-", iris_grid.HybridSuperSummaries.Month, "-01 00:00:00"),
           "%Y-%m-%d %H:%i:%s"
       ) Date,
   iris_grid.userdn.name GlobalUserName,
   iris_grid.vos.name VO,
   iris_grid.vogroup.name VOGroup,
   iris_grid.vorole.name VORole,
-  iris_grid.Summaries.Processors as CpuCount,
-  iris_grid.Summaries.WallDuration,
-  iris_grid.Summaries.CpuDuration,
+  iris_grid.HybridSuperSummaries.Processors as CpuCount,
+  iris_grid.HybridSuperSummaries.WallDuration,
+  iris_grid.HybridSuperSummaries.CpuDuration,
   'Grid' SourceSchema,
   iris_shared.Projects.Project
-FROM iris_grid.Summaries,
+FROM iris_grid.HybridSuperSummaries,
   iris_grid.Sites site,
   iris_grid.DNs userdn,
   iris_grid.VORoles vorole,
@@ -52,11 +52,11 @@ FROM iris_grid.Summaries,
   iris_grid.VOGroups vogroup,
   iris_shared.Projects
 WHERE
-  iris_grid.Summaries.SiteID = iris_grid.site.id
-  AND iris_grid.Summaries.GlobalUserNameID = iris_grid.userdn.id
-  AND iris_grid.Summaries.VORoleID = iris_grid.vorole.id
-  AND iris_grid.Summaries.VOID = iris_grid.vos.id
-  AND iris_grid.Summaries.VOGroupID = iris_grid.vogroup.id
+  iris_grid.HybridSuperSummaries.SiteID = iris_grid.site.id
+  AND iris_grid.HybridSuperSummaries.GlobalUserNameID = iris_grid.userdn.id
+  AND iris_grid.HybridSuperSummaries.VORoleID = iris_grid.vorole.id
+  AND iris_grid.HybridSuperSummaries.VOID = iris_grid.vos.id
+  AND iris_grid.HybridSuperSummaries.VOGroupID = iris_grid.vogroup.id
   AND iris_shared.Projects.Site = iris_grid.site.name
 
 UNION
