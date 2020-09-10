@@ -153,79 +153,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Grid MySQL Database",
+          "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
-          "refId": "A",
+          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc \n   LIMIT 1)",
+          "refId": "C",
           "select": [
             [
               {
                 "params": [
-                  "SiteID"
+                  "value"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "HybridSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [
-            {
-              "params": [
-                "SiteName"
-              ],
-              "type": "column"
-            },
-            {
-              "params": [
-                "VO"
-              ],
-              "type": "column"
-            }
-          ],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              },
-              {
-                "params": [
-                  "sum"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "Benchmark"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "table": "VCloudSummaries",
-          "timeColumn": "UpdateTime",
+          "table": "Capacity",
+          "timeColumn": "Date",
           "timeColumnType": "timestamp",
           "where": [
             {
@@ -239,23 +185,22 @@
           "datasource": "iris_shared",
           "format": "time_series",
           "group": [],
-          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Capacity\nFROM Capacity\nWHERE $__timeFilter(Date)\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT Capacity\n   FROM Capacity\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "CpuCount"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "Capacity",
-          "timeColumn": "Date",
+          "table": "VCombinedSummaries",
+          "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
           "where": [
             {
@@ -287,7 +232,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "Elapsed time * Number of Processors (months)",
+          "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -395,66 +340,37 @@
       "pieType": "pie",
       "strokeWidth": "1",
       "targets": [
+    {
+      "datasource": "iris_shared",
+      "refId": "C",
+      "format": "time_series",
+      "timeColumn": "UpdateTime",
+      "metricColumn": "none",
+      "group": [],
+      "where": [
         {
-          "datasource": "IRIS Grid MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nHAVING $__timeFilter(time)\nORDER BY time;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "Month"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VNormalisedSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nHAVING $__timeFilter(time)\nORDER BY time;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "SiteID"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "CloudRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "type": "macro",
+          "name": "$__timeFilter",
+          "params": []
         }
       ],
+      "select": [
+        [
+          {
+            "type": "column",
+            "params": [
+              "CpuCount"
+            ]
+          }
+        ]
+      ],
+      "rawQuery": true,
+      "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+      "table": "VCombinedSummaries",
+      "timeColumnType": "timestamp",
+      "hide": false
+    }
+  ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Average Core Usage by Site",
@@ -549,66 +465,36 @@
       "pieType": "pie",
       "strokeWidth": "1",
       "targets": [
+    {
+      "datasource": "iris_shared",
+      "refId": "A",
+      "format": "time_series",
+      "timeColumn": "UpdateTime",
+      "metricColumn": "none",
+      "group": [],
+      "where": [
         {
-          "datasource": "IRIS Grid MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "Month"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VNormalisedSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nHAVING $__timeFilter(time)\nORDER BY time;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "SiteID"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "CloudRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "type": "macro",
+          "name": "$__timeFilter",
+          "params": []
         }
       ],
+      "select": [
+        [
+          {
+            "type": "column",
+            "params": [
+              "CpuCount"
+            ]
+          }
+        ]
+      ],
+      "rawQuery": true,
+      "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+      "table": "VCombinedSummaries",
+      "timeColumnType": "timestamp"
+    }
+  ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Average Core Usage by Activity",
@@ -633,26 +519,50 @@
           ]
         },
         "datasource": "iris_shared",
-        "definition": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "definition": "SELECT DISTINCT Project FROM Projects",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Project",
+        "options": [],
+        "query": "SELECT DISTINCT Project FROM Projects",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "iris_shared",
+        "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
-        "name": "All_Sites",
+        "name": "Site",
         "options": [],
-        "query": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
-        "refresh": 1,
+        "query": "SELECT Site FROM Projects WHERE Project in ($Project)",
+        "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "SELECT name FROM VAllSites WHERE tag = '$tag'",
-        "tags": [
-          "Grid",
-          "Cloud"
-        ],
-        "tagsQuery": "SELECT tag FROM VAllSites",
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
         "type": "query",
-        "useTags": true
+        "useTags": false
       },
       {
         "allValue": null,
@@ -668,7 +578,7 @@
         "includeAll": true,
         "label": "Activity",
         "multi": true,
-        "name": "All_VOs",
+        "name": "VO",
         "options": [],
         "query": "SELECT * FROM IrisVOs",
         "refresh": 1,
