@@ -16,7 +16,7 @@ CREATE TABLE Capacity (
     Date TIMESTAMP NOT NULL,
     Capacity BIGINT,
 
-​	   PRIMARY KEY (Date)
+    PRIMARY KEY (Date)
 );
 
 --------------------------------------------------------------------------------
