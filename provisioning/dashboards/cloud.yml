@@ -1,0 +1,24 @@
+apiVersion: 1
+
+providers:
+- name: Cloud Accounting Dashboard
+  folder: 'Cloud'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/cloud/cloud.json
+- name: Cloud Provider View
+  folder: 'Cloud'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/cloud/provider_view.json
+- name: Cloud Activity View
+  folder: 'Cloud'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/cloud/activity_view.json

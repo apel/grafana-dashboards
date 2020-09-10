@@ -1,0 +1,24 @@
+apiVersion: 1
+
+providers:
+- name: Tier1 Accounting Dashboard
+  folder: 'Tier1'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/tier1/tier1.json
+- name: Tier1 Provider View
+  folder: 'Tier1'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/tier1/provider_view.json
+- name: Tier1 Activity View
+  folder: 'Tier1'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/tier1/activity_view.json

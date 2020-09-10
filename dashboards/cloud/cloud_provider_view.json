@@ -12,76 +12,68 @@
       }
     ]
   },
+  "description": "",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 26,
-  "iteration": 1573228834462,
+  "id": 40,
+  "iteration": 1578927431851,
   "links": [
     {
       "asDropdown": false,
       "icon": "external link",
       "tags": [
-        "main"
+        "cloud"
       ],
+      "title": "",
       "type": "dashboards"
-    },
-    {
-      "icon": "question",
-      "tags": [],
-      "targetBlank": true,
-      "title": "Help",
-      "tooltip": "",
-      "type": "link",
-      "url": "../d/3FEa2VaZz/guide"
     }
   ],
   "panels": [
     {
       "aliasColors": {
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "skatelescope.eu": "#DCB9ED",
-        "dune": "#8F2323",
-        "vo.cta.in2p3.fr": "#23628F",
-        "virgo": "#8F6A23",
-        "ISIS": "#4F8F23",
-        "Diamond": "#737373",
-        "CLF": "#FF00AA",
-        "CCFE": "#469990",
-        "EUCLID": "#bfef45",
         "AENEAS": "#f58231",
-        "eMERLIN": "#ffd8b1",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
-        "dirac": "#FFA6B0",
-        "jintrac": "#E24D42",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
         "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
         "gaia": "#B7DBAB",
         "gaia-dev": "#B7DBAB",
         "gaia-prod": "#B7DBAB",
         "gaia-test": "#B7DBAB",
-        "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
         "ral-cloud": "#E02F44",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "RAL-LCG2": "#AA00FF",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#B877D9",
-        "Capacity": "#629E51"
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
       },
       "bars": true,
       "dashLength": 10,
@@ -95,6 +87,7 @@
         "x": 0,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 2,
       "legend": {
         "alignAsTable": false,
@@ -121,17 +114,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Allocation",
-          "bars": false,
-          "fill": 0,
-          "lines": true,
-          "linewidth": 2,
-          "stack": false,
-          "steppedLine": true
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
       "steppedLine": false,
@@ -142,7 +125,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -184,7 +167,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -218,42 +201,13 @@
               "type": "macro"
             }
           ]
-        },
-        {
-          "datasource": "iris_shared",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity IN ($All_VOs)\nGROUP BY Date\nUNION \nSELECT\n  CURRENT_DATE,\n  (SELECT SUM(Allocation)\n   FROM Allocations\n   WHERE Activity IN ($All_VOs) \n   GROUP BY Date desc LIMIT 1)",
-          "refId": "C",
-          "select": [
-            [
-              {
-                "params": [
-                  "Allocation"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "Allocations",
-          "timeColumn": "Date",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Average Core Usage by Activity and Month",
+      "title": "Average Core Usage by Site and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -292,52 +246,50 @@
     },
     {
       "aliasColors": {
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "skatelescope.eu": "#DCB9ED",
-        "dune": "#8F2323",
-        "vo.cta.in2p3.fr": "#23628F",
-        "virgo": "#8F6A23",
-        "ISIS": "#4F8F23",
-        "Diamond": "#737373",
-        "CLF": "#FF00AA",
-        "CCFE": "#469990",
-        "EUCLID": "#bfef45",
         "AENEAS": "#f58231",
-        "eMERLIN": "#ffd8b1",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
-        "dirac": "#FFA6B0",
-        "jintrac": "#E24D42",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
         "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
         "gaia": "#B7DBAB",
         "gaia-dev": "#B7DBAB",
         "gaia-prod": "#B7DBAB",
         "gaia-test": "#B7DBAB",
-        "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
         "ral-cloud": "#E02F44",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "RAL-LCG2": "#AA00FF",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#B877D9",
-        "Capacity": "#629E51"
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
       },
       "bars": true,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
@@ -349,10 +301,13 @@
         "x": 0,
         "y": 12
       },
+      "hiddenSeries": false,
       "id": 4,
       "legend": {
         "avg": false,
         "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": false,
         "min": false,
         "show": true,
@@ -382,7 +337,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time;",
           "refId": "A",
           "select": [
             [
@@ -411,7 +366,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;",
           "refId": "B",
           "select": [
             [
@@ -439,7 +394,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Elapsed time (months) by Activity and Month",
+      "title": "Elapsed time (months) by Site and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -478,49 +433,48 @@
     },
     {
       "aliasColors": {
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "skatelescope.eu": "#DCB9ED",
-        "dune": "#8F2323",
-        "vo.cta.in2p3.fr": "#23628F",
-        "virgo": "#8F6A23",
-        "ISIS": "#4F8F23",
-        "Diamond": "#737373",
-        "CLF": "#FF00AA",
-        "CCFE": "#469990",
-        "EUCLID": "#bfef45",
         "AENEAS": "#f58231",
-        "eMERLIN": "#ffd8b1",
+        "Allocation": "#629E51",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
-        "dirac": "#FFA6B0",
-        "jintrac": "#E24D42",
+        "RAL-LCG2": "#AA00FF",
+        "UK-CAM-CUMULUS": "#35586C",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
         "casu": "#F0FFFF",
+        "dirac": "#FFA6B0",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
         "gaia": "#B7DBAB",
         "gaia-dev": "#B7DBAB",
         "gaia-prod": "#B7DBAB",
         "gaia-test": "#B7DBAB",
-        "vcycle": "#8A2BE2",
         "iris.ac.uk": "#6D1F62",
+        "jintrac": "#E24D42",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
         "ral-cloud": "#E02F44",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "RAL-LCG2": "#AA00FF",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-LT2-RHUL": "#800000",
-        "Allocation": "#B877D9",
-        "Capacity": "#629E51"
+        "skatelescope.eu": "#DCB9ED",
+        "vcycle": "#8A2BE2",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
       },
       "bars": true,
       "dashLength": 10,
@@ -534,6 +488,7 @@
         "x": 12,
         "y": 12
       },
+      "hiddenSeries": false,
       "id": 6,
       "legend": {
         "avg": false,
@@ -567,7 +522,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    VO\nFROM VSuperSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CPUDuration)/2628000,\n    Site\nFROM VSummaries\nWHERE Site in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, Site\nORDER BY time",
           "refId": "A",
           "select": [
             [
@@ -596,7 +551,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    VO\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, VO\nORDER BY time;",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(CpuDuration)/2628000,\n    SiteName\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($All_Sites) and VO in ($All_VOs)\nGROUP BY time, SiteName\nORDER BY time;\n",
           "refId": "B",
           "select": [
             [
@@ -624,7 +579,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU time (months) by Activity and Month",
+      "title": "CPU time (months) by Site and Month",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -662,10 +617,10 @@
       }
     }
   ],
-  "schemaVersion": 19,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [
-    "main"
+    "cloud"
   ],
   "templating": {
     "list": [
@@ -677,27 +632,24 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
-        "definition": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "datasource": "IRIS Cloud MySQL Database",
+        "definition": "SELECT name FROM Sites",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
         "name": "All_Sites",
         "options": [],
-        "query": "SELECT name FROM VAllSites WHERE ((name LIKE 'UKI-%') OR (name = 'RAL-LCG2') OR (tag = 'Cloud')) AND (name <> 'None')",
+        "query": "SELECT name FROM Sites",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "SELECT name FROM VAllSites WHERE tag = '$tag'",
-        "tags": [
-          "Grid",
-          "Cloud"
-        ],
+        "tags": [],
         "tagsQuery": "SELECT tag FROM VAllSites",
         "type": "query",
-        "useTags": true
+        "useTags": false
       },
       {
         "allValue": null,
@@ -707,27 +659,24 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
-        "definition": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI') AND (name <> 'None')",
+        "datasource": "IRIS Cloud MySQL Database",
+        "definition": "SELECT name FROM VOs WHERE name<>'DAFNI'",
         "hide": 0,
         "includeAll": true,
-        "label": "Activity",
+        "label": "VO",
         "multi": true,
         "name": "All_VOs",
         "options": [],
-        "query": "SELECT name FROM VAllVOs WHERE (name <> 'DAFNI') AND (name <> 'None')",
+        "query": "SELECT name FROM VOs WHERE name<>'DAFNI'",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "SELECT name FROM VAllVOs WHERE tag = '$tag'",
-        "tags": [
-          "Grid",
-          "Cloud"
-        ],
+        "tags": [],
         "tagsQuery": "SELECT tag FROM VAllVOs",
         "type": "query",
-        "useTags": true
+        "useTags": false
       }
     ]
   },
@@ -750,7 +699,7 @@
     ]
   },
   "timezone": "",
-  "title": "Activity View",
-  "uid": "TfxgjgJZk",
-  "version": 1
+  "title": "SCD Cloud Provider View",
+  "uid": "TEXgjgJZkc",
+  "version": 6
 }
