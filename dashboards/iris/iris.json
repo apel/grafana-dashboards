@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 25,
-  "iteration": 1573229976952,
+  "iteration": 1599818185491,
   "links": [
     {
       "asDropdown": false,
@@ -97,6 +96,19 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Activity Drilldown",
+              "url": "../d/TfxgjgJZk/activity-view?&var-All_Sites=All&var-All_VOs=${__series.name}"
+            }
+          ]
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -105,6 +117,7 @@
         "x": 0,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 10,
       "legend": {
         "alignAsTable": false,
@@ -123,22 +136,15 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": [
-          {
-            "targetBlank": true,
-            "title": "Activity Drilldown",
-            "url": "../d/TfxgjgJZk/activity-view?&var-All_Sites=All&var-All_VOs=${__series_name}"
-          }
-        ]
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:646",
           "alias": "Capacity",
           "bars": false,
           "fill": 0,
@@ -187,7 +193,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -231,6 +237,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:663",
           "format": "short",
           "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
@@ -239,6 +246,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:664",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -306,6 +314,12 @@
       },
       "datasource": "-- Mixed --",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "format": "short",
       "gridPos": {
@@ -336,41 +350,40 @@
       ],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
-      "options": {},
       "pieType": "pie",
       "strokeWidth": "1",
       "targets": [
-    {
-      "datasource": "iris_shared",
-      "refId": "C",
-      "format": "time_series",
-      "timeColumn": "UpdateTime",
-      "metricColumn": "none",
-      "group": [],
-      "where": [
         {
-          "type": "macro",
-          "name": "$__timeFilter",
-          "params": []
+          "datasource": "iris_shared",
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "CpuCount"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VCombinedSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
-      "select": [
-        [
-          {
-            "type": "column",
-            "params": [
-              "CpuCount"
-            ]
-          }
-        ]
-      ],
-      "rawQuery": true,
-      "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
-      "table": "VCombinedSummaries",
-      "timeColumnType": "timestamp",
-      "hide": false
-    }
-  ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Average Core Usage by Site",
@@ -431,6 +444,12 @@
       },
       "datasource": "-- Mixed --",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "format": "short",
       "gridPos": {
@@ -461,40 +480,39 @@
       ],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
-      "options": {},
       "pieType": "pie",
       "strokeWidth": "1",
       "targets": [
-    {
-      "datasource": "iris_shared",
-      "refId": "A",
-      "format": "time_series",
-      "timeColumn": "UpdateTime",
-      "metricColumn": "none",
-      "group": [],
-      "where": [
         {
-          "type": "macro",
-          "name": "$__timeFilter",
-          "params": []
+          "datasource": "iris_shared",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "CpuCount"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VCombinedSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
-      "select": [
-        [
-          {
-            "type": "column",
-            "params": [
-              "CpuCount"
-            ]
-          }
-        ]
-      ],
-      "rawQuery": true,
-      "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
-      "table": "VCombinedSummaries",
-      "timeColumnType": "timestamp"
-    }
-  ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Average Core Usage by Activity",
@@ -503,7 +521,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 19,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "main"
@@ -513,7 +531,11 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "tags": [],
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -540,7 +562,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -567,7 +592,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -590,6 +618,40 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Data Source",
+        "multi": false,
+        "name": "Source",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Grid",
+            "value": "Grid"
+          },
+          {
+            "selected": false,
+            "text": "Cloud",
+            "value": "Cloud"
+          }
+        ],
+        "query": "Grid,Cloud",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -614,5 +676,5 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 21
+  "version": 32
 }
