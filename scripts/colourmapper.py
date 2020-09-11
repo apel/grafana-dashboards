@@ -25,21 +25,21 @@ parser = argparse.ArgumentParser()
 parser.add_argument("filepath", help="filepath of JSON file that will be edited")
 args = parser.parse_args()
 
+
 def main():
-    """
-    Update the desired JSON file with predefined colors
-    """
-    filename = args.filepath[:-5] # get filename
-    new_path = filename + str(os.getpid()) + '.json' # create a distinct name for the new file
+    """Update the desired JSON file with predefined colors."""
+    filename = args.filepath[:-5]  # get filename
+    new_path = filename + str(os.getpid()) + '.json'  # create a distinct name for the new file
     with open(args.filepath, 'r') as reader, open(new_path, 'w') as writer:
         # open the existing file as read only, and write a new file
-        data = json.load(reader) # load file into data variable
+        data = json.load(reader)  # load file into data variable
 
-        for i in range(len(data['panels'])): # cycle through panels in JSON file
+        for i in range(len(data['panels'])):  # cycle through panels in JSON file
             data['panels'][i]['aliasColors'] = alias_colors
 
-        json.dump(data, writer, indent=2) # write to new file
-    os.replace(new_path, args.filepath) # replace original file with new file
+        json.dump(data, writer, indent=2)  # write to new file
+    os.replace(new_path, args.filepath)  # replace original file with new file
+
 
 if __name__ == '__main__':
     main()
