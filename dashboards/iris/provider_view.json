@@ -16,8 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 23,
-  "iteration": 1583341703496,
+  "iteration": 1599819398462,
   "links": [
     {
       "asDropdown": false,
@@ -40,14 +39,21 @@
   "panels": [
     {
       "aliasColors": {
+        "DiRAC": "#35586C",
         "GridPP": "blue",
-        "SCD": "semi-dark-red",
-		    "DiRAC": "#35586C"
+        "SCD": "semi-dark-red"
       },
       "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -70,15 +76,14 @@
       "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:163",
           "alias": "Capacity",
           "bars": false,
           "fill": 0,
@@ -135,7 +140,7 @@
           ],
           "metricColumn": "Project",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Project,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Project,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -191,6 +196,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:180",
           "format": "short",
           "label": "Elapsed time * Number of Processors (Months)",
           "logBase": 1,
@@ -199,6 +205,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:181",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -262,6 +269,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -289,16 +303,15 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:276",
           "alias": "Capacity",
           "bars": false,
           "fill": 0,
@@ -347,7 +360,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -391,6 +404,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:293",
           "format": "short",
           "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
@@ -399,6 +413,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:294",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -462,6 +477,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -487,11 +509,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -506,7 +526,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -550,6 +570,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:381",
           "format": "short",
           "label": "Elapsed time (months)",
           "logBase": 1,
@@ -558,6 +579,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:382",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -621,6 +643,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -644,11 +673,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -663,7 +690,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((CpuDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((CpuDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -707,6 +734,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:469",
           "format": "short",
           "label": "CPU time (months)",
           "logBase": 1,
@@ -715,6 +743,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:470",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -778,6 +807,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -805,11 +841,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -868,6 +902,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:643",
           "decimals": 0,
           "format": "short",
           "label": "Total Jobs",
@@ -877,6 +912,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:644",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -893,6 +929,12 @@
     {
       "columns": [],
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "90%",
       "gridPos": {
         "h": 15,
@@ -902,7 +944,6 @@
       },
       "id": 8,
       "links": [],
-      "options": {},
       "pageSize": 16,
       "scroll": true,
       "showHeader": true,
@@ -1004,11 +1045,11 @@
       "timeShift": null,
       "title": "SubmitHost Job Count (Grid)",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     }
   ],
   "refresh": false,
-  "schemaVersion": 22,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "main"
@@ -1018,7 +1059,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -1045,7 +1089,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -1072,7 +1119,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -1095,6 +1145,40 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Data Source",
+        "multi": false,
+        "name": "Source",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Grid",
+            "value": "Grid"
+          },
+          {
+            "selected": false,
+            "text": "Cloud",
+            "value": "Cloud"
+          }
+        ],
+        "query": "Grid,Cloud",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -1119,5 +1203,5 @@
   "timezone": "",
   "title": "Provider View",
   "uid": "TEXgjgJZk",
-  "version": 35
+  "version": 8
 }
