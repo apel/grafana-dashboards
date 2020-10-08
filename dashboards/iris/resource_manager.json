@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 28,
-  "iteration": 1577975205194,
+  "iteration": 1602145126822,
   "links": [
     {
       "icon": "external link",
@@ -63,6 +62,12 @@
       },
       "columns": [],
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 23,
@@ -71,7 +76,6 @@
         "y": 0
       },
       "id": 28,
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -82,12 +86,14 @@
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Time",
           "type": "date"
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -104,6 +110,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": "value",
           "colors": [
             "#F2495C",
@@ -123,6 +130,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -201,7 +209,7 @@
       "timeShift": null,
       "title": "Previous Month Usage vs Current Month Projection (Elapsed time * Number of Processors)",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {
@@ -209,9 +217,13 @@
         "CCFE": "#469990",
         "CLF": "#FF00AA",
         "Cloud": "purple",
+        "Cloud (Previous)": "light-purple",
+        "Cloud (Projected)": "dark-purple",
         "Diamond": "#737373",
         "EUCLID": "#bfef45",
         "Grid": "blue",
+        "Grid (Previous)": "light-blue",
+        "Grid (Projected)": "dark-blue",
         "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
         "RAL-LCG2": "#AA00FF",
@@ -244,11 +256,18 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 10,
-        "w": 4,
+        "w": 8,
         "x": 9,
         "y": 0
       },
@@ -274,11 +293,11 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "6.3.5",
+      "pluginVersion": "7.2.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -293,7 +312,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000  AS 'Grid'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000  AS 'Grid (Previous)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
           "refId": "A",
           "select": [
             [
@@ -335,7 +354,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000  AS 'Cloud'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000  AS 'Cloud (Previous)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
           "refId": "B",
           "select": [
             [
@@ -369,24 +388,71 @@
               "type": "macro"
             }
           ]
-        }
-      ],
-      "thresholds": [
+        },
         {
-          "colorMode": "ok",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "rgba(31, 96, 196, 0.6)",
-          "op": "gt",
-          "value": 7718,
-          "yaxis": "left"
+          "datasource": "IRIS Grid MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n     \n    SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Grid (Projected)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "HybridSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Cloud MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    \n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Cloud (Projected)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "refId": "D",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "CloudRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
+      "thresholds": [],
       "timeFrom": "now/M",
       "timeRegions": [],
       "timeShift": null,
-      "title": "Previous month",
+      "title": "Projected Usage",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -405,237 +471,16 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": "10000",
-          "min": "0",
-          "show": true
-        },
-        {
+          "$$hashKey": "object:249",
           "format": "short",
           "label": "",
           "logBase": 1,
           "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "CCFE": "#469990",
-        "CLF": "#FF00AA",
-        "Cloud": "purple",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "Grid": "blue",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "lsst": "#B9D7ED",
-        "lz": "#e61263",
-        "ral-cloud": "#E02F44",
-        "skatelescope.eu": "#DCB9ED",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "-- Mixed --",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 10,
-        "w": 4,
-        "x": 13,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "hideTimeOverride": true,
-      "id": 17,
-      "interval": "",
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "6.3.5",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": "IRIS Grid MySQL Database",
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n     \n    SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Grid'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "SiteID"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "HybridSuperSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "datasource": "IRIS Cloud MySQL Database",
-          "format": "time_series",
-          "group": [
-            {
-              "params": [
-                "SiteName"
-              ],
-              "type": "column"
-            },
-            {
-              "params": [
-                "VO"
-              ],
-              "type": "column"
-            }
-          ],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    \n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Cloud'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())\n",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              },
-              {
-                "params": [
-                  "sum"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "Benchmark"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "table": "VCloudSummaries",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "thresholds": [
-        {
-          "colorMode": "ok",
-          "fill": false,
-          "fillColor": "rgba(50, 116, 217, 0.2)",
-          "line": true,
-          "lineColor": "rgba(31, 96, 196, 0.6)",
-          "op": "gt",
-          "value": 7718,
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": "now/M",
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Projection for this month",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "series",
-        "name": null,
-        "show": true,
-        "values": [
-          "total"
-        ]
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": "10000",
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:250",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -651,7 +496,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 19,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -659,7 +504,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -686,7 +534,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -733,5 +584,5 @@
   "timezone": "",
   "title": "Resource Manager",
   "uid": "feTpkMumkc",
-  "version": 5
+  "version": 3
 }
