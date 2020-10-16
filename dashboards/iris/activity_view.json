@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1599818800643,
+  "iteration": 1602691831851,
   "links": [
     {
       "asDropdown": false,
@@ -120,9 +120,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -148,7 +151,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  CURRENT_DATE,\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc \n   LIMIT 1)",
+          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
           "refId": "C",
           "select": [
             [
@@ -321,9 +324,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -480,9 +486,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -565,6 +574,7 @@
       }
     }
   ],
+  "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
   "tags": [
@@ -576,7 +586,6 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": [
             "All"
           ],
@@ -637,7 +646,6 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": [
             "All"
           ],
@@ -721,5 +729,5 @@
   "timezone": "",
   "title": "Activity View",
   "uid": "TfxgjgJZk",
-  "version": 7
+  "version": 2
 }
