@@ -1,0 +1,1714 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 7,
+  "iteration": 1603903260007,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "1M",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "Group",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\n  WITH roles_summed AS(\n    SELECT EndTime, sum(ResourceCapacityUsed) as RCU, `Group` as g, Site\n    FROM VStarRecords\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\n    GROUP BY Site, g, EndTime\n  )\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", g, avg(RCU) AS ARCU\n  FROM roles_summed\n  WHERE $__timeFilter(EndTime)\n  GROUP BY 1, 2, Site\n)\nSELECT time, sum(ARCU), g AS metric\nFROM indiv_avg\nWHERE $__timeFilter(time)\nGROUP BY 1, 3\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Capacity Used by Group and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "1M",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "Group",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(FileCount) as FC, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", g, avg(FC) AS AFC\r\n  FROM roles_summed\r\n  WHERE $__timeFilter(EndTime)\r\n  GROUP BY 1, 2, Site\r\n)\r\nSELECT time, sum(AFC), g AS metric\r\nFROM indiv_avg\r\nWHERE $__timeFilter(time)\r\nGROUP BY 1, 3\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average File Count by Group and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "1M",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "Group",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(ResourceCapacityUsed) as RCU, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", Site, avg(RCU) AS ARCU\r\n  FROM roles_summed\r\n  WHERE $__timeFilter(EndTime)\r\n  GROUP BY 1, 2, g\r\n)\r\nSELECT time, sum(ARCU), Site AS metric\r\nFROM indiv_avg\r\nWHERE $__timeFilter(time)\r\nGROUP BY 1, 3\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Capacity Used by Site and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "1M",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "Group",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(FileCount) as FC, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", Site, avg(FC) AS AFC\r\n  FROM roles_summed\r\n  WHERE $__timeFilter(EndTime)\r\n  GROUP BY Site, g, time\r\n)\r\nSELECT time, sum(AFC), Site AS metric\r\nFROM indiv_avg\r\nWHERE $__timeFilter(time)\r\nGROUP BY 1, 3\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average File Count by Site and Month",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "format": "decbytes",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 19
+      },
+      "id": 5,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.2.0",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(ResourceCapacityUsed) as RCU, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", avg(RCU) as ARCU, Site\r\n  FROM roles_summed\r\n  GROUP BY time, Site, g\r\n)\r\nSELECT time, sum(ARCU), Site\r\nFROM indiv_avg\r\nGROUP BY time, Site\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Capacity Used by Site (Current Month)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "format": "decbytes",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 19
+      },
+      "id": 13,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.2.0",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(ResourceCapacityUsed) as RCU, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", avg(RCU) as ARCU, g\r\n  FROM roles_summed\r\n  GROUP BY time, Site, g\r\n)\r\nSELECT time, sum(ARCU), g\r\nFROM indiv_avg\r\nGROUP BY time, g\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Capacity Used by Group (Current Month)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  now() as \"time\",\n  avg(ResourceCapacityUsed) as \"Disk\"\nFROM VStarRecords\nWHERE\n  $__timeFilter(EndTime) and StorageMedia=\"disk\" and Site in ($All_Sites) and `Group` in ($All_Groups)\nGROUP BY \n  Site, `Group`",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "FileCount"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "AnonStarRecords",
+          "timeColumn": "CreateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  now() as \"time\",\n  avg(ResourceCapacityUsed) as \"Tape\"\nFROM VStarRecords\nWHERE\n  $__timeFilter(EndTime) and StorageMedia=\"tape\" and Site in ($All_Sites) and `Group` in ($All_Groups)\nGROUP BY \n  Site, `Group`",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "FileCount"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "AnonStarRecords",
+          "timeColumn": "CreateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  now() as \"time\",\n  avg(ResourceCapacityUsed) as \"Unspecified\"\nFROM VStarRecords\nWHERE\n  $__timeFilter(EndTime) and StorageMedia=\"None\" and Site in ($All_Sites) and `Group` in ($All_Groups)\nGROUP BY \n  Site, `Group`",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "FileCount"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "AnonStarRecords",
+          "timeColumn": "CreateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Panel Title",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "series",
+        "name": null,
+        "show": true,
+        "values": [
+          "total"
+        ]
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 27
+      },
+      "id": 8,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.2.0",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(FileCount) as FC, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", avg(FC) as AFC, Site\r\n  FROM roles_summed\r\n  GROUP BY time, Site, g\r\n)\r\nSELECT time, sum(AFC), Site\r\nFROM indiv_avg\r\nGROUP BY time, Site\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Number of Files by Site (Current Month)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "MySQL-1",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 27
+      },
+      "id": 14,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.2.0",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "WITH indiv_avg AS(\r\n  WITH roles_summed AS(\r\n    SELECT EndTime, sum(FileCount) as FC, `Group` as g, Site\r\n    FROM VStarRecords\r\n    WHERE $__timeFilter(EndTime) and Site in ($All_Sites) and `Group` in ($All_Groups)\r\n    GROUP BY Site, g, EndTime\r\n  )\r\n  SELECT STR_TO_DATE(CONCAT(Year(EndTime), \"-\", Month(EndTime), \"-01 00:00:00\"), \"%Y-%m-%d %H:%i:%s\") AS \"time\", avg(FC) as AFC, g\r\n  FROM roles_summed\r\n  GROUP BY time, Site, g\r\n)\r\nSELECT time, sum(AFC), g\r\nFROM indiv_avg\r\nGROUP BY time, g\r\nORDER BY time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "ResourceCapacityUsed"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "VStarRecords",
+          "timeColumn": "EndTime",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Number of Files by Group (Current Month)",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "MySQL-1",
+        "definition": "select distinct Site from VStarRecords where Site like 'UK%'",
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Site",
+        "multi": true,
+        "name": "All_Sites",
+        "options": [],
+        "query": "select distinct Site from VStarRecords where Site like 'UK%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "MySQL-1",
+        "definition": "select distinct `Group` from VStarRecords where Site like 'UK%'",
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Group",
+        "multi": true,
+        "name": "All_Groups",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": ".dteam",
+            "value": ".dteam"
+          },
+          {
+            "selected": false,
+            "text": "alice",
+            "value": "alice"
+          },
+          {
+            "selected": false,
+            "text": "alice/Role=lcgadmin",
+            "value": "alice/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "atlas",
+            "value": "atlas"
+          },
+          {
+            "selected": false,
+            "text": "atlas/Role=lcgadmin",
+            "value": "atlas/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "atlas/Role=pilot",
+            "value": "atlas/Role=pilot"
+          },
+          {
+            "selected": false,
+            "text": "atlas/Role=production",
+            "value": "atlas/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/au",
+            "value": "atlas/au"
+          },
+          {
+            "selected": false,
+            "text": "atlas/de",
+            "value": "atlas/de"
+          },
+          {
+            "selected": false,
+            "text": "atlas/it",
+            "value": "atlas/it"
+          },
+          {
+            "selected": false,
+            "text": "atlas/nl",
+            "value": "atlas/nl"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-egamma/Role=production",
+            "value": "atlas/perf-egamma/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-flavtag/Role=production",
+            "value": "atlas/perf-flavtag/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-jets/Role=production",
+            "value": "atlas/perf-jets/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-muons/Role=production",
+            "value": "atlas/perf-muons/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-tau/Role=production",
+            "value": "atlas/perf-tau/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/perf-top/Role=production",
+            "value": "atlas/perf-top/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-beauty/Role=production",
+            "value": "atlas/phys-beauty/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-exotics/Role=production",
+            "value": "atlas/phys-exotics/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-gener/Role=production",
+            "value": "atlas/phys-gener/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-hi/Role=production",
+            "value": "atlas/phys-hi/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-higgs/Role=production",
+            "value": "atlas/phys-higgs/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-lumin/Role=production",
+            "value": "atlas/phys-lumin/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-sm/Role=production",
+            "value": "atlas/phys-sm/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-susy/Role=production",
+            "value": "atlas/phys-susy/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/phys-top/Role=production",
+            "value": "atlas/phys-top/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "atlas/uk",
+            "value": "atlas/uk"
+          },
+          {
+            "selected": false,
+            "text": "atlas/uk/Role=poweruser0",
+            "value": "atlas/uk/Role=poweruser0"
+          },
+          {
+            "selected": false,
+            "text": "atlas/usatlas/Role=production",
+            "value": "atlas/usatlas/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "babar",
+            "value": "babar"
+          },
+          {
+            "selected": false,
+            "text": "biomed",
+            "value": "biomed"
+          },
+          {
+            "selected": false,
+            "text": "calice",
+            "value": "calice"
+          },
+          {
+            "selected": false,
+            "text": "camont",
+            "value": "camont"
+          },
+          {
+            "selected": false,
+            "text": "cdf",
+            "value": "cdf"
+          },
+          {
+            "selected": false,
+            "text": "cedar",
+            "value": "cedar"
+          },
+          {
+            "selected": false,
+            "text": "cernatschool.org",
+            "value": "cernatschool.org"
+          },
+          {
+            "selected": false,
+            "text": "cms",
+            "value": "cms"
+          },
+          {
+            "selected": false,
+            "text": "cms/Role=cmsphedex",
+            "value": "cms/Role=cmsphedex"
+          },
+          {
+            "selected": false,
+            "text": "cms/Role=lcgadmin",
+            "value": "cms/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "cms/Role=production",
+            "value": "cms/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "cms/becms",
+            "value": "cms/becms"
+          },
+          {
+            "selected": false,
+            "text": "cms/dcms",
+            "value": "cms/dcms"
+          },
+          {
+            "selected": false,
+            "text": "cms/escms",
+            "value": "cms/escms"
+          },
+          {
+            "selected": false,
+            "text": "comet.j-parc.jp",
+            "value": "comet.j-parc.jp"
+          },
+          {
+            "selected": false,
+            "text": "dteam",
+            "value": "dteam"
+          },
+          {
+            "selected": false,
+            "text": "dteam/Role=lcgadmin",
+            "value": "dteam/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "dune",
+            "value": "dune"
+          },
+          {
+            "selected": false,
+            "text": "dzero",
+            "value": "dzero"
+          },
+          {
+            "selected": false,
+            "text": "enmr.eu",
+            "value": "enmr.eu"
+          },
+          {
+            "selected": false,
+            "text": "epic.vo.gridpp.ac.uk",
+            "value": "epic.vo.gridpp.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "esr",
+            "value": "esr"
+          },
+          {
+            "selected": false,
+            "text": "fusion",
+            "value": "fusion"
+          },
+          {
+            "selected": false,
+            "text": "geant4",
+            "value": "geant4"
+          },
+          {
+            "selected": false,
+            "text": "gridpp",
+            "value": "gridpp"
+          },
+          {
+            "selected": false,
+            "text": "hone",
+            "value": "hone"
+          },
+          {
+            "selected": false,
+            "text": "hone/Role=lcgadmin",
+            "value": "hone/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "hone/Role=production",
+            "value": "hone/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "hyperk.org",
+            "value": "hyperk.org"
+          },
+          {
+            "selected": false,
+            "text": "icecube",
+            "value": "icecube"
+          },
+          {
+            "selected": false,
+            "text": "ilc",
+            "value": "ilc"
+          },
+          {
+            "selected": false,
+            "text": "ilc/Role=lcgadmin",
+            "value": "ilc/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "ilc/Role=production",
+            "value": "ilc/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "ildg",
+            "value": "ildg"
+          },
+          {
+            "selected": false,
+            "text": "ipv6.hepix.org",
+            "value": "ipv6.hepix.org"
+          },
+          {
+            "selected": false,
+            "text": "lhcb",
+            "value": "lhcb"
+          },
+          {
+            "selected": false,
+            "text": "lhcb/Role=production",
+            "value": "lhcb/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "lhcb/Role=user",
+            "value": "lhcb/Role=user"
+          },
+          {
+            "selected": false,
+            "text": "lsst",
+            "value": "lsst"
+          },
+          {
+            "selected": false,
+            "text": "ltwo",
+            "value": "ltwo"
+          },
+          {
+            "selected": false,
+            "text": "lz",
+            "value": "lz"
+          },
+          {
+            "selected": false,
+            "text": "magic",
+            "value": "magic"
+          },
+          {
+            "selected": false,
+            "text": "mice",
+            "value": "mice"
+          },
+          {
+            "selected": false,
+            "text": "minos",
+            "value": "minos"
+          },
+          {
+            "selected": false,
+            "text": "minos.vo.gridpp.ac.uk",
+            "value": "minos.vo.gridpp.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "mu3e.org",
+            "value": "mu3e.org"
+          },
+          {
+            "selected": false,
+            "text": "na48",
+            "value": "na48"
+          },
+          {
+            "selected": false,
+            "text": "na62.vo.gridpp.ac.uk",
+            "value": "na62.vo.gridpp.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "na62.vo.gridpp.ac.uk/Role=lcgadmin",
+            "value": "na62.vo.gridpp.ac.uk/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "na62.vo.gridpp.ac.uk/Role=production",
+            "value": "na62.vo.gridpp.ac.uk/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "nano",
+            "value": "nano"
+          },
+          {
+            "selected": false,
+            "text": "neiss.org.uk",
+            "value": "neiss.org.uk"
+          },
+          {
+            "selected": false,
+            "text": "neurogrid.incf.org",
+            "value": "neurogrid.incf.org"
+          },
+          {
+            "selected": false,
+            "text": "ngs",
+            "value": "ngs"
+          },
+          {
+            "selected": false,
+            "text": "ngs.ac.uk",
+            "value": "ngs.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "ops",
+            "value": "ops"
+          },
+          {
+            "selected": false,
+            "text": "ops/Role=lcgadmin",
+            "value": "ops/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "pheno",
+            "value": "pheno"
+          },
+          {
+            "selected": false,
+            "text": "planck",
+            "value": "planck"
+          },
+          {
+            "selected": false,
+            "text": "root",
+            "value": "root"
+          },
+          {
+            "selected": false,
+            "text": "scotg",
+            "value": "scotg"
+          },
+          {
+            "selected": false,
+            "text": "sixt",
+            "value": "sixt"
+          },
+          {
+            "selected": false,
+            "text": "skatelescope.eu",
+            "value": "skatelescope.eu"
+          },
+          {
+            "selected": false,
+            "text": "snoplus.snolab.ca",
+            "value": "snoplus.snolab.ca"
+          },
+          {
+            "selected": false,
+            "text": "snoplus.snolab.ca/Role=lcgadmin",
+            "value": "snoplus.snolab.ca/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "snoplus.snolab.ca/Role=production",
+            "value": "snoplus.snolab.ca/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "solidexperiment.org",
+            "value": "solidexperiment.org"
+          },
+          {
+            "selected": false,
+            "text": "superbvo.org",
+            "value": "superbvo.org"
+          },
+          {
+            "selected": false,
+            "text": "supernemo",
+            "value": "supernemo"
+          },
+          {
+            "selected": false,
+            "text": "supernemo.vo.eu-egee.org",
+            "value": "supernemo.vo.eu-egee.org"
+          },
+          {
+            "selected": false,
+            "text": "t2k",
+            "value": "t2k"
+          },
+          {
+            "selected": false,
+            "text": "t2k.org",
+            "value": "t2k.org"
+          },
+          {
+            "selected": false,
+            "text": "t2k.org/Role=lcgadmin",
+            "value": "t2k.org/Role=lcgadmin"
+          },
+          {
+            "selected": false,
+            "text": "t2k.org/Role=production",
+            "value": "t2k.org/Role=production"
+          },
+          {
+            "selected": false,
+            "text": "totalep",
+            "value": "totalep"
+          },
+          {
+            "selected": false,
+            "text": "ukqcd.vo.gridpp.ac.uk",
+            "value": "ukqcd.vo.gridpp.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "vo.cta.in2p3.fr",
+            "value": "vo.cta.in2p3.fr"
+          },
+          {
+            "selected": false,
+            "text": "vo.gear.cern.ch",
+            "value": "vo.gear.cern.ch"
+          },
+          {
+            "selected": false,
+            "text": "vo.gridpp.ac.uk",
+            "value": "vo.gridpp.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "vo.nanocmos.ac.uk",
+            "value": "vo.nanocmos.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "vo.northgrid.ac.uk",
+            "value": "vo.northgrid.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "vo.panda.gsi.de",
+            "value": "vo.panda.gsi.de"
+          },
+          {
+            "selected": false,
+            "text": "vo.scotgrid.ac.uk",
+            "value": "vo.scotgrid.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "vo.sixt.cern.ch",
+            "value": "vo.sixt.cern.ch"
+          },
+          {
+            "selected": false,
+            "text": "vo.southgrid.ac.uk",
+            "value": "vo.southgrid.ac.uk"
+          },
+          {
+            "selected": false,
+            "text": "zeus",
+            "value": "zeus"
+          }
+        ],
+        "query": "select distinct `Group` from VStarRecords where Site like 'UK%'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "2018-01-01T00:00:00.000Z",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Storage Accounting",
+  "uid": "Vk27NpKGk",
+  "version": 61
+}
