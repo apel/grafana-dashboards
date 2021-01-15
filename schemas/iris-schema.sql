@@ -92,3 +92,98 @@ WHERE
   AND iris_cloud.CloudSummaries.VOGroupID = iris_cloud.vogroup.id
   AND iris_shared.Projects.Site = iris_cloud.site.name
   AND iris_cloud.CloudSummaries.Month <> 0;
+
+CREATE VIEW VMonthlyAllocations AS
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-04-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-05-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-06-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-07-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-08-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-09-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-10-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-11-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date), '-12-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date)+1, '-01-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date)+1, '-02-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations
+
+UNION
+
+SELECT
+  STR_TO_DATE(CONCAT(YEAR(Date)+1, '-03-01'), '%Y-%m-%d') AS "Date",
+  Allocation,
+  Activity AS "VO"
+FROM Allocations;
