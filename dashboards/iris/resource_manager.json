@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1602145126822,
+  "iteration": 1610724756659,
   "links": [
     {
       "icon": "external link",
@@ -216,6 +216,191 @@
         "AENEAS": "#f58231",
         "CCFE": "#469990",
         "CLF": "#FF00AA",
+        "Diamond": "#737373",
+        "EUCLID": "#bfef45",
+        "ISIS": "#4F8F23",
+        "LSST": "#E00B0B",
+        "RAL-LCG2": "#AA00FF",
+        "UKI-LT2-Brunel": "#aaffc3",
+        "UKI-LT2-IC-HEP": "#FFF899",
+        "UKI-LT2-QMUL": "#FF7F00",
+        "UKI-LT2-RHUL": "#800000s",
+        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
+        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
+        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
+        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
+        "UKI-SCOTGRID-ECDF": "#0095FF",
+        "UKI-SCOTGRID-GLASGOW": "#000075",
+        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
+        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
+        "UKI-SOUTHGRID-CAM-HEP": "#808000",
+        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
+        "UKI-SOUTHGRID-RALPP": "#4F8F23",
+        "dune": "#8F2323",
+        "eMERLIN": "#ffd8b1",
+        "lsst": "#8bbaf0",
+        "lz": "#E0B400",
+        "ral-cloud": "#E02F44",
+        "skatelescope.eu": "#DCB9ED",
+        "virgo": "#8F6A23",
+        "vo.cta.in2p3.fr": "#23628F"
+      },
+      "columns": [],
+      "datasource": "iris_shared",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 23,
+        "w": 7,
+        "x": 9,
+        "y": 0
+      },
+      "id": 29,
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "#F2495C",
+            "#73BF69",
+            "#73BF69"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Difference",
+          "thresholds": [
+            "-0.5",
+            "0"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "none"
+        }
+      ],
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    VO,\r\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Usage'\r\nFROM VCombinedSummaries\r\nWHERE Site in ($Site) and VO in ($VO) and $__timeFilter(Date)\r\nGROUP BY VO;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT x.VO as \"VO\", SUM(x.Allocation) as \"Allocation\"\r\nFROM(\r\nSELECT VO,\r\n\tCASE\r\n\tWHEN YEAR($__timeTo())=YEAR(Date) and MONTH($__timeTo())=MONTH(Date) THEN Allocation*(DATEDIFF($__timeTo(), Date)/DAY(LAST_DAY(Date)))\r\n\tWHEN YEAR($__timeFrom())=YEAR(Date) and MONTH($__timeFrom())=MONTH(Date) THEN Allocation*((DAY(LAST_DAY(Date))-DATEDIFF($__timeFrom(), Date))/DAY(LAST_DAY(Date)))\r\n\tELSE Allocation\r\n\tEND as \"Allocation\",\r\n\tCASE\r\n\tWHEN YEAR($__timeTo())=YEAR(Date) and MONTH($__timeTo())=MONTH(Date) THEN $__timeTo()\r\n\tWHEN YEAR($__timeFrom())=YEAR(Date) and MONTH($__timeFrom())=MONTH(Date) THEN $__timeFrom()\r\n\tELSE Date\r\n\tEND as \"time\"\r\n\tFROM VMonthlyAllocations\r\n\tWHERE VO in ($VO)\r\n) AS x\r\nWHERE $__timeFilter(time)\r\nGROUP BY VO",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Cumulative Usage and Allocation for Selected Time Period",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "aliasColors": {
+        "AENEAS": "#f58231",
+        "CCFE": "#469990",
+        "CLF": "#FF00AA",
         "Cloud": "purple",
         "Cloud (Previous)": "light-purple",
         "Cloud (Projected)": "dark-purple",
@@ -268,7 +453,7 @@
       "gridPos": {
         "h": 10,
         "w": 8,
-        "x": 9,
+        "x": 16,
         "y": 0
       },
       "hiddenSeries": false,
@@ -297,7 +482,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -514,6 +699,7 @@
         },
         "datasource": "iris_shared",
         "definition": "SELECT Site FROM Projects",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Site",
@@ -544,6 +730,7 @@
         },
         "datasource": "iris_shared",
         "definition": "SELECT * FROM IrisVOs",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
@@ -584,5 +771,5 @@
   "timezone": "",
   "title": "Resource Manager",
   "uid": "feTpkMumkc",
-  "version": 3
+  "version": 1
 }
