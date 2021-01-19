@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1610724756659,
+  "iteration": 1611049790864,
   "links": [
     {
       "icon": "external link",
@@ -61,7 +61,7 @@
         "vo.cta.in2p3.fr": "#23628F"
       },
       "columns": [],
-      "datasource": "-- Mixed --",
+      "datasource": "iris_shared",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -149,25 +149,25 @@
       ],
       "targets": [
         {
-          "datasource": "IRIS Grid MySQL Database",
           "format": "table",
           "group": [],
-          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT t1.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) as 'Projected'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE) and Month = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nLEFT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*Processors)/2628000  as 'Previous'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO\n\nUNION\n\nSELECT t2.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) as 'Projected'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE) and Month = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1\n\nRIGHT OUTER JOIN \n\n(SELECT\n    VO,\n    SUM(WallDuration*Processors)/2628000  as 'Previous'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO;\n",
+          "rawSql": "SELECT t1.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nLEFT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO\n\nUNION\n\nSELECT t2.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nRIGHT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO;",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "Allocation"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "timeColumn": "time",
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
           "where": [
             {
               "name": "$__timeFilter",
@@ -177,25 +177,25 @@
           ]
         },
         {
-          "datasource": "IRIS Cloud MySQL Database",
           "format": "table",
           "group": [],
-          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT t1.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nLEFT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCloudSummaries\nWHERE SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO\n\nUNION\n\nSELECT t2.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nRIGHT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCloudSummaries\nWHERE SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO;",
+          "rawSql": "SELECT VO, Allocation\nFROM VMonthlyAllocations\nWHERE VO in ($VO) and YEAR(Date)=YEAR(CURRENT_DATE()) and MONTH(Date)=MONTH(CURRENT_DATE())\nGROUP BY VO",
           "refId": "B",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "Allocation"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "timeColumn": "time",
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
           "where": [
             {
               "name": "$__timeFilter",
@@ -771,5 +771,5 @@
   "timezone": "",
   "title": "Resource Manager",
   "uid": "feTpkMumkc",
-  "version": 1
+  "version": 2
 }
