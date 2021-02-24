@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1602691831851,
+  "iteration": 1614167999592,
   "links": [
     {
       "asDropdown": false,
@@ -125,7 +125,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "7.3.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -329,7 +329,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "7.3.6",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -491,7 +491,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.2.1",
+      "pluginVersion": "7.3.6",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -572,6 +572,91 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Month"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "id": 8,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.3.6",
+      "targets": [
+        {
+          "datasource": "iris_shared",
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  Date as \"Month\",\n  VO,\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) as \"Average Core Usage\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1, 2, 3\nORDER BY Date desc, VO, Site",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Average Core Usage by Month by Activity by Site",
+      "type": "table"
     }
   ],
   "refresh": false,
@@ -595,6 +680,7 @@
         },
         "datasource": "iris_shared",
         "definition": "SELECT DISTINCT Project FROM Projects",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": null,
@@ -616,6 +702,7 @@
         "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": [
             "All"
           ],
@@ -625,6 +712,7 @@
         },
         "datasource": "iris_shared",
         "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Site",
@@ -655,6 +743,7 @@
         },
         "datasource": "iris_shared",
         "definition": "SELECT * FROM IrisVOs",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
@@ -679,6 +768,7 @@
           "text": "All",
           "value": "$__all"
         },
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Data Source",
@@ -729,5 +819,5 @@
   "timezone": "",
   "title": "Activity View",
   "uid": "TfxgjgJZk",
-  "version": 2
+  "version": 1
 }
