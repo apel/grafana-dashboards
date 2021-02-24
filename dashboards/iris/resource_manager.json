@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1611049790864,
+  "iteration": 1614179417286,
   "links": [
     {
       "icon": "external link",
@@ -580,7 +580,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n     \n    SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Grid (Projected)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Grid (Projected)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
           "refId": "C",
           "select": [
             [
@@ -609,7 +609,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    \n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Cloud (Projected)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Cloud (Projected)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
           "refId": "D",
           "select": [
             [
