@@ -312,8 +312,8 @@
       "breakPoint": "50%",
       "cacheTimeout": null,
       "combine": {
-        "label": "Others",
-        "threshold": "0"
+        "label": "Others ≤1.0%",
+        "threshold": "0.011"
       },
       "datasource": "-- Mixed --",
       "decimals": null,
@@ -442,8 +442,8 @@
       "breakPoint": "50%",
       "cacheTimeout": null,
       "combine": {
-        "label": "Others",
-        "threshold": "0"
+        "label": "Others ≤1.0%",
+        "threshold": "0.011"
       },
       "datasource": "-- Mixed --",
       "decimals": null,
