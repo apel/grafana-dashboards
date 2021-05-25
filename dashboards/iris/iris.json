@@ -313,7 +313,7 @@
       "cacheTimeout": null,
       "combine": {
         "label": "Others ≤1.0%",
-        "threshold": "0.011"
+        "threshold": "0.0110"
       },
       "datasource": "-- Mixed --",
       "decimals": null,
@@ -443,7 +443,7 @@
       "cacheTimeout": null,
       "combine": {
         "label": "Others ≤1.0%",
-        "threshold": "0.011"
+        "threshold": "0.0110"
       },
       "datasource": "-- Mixed --",
       "decimals": null,
