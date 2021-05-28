@@ -37,7 +37,7 @@ def main():
         for i in range(len(data['panels'])):  # cycle through panels in JSON file
             data['panels'][i]['aliasColors'] = alias_colors
 
-        json.dump(data, writer, indent=2)  # write to new file
+        json.dump(data, writer, indent=2, sort_keys=True)  # write to new file
     os.replace(new_path, args.filepath)  # replace original file with new file
 
 
