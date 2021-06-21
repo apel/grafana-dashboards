@@ -22,7 +22,7 @@ datasources:
     user:
     password:
 
-  - name: iris_shared
+  - name: IRIS Shared MySQL Database
     type: mysql
     url:
     database: iris_shared
