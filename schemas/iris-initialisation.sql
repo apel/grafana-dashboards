@@ -1,5 +1,5 @@
 INSERT INTO IrisVOs VALUES
-    ('AENEAS'),('casu'),('CCP4'),('CLF'),('DAFNI'),('Diamond'),
+    ('AENEAS'),('casu'),('CCP4'),('CLF'),('Diamond'),
     ('dirac'),('eMERLIN'),('EUCLID'),('gaia'),('gaia-dev'),('gaia-prod'),
     ('gaia-test'),('ISIS'),('jintrac'),('lz'),('ska'),
     ('skatelescope.eu'),('ccfe'),('clas12'),('dune'),('lsst'),
