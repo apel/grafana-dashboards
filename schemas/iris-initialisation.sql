@@ -3,7 +3,7 @@ INSERT INTO IrisVOs VALUES
     ('dirac'),('eMERLIN'),('EUCLID'),('gaia'),('gaia-dev'),('gaia-prod'),
     ('gaia-test'),('ISIS'),('jintrac'),('lz'),('ska'),
     ('skatelescope.eu'),('ccfe'),('clas12'),('dune'),('lsst'),
-    ('virgo'),('vo.cta.in2p3.fr');
+    ('virgo'),('vo.cta.in2p3.fr'),('cta');
 
 INSERT INTO Capacity VALUES
     ('2018-01-01 00:00:00', 'SCD', 0),('2018-01-01 00:00:00', 'GridPP', 0),
