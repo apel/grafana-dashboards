@@ -146,7 +146,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "iris_shared",
+          "datasource": "IRIS Shared MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -175,7 +175,7 @@
           ]
         },
         {
-          "datasource": "iris_shared",
+          "datasource": "IRIS Shared MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -339,7 +339,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "iris_shared",
+          "datasource": "IRIS Shared MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -501,7 +501,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "iris_shared",
+          "datasource": "IRIS Shared MySQL Database",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -624,7 +624,7 @@
       "pluginVersion": "7.3.6",
       "targets": [
         {
-          "datasource": "iris_shared",
+          "datasource": "IRIS Shared MySQL Database",
           "format": "table",
           "group": [],
           "metricColumn": "none",
@@ -678,7 +678,7 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
+        "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT DISTINCT Project FROM Projects",
         "error": null,
         "hide": 0,
@@ -710,7 +710,7 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
+        "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
         "error": null,
         "hide": 0,
@@ -741,7 +741,7 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
+        "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT * FROM IrisVOs",
         "error": null,
         "hide": 0,
