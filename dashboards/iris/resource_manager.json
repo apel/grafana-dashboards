@@ -61,7 +61,7 @@
         "vo.cta.in2p3.fr": "#23628F"
       },
       "columns": [],
-      "datasource": "iris_shared",
+      "datasource": "IRIS Shared MySQL Database",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -246,7 +246,7 @@
         "vo.cta.in2p3.fr": "#23628F"
       },
       "columns": [],
-      "datasource": "iris_shared",
+      "datasource": "IRIS Shared MySQL Database",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -697,7 +697,7 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
+        "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT Site FROM Projects",
         "error": null,
         "hide": 0,
@@ -728,7 +728,7 @@
             "$__all"
           ]
         },
-        "datasource": "iris_shared",
+        "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT * FROM IrisVOs",
         "error": null,
         "hide": 0,
