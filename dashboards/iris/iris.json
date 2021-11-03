@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 18,
-  "iteration": 1635177763351,
+  "iteration": 1635932749256,
   "links": [
     {
       "asDropdown": false,
@@ -163,6 +163,16 @@
           "linewidth": 2,
           "stack": false,
           "steppedLine": true
+        },
+        {
+          "$$hashKey": "object:330",
+          "alias": "Allocation",
+          "bars": false,
+          "fill": 0,
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "steppedLine": true
         }
       ],
       "spaceLength": 10,
@@ -188,6 +198,36 @@
             ]
           ],
           "table": "Capacity",
+          "timeColumn": "Date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": "IRIS Shared MySQL Database",
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "Allocation"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "Allocations",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
           "where": [
@@ -1914,6 +1954,6 @@
   },
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
-  "uid": "feTpkMumk",
-  "version": 8
+  "uid": "feTpkMumk-new",
+  "version": 10
 }
