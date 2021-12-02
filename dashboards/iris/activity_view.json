@@ -8,14 +8,22 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1614167999592,
+  "id": 16,
+  "iteration": 1635256145074,
   "links": [
     {
       "asDropdown": false,
@@ -35,6 +43,7 @@
       "url": "../d/3FEa2VaZz/guide"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "aliasColors": {
@@ -88,7 +97,6 @@
       "datasource": "-- Mixed --",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -125,7 +133,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "8.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -180,7 +188,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -294,7 +302,6 @@
       "datasource": "-- Mixed --",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -329,7 +336,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "8.2.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -344,7 +351,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -458,7 +465,6 @@
       "datasource": "-- Mixed --",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -491,7 +497,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "8.2.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -506,7 +512,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((CpuDuration)/2628000)\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((CpuDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -579,6 +585,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -621,7 +628,7 @@
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "datasource": "IRIS Shared MySQL Database",
@@ -659,8 +666,8 @@
       "type": "table"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 26,
+  "refresh": "",
+  "schemaVersion": 31,
   "style": "dark",
   "tags": [
     "main"
@@ -680,6 +687,7 @@
         },
         "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT DISTINCT Project FROM Projects",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -693,7 +701,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -702,7 +709,6 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": [
             "All"
           ],
@@ -712,6 +718,7 @@
         },
         "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -725,7 +732,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -743,6 +749,7 @@
         },
         "datasource": "IRIS Shared MySQL Database",
         "definition": "SELECT * FROM IrisVOs",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -756,7 +763,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -768,6 +774,7 @@
           "text": "All",
           "value": "$__all"
         },
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -819,5 +826,5 @@
   "timezone": "",
   "title": "Activity View",
   "uid": "TfxgjgJZk",
-  "version": 1
+  "version": 8
 }
