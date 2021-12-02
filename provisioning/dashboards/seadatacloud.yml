@@ -1,0 +1,10 @@
+apiVersion: 1
+
+providers:
+- name: Container Accounting Dashboard
+  folder: Sea DataCloud
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 60 # How often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/seadatacloud/container_accounting.json
