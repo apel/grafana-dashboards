@@ -3,6 +3,7 @@ apiVersion: 1
 datasources:
   - name: Elasticsearch
     type: elasticsearch
+    # "${hostname}" must be replaced with a relevant value
     url: https://${hostname}:9200
     database: "[accounting-records-*-]YYYY.MM.DD"
     jsonData:
