@@ -20,10 +20,9 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
-  "id": 18,
-  "iteration": 1635932749256,
+  "id": 2,
+  "iteration": 1639666827370,
   "links": [
     {
       "asDropdown": false,
@@ -104,7 +103,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "links": [
@@ -149,7 +151,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.2.2",
+      "pluginVersion": "8.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -173,6 +175,12 @@
           "linewidth": 2,
           "stack": false,
           "steppedLine": true
+        },
+        {
+          "$$hashKey": "object:181",
+          "alias": "Estimated Total Usage",
+          "color": "#3a7cc71c",
+          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -180,7 +188,42 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "uid": "P4815E41304F4136B"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  Date as \"time\",\r\n  IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS \"Estimated Total Usage\"\r\nFROM VCombinedSummaries\r\nWHERE\r\n  MONTH(Date) = MONTH(CURRENT_DATE())\r\n  and YEAR(Date) = YEAR(CURRENT_DATE())\r\n  and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)",
+          "refId": "P",
+          "select": [
+            [
+              {
+                "params": [
+                  "SiteID"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "HybridSuperSummaries",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -209,7 +252,10 @@
           ]
         },
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "hide": false,
@@ -239,7 +285,10 @@
           ]
         },
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -269,9 +318,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average Core Usage by Activity and Month",
       "tooltip": {
         "shared": false,
@@ -280,9 +327,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -292,8 +337,6 @@
           "format": "short",
           "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
@@ -301,19 +344,18 @@
           "format": "short",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -985,7 +1027,6 @@
         "y": 12
       },
       "id": 12,
-      "interval": null,
       "links": [
         {
           "targetBlank": true,
@@ -1018,7 +1059,10 @@
       },
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "hide": false,
@@ -1048,14 +1092,14 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average Core Usage by Site",
       "type": "piechart"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1727,7 +1771,6 @@
         "y": 12
       },
       "id": 14,
-      "interval": null,
       "links": [
         {
           "targetBlank": true,
@@ -1760,7 +1803,10 @@
       },
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -1789,14 +1835,12 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average Core Usage by Activity",
       "type": "piechart"
     }
   ],
   "refresh": "",
-  "schemaVersion": 31,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "main"
@@ -1804,7 +1848,6 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1814,13 +1857,13 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT DISTINCT Project FROM Projects",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Project",
         "options": [],
@@ -1835,7 +1878,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1845,10 +1887,11 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Site",
@@ -1866,7 +1909,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -1876,10 +1918,11 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT * FROM IrisVOs",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
@@ -1897,14 +1940,11 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "All",
           "value": "$__all"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Data Source",
@@ -1955,5 +1995,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 10
+  "version": 6,
+  "weekStart": ""
 }
