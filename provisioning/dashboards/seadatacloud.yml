@@ -5,6 +5,7 @@ providers:
   folder: Sea DataCloud
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 # How often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/seadatacloud/container_accounting.json

@@ -5,6 +5,7 @@ providers:
   folder: 'Tier1'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/tier1/tier1.json
@@ -12,6 +13,7 @@ providers:
   folder: 'Tier1'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/tier1/tier1_provider_view.json
@@ -19,6 +21,7 @@ providers:
   folder: 'Tier1'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/tier1/tier1_activity_view.json
