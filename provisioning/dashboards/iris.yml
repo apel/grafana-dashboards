@@ -5,6 +5,7 @@ providers:
   folder: 'IRIS'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/iris.json
@@ -12,6 +13,7 @@ providers:
   folder: 'IRIS'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/provider_view.json
@@ -19,6 +21,7 @@ providers:
   folder: 'IRIS'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/activity_view.json
@@ -26,6 +29,7 @@ providers:
   folder: 'IRIS'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/resource_manager.json
@@ -33,6 +37,7 @@ providers:
   folder: 'IRIS'
   type: file
   disableDeletion: true
+  allowUiUpdates: false
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/guide.json
