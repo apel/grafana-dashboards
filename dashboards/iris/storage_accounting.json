@@ -55,7 +55,7 @@
       },
       "lines": false,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -195,7 +195,7 @@
       },
       "lines": false,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -335,7 +335,7 @@
       },
       "lines": false,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -475,7 +475,7 @@
       },
       "lines": false,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -760,7 +760,7 @@
       },
       "lines": false,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
