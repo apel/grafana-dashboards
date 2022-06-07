@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -22,7 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 2,
-  "iteration": 1639666827370,
+  "iteration": 1654591337289,
   "links": [
     {
       "asDropdown": false,
@@ -151,7 +154,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "8.5.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -179,7 +182,7 @@
         {
           "$$hashKey": "object:181",
           "alias": "Estimated Total Usage",
-          "color": "#3a7cc71c",
+          "color": "#3a7cc780",
           "stack": false
         }
       ],
@@ -1054,7 +1057,8 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -1798,7 +1802,8 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
@@ -1840,7 +1845,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "main"
