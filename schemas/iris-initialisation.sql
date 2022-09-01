@@ -1,8 +1,9 @@
 INSERT INTO IrisVOs VALUES
     ('AENEAS'),('casu'),('CCP4'),('CLF'),('Diamond'),
-    ('dirac'),('eMERLIN'),('EUCLID'),('gaia'),('gaia-dev'),('gaia-prod'),
-    ('gaia-test'),('ISIS'),('jintrac'),('lz'),('ska'),
-    ('skatelescope.eu'),('ccfe'),('clas12'),('dune'),('lsst'),
+    ('dirac'),('eMERLIN'),('EUCLID'),('eucliduk.net'),
+    ('gaia'),('gaia-dev'),('gaia-prod'),('gaia-test'),
+    ('ISIS'),('jintrac'),('lz'),('ska'),('skatelescope.eu'),
+    ('ccfe'),('clas12'),('dune'),('lsst'),
     ('virgo'),('vo.cta.in2p3.fr'),('cta');
 
 INSERT INTO Capacity VALUES
