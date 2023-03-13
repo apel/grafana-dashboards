@@ -3,23 +3,37 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
+  "description": "added series exclusion section",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 29,
+  "id": 16,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "content": "# IRIS Accounting Portal Guide\n\n\nThe IRIS Accounting Portal consists of three dashboards:\n\n1. *Accounting Dashboard*': a 'home' view containing the main graph showing VO usage per month, along with cumulative usage pie charts for Site and VO.\n\n2. *Activity View*: an Activity (VO)-centric dashboard that, in addition to the main graph, shows charts for pure elapsed time and CPU time. \n\n3. *Provider View*: a Provider (Site)-centric dashboard that shows the main graph with Sites rather than VO series along with charts for elapsed time and CPU time.\n\n   ",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 6,
         "w": 14,
@@ -27,16 +41,34 @@
         "y": 0
       },
       "id": 2,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# IRIS Accounting Portal Guide\n\n\nThe IRIS Accounting Portal consists of three dashboards:\n\n1. *Accounting Dashboard*': a 'home' view containing the main graph showing VO usage per month, along with cumulative usage pie charts for Site and VO.\n\n2. *Activity View*: an Activity (VO)-centric dashboard that, in addition to the main graph, shows charts for pure elapsed time and CPU time. \n\n3. *Provider View*: a Provider (Site)-centric dashboard that shows the main graph with Sites rather than VO series along with charts for elapsed time and CPU time.\n\n   ",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": " ",
       "transparent": true,
       "type": "text"
     },
     {
-      "content": "\n## Navigation\n\nThe easiest way to navigate between these three dashboards is through the buttons in the top right. \n\n![nav](/public/img/nav.png)\n\nIf you are on the main Accounting Dashboard view, and would like to view the Activity View focused on one specific VO, one option is to left click on the appropriate coloured bar on the main graph, and select 'Activity Drilldown' which will open a new tab with the Activity View focused on that VO.\n\n![drilldown](/public/img/drilldown.png)",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 12,
         "w": 12,
@@ -44,33 +76,67 @@
         "y": 6
       },
       "id": 8,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Navigation\n\nThe easiest way to navigate between these three dashboards is through the buttons in the top right. \n\n![nav](/public/img/nav.png)\n\nIf you are on the main Accounting Dashboard view, and would like to view the Activity View focused on one specific VO, one option is to left click on the appropriate coloured bar on the main graph, and select 'Activity Drilldown' which will open a new tab with the Activity View focused on that VO.\n\n![drilldown](/public/img/drilldown.png)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "transparent": true,
       "type": "text"
     },
     {
-      "content": "\n## Filters\n\nFilters (or variables as they are called by Grafana) on this dashboard can be used to choose a subset of Sites and VOs to view in the graphs and charts.\n\n![filters](/public/img/filters.png)\n\nYou can also choose to select all the Grid or all the Cloud Sites or VOs using the 'Tags' feature:\n\n![tags](/public/img/tags.png)\n",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
-        "h": 15,
+        "h": 16,
         "w": 12,
         "x": 12,
         "y": 6
       },
       "id": 6,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Filters\n\nFilters (or variables as they are called by Grafana) on this dashboard can be used to choose a subset of Sites and VOs to view in the graphs and charts.\n\n![filters](/public/img/filters.png)\n\nYou can also choose to select all the Grid or all the Cloud Sites or VOs using the 'Tags' feature:\n\n![tags](/public/img/tags.png)\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "transparent": true,
       "type": "text"
     },
     {
-      "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.png)\n\n",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -78,51 +144,152 @@
         "y": 18
       },
       "id": 10,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
-      "gridPos": {
-        "h": 5,
-        "w": 11,
-        "x": 12,
-        "y": 21
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.png)\n\n",
+        "mode": "markdown"
       },
-      "id": 4,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "transparent": true,
       "type": "text"
     },
     {
-      "content": "## Allocation and Capacity lines\n\nThe green line on the main graphs of the home view and the Provider View shows IRIS Capacity over time. \n\n![capacity](/public/img/capacity.png)\n\nThe purple line on the main graph in the Activity View shows the allocation for the currently selected Activities. By default this is showing the sum of the allocation across all Activities, but the total will adjust depending on which Activities are selected using the filter.\n\n![allocation](/public/img/allocation.png)\n",
-      "datasource": null,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
       "gridPos": {
-        "h": 15,
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "id": 15,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Series Exclusion\n\nYou can filter the Average Core Usage graph by clicking or control clicking on the series you want to filter by.\n\nYou can ctrl+click (CMD+click on MAC) to remove a series from the graph. You can do this on multiple series at the same time.\n\n![removedseries](/public/img/removedseries.png)\n\nIn the above graph, Capacity and Allocation were removed.\n\nYou can click on an individual series to show only that series on the graph, and then ctrl+click (CMD+click on MAC) on other series to add them back to the graph.\n\n![addedseries](/public/img/addedseries.png)\n\nIn the above graph, Capacity, Allocation and Diamond were selected.\n\nTo reset the graph, refresh or double click on a series.",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 14,
         "w": 12,
         "x": 0,
         "y": 26
       },
       "id": 11,
-      "mode": "markdown",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "## Allocation and Capacity lines\n\nThe green line on the main graphs of the home view and the Provider View shows IRIS Capacity over time. \n\n![capacity](/public/img/capacity.png)\n\nThe purple line on the main graph in the Activity View shows the allocation for the currently selected Activities. By default this is showing the sum of the allocation across all Activities, but the total will adjust depending on which Activities are selected using the filter.\n\n![allocation](/public/img/allocation.png)\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 4,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 45
+      },
+      "id": 13,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Contact\n\nNeed help? Contact the Apel Admins at the following email address: apel-admins@stfc.ac.uk.",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
       "transparent": true,
       "type": "text"
     }
   ],
-  "schemaVersion": 19,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -148,7 +315,8 @@
     ]
   },
   "timezone": "",
-  "title": "Guide",
-  "uid": "3FEa2VaZz",
-  "version": 13
+  "title": "Guide (added series exclusion) Copy",
+  "uid": "AbNWOV-Vk",
+  "version": 5,
+  "weekStart": ""
 }
