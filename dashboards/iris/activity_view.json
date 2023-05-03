@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -20,10 +23,8 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
-  "id": 16,
-  "iteration": 1635256145074,
+  "id": 20,
   "links": [
     {
       "asDropdown": false,
@@ -94,7 +95,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -133,7 +137,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.2.2",
+      "pluginVersion": "9.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -154,7 +158,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
@@ -183,12 +190,16 @@
           ]
         },
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -200,6 +211,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -213,9 +241,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average Core Usage by Activity and Month",
       "tooltip": {
         "shared": false,
@@ -224,9 +250,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -236,8 +260,6 @@
           "format": "short",
           "label": "Elapsed time * Number of Processors (months)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
@@ -245,14 +267,11 @@
           "format": "short",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -299,7 +318,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -336,7 +358,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.2.2",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -346,12 +368,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -363,6 +389,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -376,9 +419,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Elapsed time (months) by Activity and Month",
       "tooltip": {
         "shared": false,
@@ -387,9 +428,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -399,23 +438,17 @@
           "format": "short",
           "label": "Elapsed time (months)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:354",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -462,7 +495,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -497,7 +533,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.2.2",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -507,12 +543,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((CpuDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((CpuDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -524,6 +564,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -537,9 +594,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "CPU time (months) by Activity and Month",
       "tooltip": {
         "shared": false,
@@ -548,9 +603,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -560,33 +613,33 @@
           "format": "short",
           "label": "CPU time (months)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:442",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "-- Mixed --",
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
-            "displayMode": "auto",
-            "filterable": false
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -626,17 +679,29 @@
       },
       "id": 8,
       "options": {
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true
       },
-      "pluginVersion": "8.2.2",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
-          "datasource": "IRIS Shared MySQL Database",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P4815E41304F4136B"
+          },
+          "editorMode": "code",
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"Month\",\n  VO,\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) as \"Average Core Usage\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1, 2, 3\nORDER BY Date desc, VO, Site",
+          "rawSql": "SELECT\n  Date as \"Month\",\n  VO,\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) as \"Average Core Usage\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1, 2, 3\nORDER BY Date desc, VO, Site",
           "refId": "A",
           "select": [
             [
@@ -648,6 +713,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "Allocations",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
@@ -660,22 +742,18 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average Core Usage by Month by Activity by Site",
       "type": "table"
     }
   ],
   "refresh": "",
-  "schemaVersion": 31,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
-  "tags": [
-    "main"
-  ],
+  "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -685,13 +763,13 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT DISTINCT Project FROM Projects",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Project",
         "options": [],
@@ -706,7 +784,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -716,10 +793,11 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT Site FROM Projects WHERE Project in ($Project)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Site",
@@ -737,7 +815,6 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -747,10 +824,11 @@
             "$__all"
           ]
         },
-        "datasource": "IRIS Shared MySQL Database",
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
         "definition": "SELECT * FROM IrisVOs",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
@@ -768,14 +846,11 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "All",
           "value": "$__all"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Data Source",
@@ -802,6 +877,34 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
+        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sub-Activity",
+        "multi": true,
+        "name": "VOGroup",
+        "options": [],
+        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -826,5 +929,6 @@
   "timezone": "",
   "title": "Activity View",
   "uid": "TfxgjgJZk",
-  "version": 8
+  "version": 9,
+  "weekStart": ""
 }
