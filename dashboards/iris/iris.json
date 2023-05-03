@@ -21,11 +21,11 @@
       }
     ]
   },
+  "description": "",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1654591337289,
+  "id": 18,
   "links": [
     {
       "asDropdown": false,
@@ -160,7 +160,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.5.4",
+      "pluginVersion": "9.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -200,12 +200,13 @@
           "datasource": {
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  Date as \"time\",\r\n  IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS \"Estimated Total Usage\"\r\nFROM VCombinedSummaries\r\nWHERE\r\n  MONTH(Date) = MONTH(CURRENT_DATE())\r\n  and YEAR(Date) = YEAR(CURRENT_DATE())\r\n  and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)",
+          "rawSql": "SELECT\r\n  Date as \"time\",\r\n  IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS \"Estimated Total Usage\"\r\nFROM VCombinedSummaries\r\nWHERE\r\n  MONTH(Date) = MONTH(CURRENT_DATE())\r\n  and YEAR(Date) = YEAR(CURRENT_DATE())\r\n  and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)",
           "refId": "P",
           "select": [
             [
@@ -217,6 +218,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "HybridSuperSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -298,11 +316,12 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) as \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) as \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -314,6 +333,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -1139,6 +1175,7 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value",
             "percent"
@@ -1163,12 +1200,13 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -1180,6 +1218,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -1974,6 +2029,7 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value",
             "percent"
@@ -1998,11 +2054,12 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  VO,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "A",
           "select": [
             [
@@ -2014,6 +2071,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "VCombinedSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -2031,11 +2105,10 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
-  "tags": [
-    "main"
-  ],
+  "tags": [],
   "templating": {
     "list": [
       {
@@ -2162,12 +2235,40 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
+        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sub-Activity",
+        "multi": true,
+        "name": "VOGroup",
+        "options": [],
+        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "2018-01-01T00:00:00.000Z",
-    "to": "now"
+    "from": "2015-05-05T16:27:38.205Z",
+    "to": "2025-12-23T22:37:05.385Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2186,6 +2287,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
