@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 18,
+  "id": 2,
   "links": [
     {
       "asDropdown": false,
@@ -2301,6 +2301,45 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "Both",
+          "value": "Both"
+        },
+        "description": "Select which line series appear.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Line Series",
+        "multi": false,
+        "name": "LineSeries",
+        "options": [
+          {
+            "selected": true,
+            "text": "Both",
+            "value": "Both"
+          },
+          {
+            "selected": false,
+            "text": "Just Allocation",
+            "value": "Just Allocation"
+          },
+          {
+            "selected": false,
+            "text": "Just Capacity",
+            "value": "Just Capacity"
+          },
+          {
+            "selected": false,
+            "text": "Neither",
+            "value": "Neither"
+          }
+        ],
+        "query": "Both,Just Allocation,Just Capacity,Neither",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -2325,6 +2364,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 17,
+  "version": 8,
   "weekStart": ""
 }
