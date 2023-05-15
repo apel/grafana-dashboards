@@ -21,10 +21,11 @@
       }
     ]
   },
+  "description": "added series exclusion section",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 10,
+  "id": 16,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -103,7 +104,7 @@
         "uid": "grafana"
       },
       "gridPos": {
-        "h": 15,
+        "h": 16,
         "w": 12,
         "x": 12,
         "y": 6
@@ -170,32 +171,24 @@
         "type": "datasource",
         "uid": "grafana"
       },
+      "description": "",
       "gridPos": {
-        "h": 5,
-        "w": 11,
+        "h": 12,
+        "w": 12,
         "x": 12,
         "y": 22
       },
-      "id": 4,
+      "id": 15,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
+        "content": "# Series Exclusion\n\nYou can filter the Average Core Usage graph by clicking or control clicking on the series you want to filter by.\n\nYou can ctrl+click (CMD+click on MAC) to remove a series from the graph. You can do this on multiple series at the same time.\n\n![removedseries](/public/img/removedseries.png)\n\nIn the above graph, Capacity and Allocation were removed.\n\nYou can click on an individual series to show only that series on the graph, and then ctrl+click (CMD+click on MAC) on other series to add them back to the graph.\n\n![addedseries](/public/img/addedseries.png)\n\nIn the above graph, Capacity, Allocation and Diamond were selected.\n\nTo reset the graph, refresh or double click on a series.",
         "mode": "markdown"
       },
       "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "transparent": true,
       "type": "text"
     },
@@ -205,7 +198,7 @@
         "uid": "grafana"
       },
       "gridPos": {
-        "h": 15,
+        "h": 14,
         "w": 12,
         "x": 0,
         "y": 26
@@ -238,12 +231,46 @@
         "type": "datasource",
         "uid": "grafana"
       },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 4,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "description": "",
       "gridPos": {
-        "h": 8,
+        "h": 3,
         "w": 12,
-        "x": 12,
-        "y": 27
+        "x": 0,
+        "y": 45
       },
       "id": 13,
       "options": {
@@ -290,6 +317,6 @@
   "timezone": "",
   "title": "Guide",
   "uid": "3FEa2VaZz",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }
