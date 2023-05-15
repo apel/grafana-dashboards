@@ -251,11 +251,12 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Capacity)\n   FROM Capacity\n   WHERE Date <= $__timeFrom() AND Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Capacity\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Date <= $__timeTo() and Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "IF '${LineSeries}' = \"Both\" OR '${LineSeries}' = \"Just Capacity\" THEN\nSELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Capacity)\n   FROM Capacity\n   WHERE Date <= $__timeFrom() AND Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Capacity\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Date <= $__timeTo() and Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1);\nEND IF;",
           "refId": "C",
           "select": [
             [
@@ -267,6 +268,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "Capacity",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
@@ -283,12 +301,13 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "IF '${LineSeries}' = \"Both\" OR '${LineSeries}' = \"Just Allocation\" THEN\nSELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1);\nEND IF;",
           "refId": "A",
           "select": [
             [
@@ -300,6 +319,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "Allocations",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
@@ -2287,6 +2323,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 7,
+  "version": 17,
   "weekStart": ""
 }
