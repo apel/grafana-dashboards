@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 19,
+  "id": 3,
   "links": [
     {
       "asDropdown": false,
@@ -92,7 +92,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -339,7 +339,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -565,7 +565,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -745,7 +745,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -929,7 +929,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1163,7 +1163,9 @@
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "main"
+  ],
   "templating": {
     "list": [
       {
@@ -1342,6 +1344,6 @@
   "timezone": "",
   "title": "Provider View",
   "uid": "TEXgjgJZk",
-  "version": 11,
+  "version": 3,
   "weekStart": ""
 }

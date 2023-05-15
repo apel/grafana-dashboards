@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 18,
+  "id": 2,
   "links": [
     {
       "asDropdown": false,
@@ -160,7 +160,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2144,7 +2144,9 @@
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "main"
+  ],
   "templating": {
     "list": [
       {
@@ -2242,6 +2244,34 @@
       {
         "current": {
           "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
+        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sub-Activity",
+        "multi": true,
+        "name": "VOGroup",
+        "options": [],
+        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -2275,36 +2305,47 @@
       {
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "Both",
+          "value": "Both"
         },
-        "datasource": {
-          "type": "mysql",
-          "uid": "P4815E41304F4136B"
-        },
-        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "description": "Select which line series appear.",
         "hide": 0,
-        "includeAll": true,
-        "label": "Sub-Activity",
-        "multi": true,
-        "name": "VOGroup",
-        "options": [],
-        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
-        "refresh": 1,
-        "regex": "",
+        "includeAll": false,
+        "label": "Line Series",
+        "multi": false,
+        "name": "LineSeries",
+        "options": [
+          {
+            "selected": true,
+            "text": "Both",
+            "value": "Both"
+          },
+          {
+            "selected": false,
+            "text": "Just Allocation",
+            "value": "Just Allocation"
+          },
+          {
+            "selected": false,
+            "text": "Just Capacity",
+            "value": "Just Capacity"
+          },
+          {
+            "selected": false,
+            "text": "Neither",
+            "value": "Neither"
+          }
+        ],
+        "query": "Both,Just Allocation,Just Capacity,Neither",
+        "queryValue": "",
         "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "2015-05-05T16:27:38.205Z",
-    "to": "2025-12-23T22:37:05.385Z"
+    "from": "2018-01-01T00:00:00.000Z",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2323,6 +2364,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 17,
+  "version": 8,
   "weekStart": ""
 }
