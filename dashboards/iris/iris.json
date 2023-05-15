@@ -2242,6 +2242,34 @@
       {
         "current": {
           "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "P4815E41304F4136B"
+        },
+        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sub-Activity",
+        "multi": true,
+        "name": "VOGroup",
+        "options": [],
+        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -2271,34 +2299,6 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "mysql",
-          "uid": "P4815E41304F4136B"
-        },
-        "definition": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Sub-Activity",
-        "multi": true,
-        "name": "VOGroup",
-        "options": [],
-        "query": "SELECT VOGroup FROM VCombinedSummaries WHERE VO in ($VO)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
       }
     ]
   },
