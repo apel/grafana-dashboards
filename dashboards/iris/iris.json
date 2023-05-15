@@ -160,7 +160,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2303,8 +2303,8 @@
     ]
   },
   "time": {
-    "from": "2015-05-05T16:27:38.205Z",
-    "to": "2025-12-23T22:37:05.385Z"
+    "from": "2018-01-01T00:00:00.000Z",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
