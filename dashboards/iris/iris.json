@@ -24,8 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1654591337289,
+  "id": 17,
   "links": [
     {
       "asDropdown": false,
@@ -160,7 +159,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "8.5.4",
+      "pluginVersion": "9.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -200,6 +199,7 @@
           "datasource": {
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
@@ -217,6 +217,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "HybridSuperSummaries",
           "timeColumn": "UpdateTime",
           "timeColumnType": "timestamp",
@@ -233,11 +250,12 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Capacity)\n   FROM Capacity\n   WHERE Date <= $__timeFrom() AND Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Capacity\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Date <= $__timeTo() and Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "IF '${LineSeries}' = \"Both\" OR '${LineSeries}' = \"Just Capacity\" THEN\nSELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Capacity)\n   FROM Capacity\n   WHERE Date <= $__timeFrom() AND Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Capacity\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Capacity) as \"Capacity\"\nFROM Capacity\nWHERE $__timeFilter(Date) AND Project in ($Project)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Capacity) as \"Capacity\"\n   FROM Capacity\n   WHERE Date <= $__timeTo() and Project in ($Project)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1);\nEND IF;",
           "refId": "C",
           "select": [
             [
@@ -249,6 +267,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "Capacity",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
@@ -265,12 +300,13 @@
             "type": "mysql",
             "uid": "P4815E41304F4136B"
           },
+          "editorMode": "code",
           "format": "time_series",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1)",
+          "rawSql": "IF '${LineSeries}' = \"Both\" OR '${LineSeries}' = \"Just Allocation\" THEN\nSELECT\n  $__timeFrom() as \"time\",\n  ifnull((SELECT\n   SUM(Allocation)\n   FROM Allocations\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1),0) as \"Allocation\"\nUNION\nSELECT\n  Date as \"time\",\n  SUM(Allocation) as \"Allocation\"\nFROM Allocations\nWHERE $__timeFilter(Date) AND Activity in ($VO)\nGROUP BY Date\nUNION \nSELECT \n  $__timeTo(),\n  (SELECT SUM(Allocation) as \"Allocation\"\n   FROM Allocations\n   WHERE Date <= $__timeTo() and Activity in ($VO)\n   GROUP BY Date\n   ORDER BY Date desc\n   LIMIT 1);\nEND IF;",
           "refId": "A",
           "select": [
             [
@@ -282,6 +318,23 @@
               }
             ]
           ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "Allocations",
           "timeColumn": "Date",
           "timeColumnType": "timestamp",
@@ -1139,6 +1192,7 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value",
             "percent"
@@ -1974,6 +2028,7 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value",
             "percent"
@@ -2031,11 +2086,10 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
-  "tags": [
-    "main"
-  ],
+  "tags": [],
   "templating": {
     "list": [
       {
@@ -2162,6 +2216,45 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "Both",
+          "value": "Both"
+        },
+        "description": "Select which line series appear.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Line Series",
+        "multi": false,
+        "name": "LineSeries",
+        "options": [
+          {
+            "selected": true,
+            "text": "Both",
+            "value": "Both"
+          },
+          {
+            "selected": false,
+            "text": "Just Allocation",
+            "value": "Just Allocation"
+          },
+          {
+            "selected": false,
+            "text": "Just Capacity",
+            "value": "Just Capacity"
+          },
+          {
+            "selected": false,
+            "text": "None",
+            "value": "None"
+          }
+        ],
+        "query": "Both,Just Allocation,Just Capacity,None",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -2186,6 +2279,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 6,
+  "version": 17,
   "weekStart": ""
 }
