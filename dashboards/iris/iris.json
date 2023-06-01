@@ -21,11 +21,10 @@
       }
     ]
   },
-  "description": "",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 21,
   "links": [
     {
       "asDropdown": false,
@@ -67,6 +66,7 @@
         "Capacity": "#629E51",
         "Diamond": "#737373",
         "EUCLID": "#bfef45",
+        "Estimated Total Usage": "##3a7cc780",
         "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
         "RAL-LCG2": "#AA00FF",
@@ -160,7 +160,7 @@
       },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -188,7 +188,6 @@
         {
           "$$hashKey": "object:181",
           "alias": "Estimated Total Usage",
-          "color": "#3a7cc780",
           "stack": false
         }
       ],
@@ -206,7 +205,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  Date as \"time\",\r\n  IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS \"Estimated Total Usage\"\r\nFROM VCombinedSummaries\r\nWHERE\r\n  MONTH(Date) = MONTH(CURRENT_DATE())\r\n  and YEAR(Date) = YEAR(CURRENT_DATE())\r\n  and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)",
+          "rawSql": "IF '${ShowEstimatedUsage}' = \"Yes\" THEN\r\nSELECT\r\n  Date as \"time\",\r\n  IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS \"Estimated Total Usage\"\r\nFROM VCombinedSummaries\r\nWHERE\r\n  MONTH(Date) = MONTH(CURRENT_DATE())\r\n  and YEAR(Date) = YEAR(CURRENT_DATE())\r\n  and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup);\r\nEND IF;",
           "refId": "P",
           "select": [
             [
@@ -2340,6 +2339,35 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "Yes",
+          "value": "Yes"
+        },
+        "description": "Variable to decide if estimated total usage is shown or not.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Show Estimated Total Usage",
+        "multi": false,
+        "name": "ShowEstimatedUsage",
+        "options": [
+          {
+            "selected": true,
+            "text": "Yes",
+            "value": "Yes"
+          },
+          {
+            "selected": false,
+            "text": "No",
+            "value": "No"
+          }
+        ],
+        "query": "Yes, No",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -2364,6 +2392,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
