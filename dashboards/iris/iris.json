@@ -66,7 +66,7 @@
         "Capacity": "#629E51",
         "Diamond": "#737373",
         "EUCLID": "#bfef45",
-        "Estimated Total Usage": "##3a7cc780",
+        "Estimated Total Usage": "#13cbe7",
         "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
         "RAL-LCG2": "#AA00FF",
@@ -2346,7 +2346,7 @@
           "text": "Yes",
           "value": "Yes"
         },
-        "description": "Variable to decide if estimated total usage is shown or not.",
+        "description": "Select whether estimated total usage is shown or not.",
         "hide": 0,
         "includeAll": false,
         "label": "Show Estimated Total Usage",
