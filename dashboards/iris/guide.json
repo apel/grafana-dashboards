@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 16,
+  "id": 24,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -173,7 +173,7 @@
       },
       "description": "",
       "gridPos": {
-        "h": 11,
+        "h": 14,
         "w": 12,
         "x": 12,
         "y": 18
@@ -223,6 +223,31 @@
           "refId": "A"
         }
       ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 11,
+        "x": 12,
+        "y": 36
+      },
+      "id": 17,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Estimated Total Usage\n\nEstimated Total Usage is a bar on the 'Average Core Usage by Activity and Month' graph on the IRIS accounting dashboard. It estimates and shows what the total usage for all activities will be in the current month, based on the month's usage so far and how long is left in the month. It's the light blue bar in the image below.\n\n![estimatedtotalusagegraph](/public/img/estimatedtotalusagegraph.png)\n\nThe Estimated Total Usage bar can be turned on and off by a variable. It looks as below and can be found with the other drop-down variables near the top of the screen.\n\n![estimatedtotalusagevariable](/public/img/showestimatedtotalusagevariable.png)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.3",
       "transparent": true,
       "type": "text"
     },
