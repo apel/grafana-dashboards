@@ -21,7 +21,7 @@
       }
     ]
   },
-  "description": "added series exclusion section",
+  "description": "",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -104,7 +104,7 @@
         "uid": "grafana"
       },
       "gridPos": {
-        "h": 16,
+        "h": 12,
         "w": 12,
         "x": 12,
         "y": 6
@@ -116,7 +116,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n## Filters\n\nFilters (or variables as they are called by Grafana) on this dashboard can be used to choose a subset of Sites and VOs to view in the graphs and charts.\n\n![filters](/public/img/filters.png)\n\nYou can also choose to select all the Grid or all the Cloud Sites or VOs using the 'Tags' feature:\n\n![tags](/public/img/tags.png)\n",
+        "content": "\n## Variables\n\nGrafana variables can be used to filter the data shown on the dashboard. You can filter by Project, Site, Activity, Sub-Activity and Data-Source, as well as specifying if the Line Series (Allocation and Capacity) and the Estimated Total Usage Bar are shown.\n\n![variablesImg](/public/img/variables.png)\n\nYou can make multiple selections in each variable and combine different variables to customise the data shown.\n\n![variableDropDown](/public/img/variabledropdown.png)\n",
         "mode": "markdown"
       },
       "pluginVersion": "9.4.3",
@@ -173,10 +173,10 @@
       },
       "description": "",
       "gridPos": {
-        "h": 12,
+        "h": 11,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 18
       },
       "id": 15,
       "options": {
@@ -317,6 +317,6 @@
   "timezone": "",
   "title": "Guide",
   "uid": "3FEa2VaZz",
-  "version": 5,
+  "version": 8,
   "weekStart": ""
 }
