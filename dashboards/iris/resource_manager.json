@@ -155,7 +155,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT t1.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nLEFT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO\n\nUNION\n\nSELECT t2.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nRIGHT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO;",
+          "rawSql": "SELECT t1.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nLEFT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO\n\nUNION\n\nSELECT t2.VO, t2.Previous, t1.Projected, (IFNULL(t1.Projected, 0) - IFNULL(t2.Previous, 0)) as 'Difference'\n\nFROM\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))) AS 'Projected'\nFROM VCombinedSummaries\nWHERE MONTH(Date) <> 0 and Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(CURRENT_DATE()) and MONTH(Date) = MONTH(CURRENT_DATE)\nGROUP BY VO) as t1 \n\nRIGHT OUTER JOIN\n\n(SELECT\n    VO,\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) AS 'Previous'\nFROM VCombinedSummaries\nWHERE Site in ($Site) and VO in ($VO) and YEAR(Date) = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and MONTH(Date) = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\nGROUP BY VO) as t2\n\nON\n\nt1.VO=t2.VO;",
           "refId": "A",
           "select": [
             [
@@ -340,7 +340,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n    VO,\r\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 AS 'Usage'\r\nFROM VCombinedSummaries\r\nWHERE Site in ($Site) and VO in ($VO) and $__timeFilter(Date)\r\nGROUP BY VO;",
+          "rawSql": "SELECT\r\n    VO,\r\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) AS 'Usage'\r\nFROM VCombinedSummaries\r\nWHERE Site in ($Site) and VO in ($VO) and $__timeFilter(Date)\r\nGROUP BY VO;",
           "refId": "A",
           "select": [
             [
@@ -505,7 +505,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/2628000  AS 'Grid (Previous)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*Processors)/(DAYOFMONTH(LAST_DAY(Date))*86400)  AS 'Grid (Previous)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
           "refId": "A",
           "select": [
             [
@@ -550,7 +550,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000  AS 'Cloud (Previous)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    STR_TO_DATE(\n        CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\n        \"%Y-%m-%d %H:%i:%s\"\n    ) AS \"time\",\n    SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400)  AS 'Cloud (Previous)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) and Month = MONTH(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))",
           "refId": "B",
           "select": [
             [
@@ -594,7 +594,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*Processors)/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Grid (Projected)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*Processors)/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Grid (Projected)'\nFROM VSuperSummaries\nWHERE Site in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
           "refId": "C",
           "select": [
             [
@@ -626,7 +626,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/2628000 / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Cloud (Projected)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
+          "rawSql": "SELECT\n    # Build up a DATETIME to use as the \"time\" value.\n    # i.e. for (Year, Month) = (2019, 01) we want the\n    #      DATETIME \"2019-01-01 00:00:00\"\n    IFNULL(STR_TO_DATE(CONCAT(Year, \"-\", Month, \"-01 00:00:00\"),\"%Y-%m-%d %H:%i:%s\"), CURRENT_DATE()) AS \"time\",\n    IFNULL(SUM(WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400) / day(max(UpdateTime)) * day(date(last_day(max(UpdateTime)))), 0) AS 'Cloud (Projected)'\nFROM VCloudSummaries\nWHERE Month <> 0 and SiteName in ($Site) and VO in ($VO) and Year = YEAR(CURRENT_DATE()) and Month = MONTH(CURRENT_DATE())",
           "refId": "D",
           "select": [
             [
