@@ -162,13 +162,13 @@
           ],
           "metricColumn": "Project",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Project,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Project,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400)) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
               {
                 "params": [
-                  "(WallDuration*CpuCount)/2628000"
+                  "(WallDuration*CpuCount)/(DAYOFMONTH(LAST_DAY(Date))*86400)"
                 ],
                 "type": "column"
               },
@@ -180,7 +180,7 @@
               },
               {
                 "params": [
-                  "Elapsed time * Number of processors / 2628000"
+                  "Elapsed time * Number of processors / (DAYOFMONTH(LAST_DAY(Date))*86400)"
                 ],
                 "type": "alias"
               }
@@ -401,7 +401,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration*IF(CpuCount=0,1,CpuCount))/(DAYOFMONTH(LAST_DAY(Date))*86400)) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "D",
           "select": [
             [
@@ -584,7 +584,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((WallDuration)/(DAYOFMONTH(LAST_DAY(Date))*86400)) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
@@ -764,7 +764,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((CpuDuration)/2628000) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
+          "rawSql": "SELECT\n  Date as \"time\",\n  Site,\n  SUM((CpuDuration)/(DAYOFMONTH(LAST_DAY(Date))*86400)) AS \"\"\nFROM VCombinedSummaries\nWHERE\n  $__timeFilter(Date) and Project in ($Project) and Site in ($Site) and VO in ($VO) and SourceSchema in ($Source) and VOGroup in ($VOGroup)\nGROUP BY 1,2\nORDER BY Date",
           "refId": "C",
           "select": [
             [
