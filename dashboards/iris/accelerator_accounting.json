@@ -24,15 +24,54 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1650905166407,
-  "links": [],
+  "id": 15,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "main"
+      ],
+      "targetBlank": false,
+      "title": "Navigation",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Guide",
+      "tooltip": "",
+      "type": "link",
+      "url": "../d/3FEa2VaZz/guide"
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 23,
+      "panels": [],
+      "title": "Usage",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "mysql",
-        "uid": "tMp74aQ7k"
+        "uid": "P41F96484D8966BAD"
       },
       "description": "",
       "fieldConfig": {
@@ -41,8 +80,11 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Count * Active Duration, Averaged Monthly",
+            "axisPlacement": "left",
             "axisSoftMin": 0,
             "fillOpacity": 100,
             "gradientMode": "none",
@@ -54,7 +96,572 @@
             "lineWidth": 1,
             "scaleDistribution": {
               "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 13,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.67,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Count*ActiveDuration)/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))*86400) as value,\n  FQAN as metric\nFROM VAcceleratorSummaries\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type) AND\n  Category in ($Category)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "WallDuration"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "VJobRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "dataset": "iris_accelerator",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "IF '${LineSeries}' = \"Allocation\" THEN\r\nSELECT\r\n  $__timeFrom() as \"time\",\r\n  ifnull((SELECT\r\n   SUM(Allocation)\r\n   FROM Allocations\r\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\r\n   GROUP BY Date\r\n   ORDER BY Date desc\r\n   LIMIT 1),0) as \"Allocation\"\r\nUNION\r\nSELECT\r\n  Date as \"time\",\r\n  SUM(Allocation) as \"Allocation\"\r\nFROM Allocations\r\nWHERE $__timeFilter(Date) AND Activity in ($VO)\r\nGROUP BY Date\r\nUNION \r\nSELECT \r\n  $__timeTo(),\r\n  (SELECT SUM(Allocation) as \"Allocation\"\r\n   FROM Allocations\r\n   WHERE Date <= $__timeTo() and Activity in ($VO)\r\n   GROUP BY Date\r\n   ORDER BY Date desc\r\n   LIMIT 1);\r\nEND IF;\r\n",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Average Individual Accelerator Usage by Activity and Month",
+      "type": "barchart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 22,
+      "panels": [],
+      "title": "Model Data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "P41F96484D8966BAD"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Model Count, Averaged Monthly",
+            "axisPlacement": "left",
+            "axisSoftMin": 0,
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 18,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.67,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  SUM(Count)/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))) as value,\n  Model as metric\nFROM VAcceleratorSummaries\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type) AND\n  Category in ($Category)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "WallDuration"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "VJobRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "dataset": "iris_accelerator",
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "IF '${LineSeries}' = \"Allocation\" THEN\r\nSELECT\r\n  $__timeFrom() as \"time\",\r\n  ifnull((SELECT\r\n   SUM(Allocation)\r\n   FROM Allocations\r\n   WHERE Date <= $__timeFrom() AND Activity in ($VO)\r\n   GROUP BY Date\r\n   ORDER BY Date desc\r\n   LIMIT 1),0) as \"Allocation\"\r\nUNION\r\nSELECT\r\n  Date as \"time\",\r\n  SUM(Allocation) as \"Allocation\"\r\nFROM Allocations\r\nWHERE $__timeFilter(Date) AND Activity in ($VO)\r\nGROUP BY Date\r\nUNION \r\nSELECT \r\n  $__timeTo(),\r\n  (SELECT SUM(Allocation) as \"Allocation\"\r\n   FROM Allocations\r\n   WHERE Date <= $__timeTo() and Activity in ($VO)\r\n   GROUP BY Date\r\n   ORDER BY Date desc\r\n   LIMIT 1);\r\nEND IF;\r\n",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Total Model Count by Month",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "P41F96484D8966BAD"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 16,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))*86400) as value,\n  Model as metric\nFROM VAcceleratorSummaries\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type) AND\n  Category IN ($Category)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "WallDuration"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "VJobRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Relative Model Popularity",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "P41F96484D8966BAD"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 15,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "P41F96484D8966BAD"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))*86400) as value,\n  Type as metric\nFROM VAcceleratorSummaries\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "WallDuration"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "VJobRecords",
+          "timeColumn": "UpdateTime",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Relative Type Popularity",
+      "type": "piechart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 21,
+      "panels": [],
+      "title": "Raw Data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "P41F96484D8966BAD"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -77,432 +684,62 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 38
       },
-      "id": 13,
+      "id": 19,
       "options": {
-        "barRadius": 0,
-        "barWidth": 0.67,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right"
-        },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "normal",
-        "text": {},
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "mysql",
-            "uid": "tMp74aQ7k"
-          },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(MeasurementYear,'-',MeasurementMonth,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/5000000000000 as value,\n  FQAN as metric\nFROM AcceleratorRecords\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VJobRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Average Accelerator Core Usage by Activity and Month",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "tMp74aQ7k"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-       "x": 0,
-        "y": 13
-      },
-      "id": 10,
-      "options": {
-        "displayLabels": [],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "values": [
-            "value",
-            "percent"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
           "fields": "",
-          "values": false
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showHeader": true
       },
-      "pluginVersion": "8.5.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
+          "dataset": "iris_accelerator",
           "datasource": {
             "type": "mysql",
-            "uid": "tMp74aQ7k"
+            "uid": "P41F96484D8966BAD"
           },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
+          "editorMode": "code",
+          "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(MeasurementYear,'-',MeasurementMonth,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/5000000000000 as value,\n  FQAN as metric\nFROM AcceleratorRecords\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
+          "rawSql": "SELECT \r\n  TIMESTAMP(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as Time,\r\n  CONCAT(Year,'-',Month) as Month,\r\n  Type,\r\n  Model,\r\n  FQAN,\r\n  Count as \"Number of Cards\",\r\n  AvailableDuration/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))*3600) as \"Total GPU Hours\",\r\n  ActiveDuration/(DAYOFMONTH(LAST_DAY(STR_TO_DATE(CONCAT(Year,'-',Month,'-',1,' 00:00:00'),'%Y-%m-%d %T')))*3600) as \"Active GPU Hours\",\r\n  SiteName as \"Site Name\",\r\n  Category\r\nFROM VAcceleratorSummaries\r\nWHERE \r\n  FQAN IN ($Activity) AND\r\n  SiteName IN ($Site) AND\r\n  Type IN ($Type) AND\r\n  Category in ($Category)\r\nGROUP BY Time\r\nHAVING $__timeFilter(Time)\r\nORDER BY Time",
           "refId": "A",
-          "select": [
-            [
+          "sql": {
+            "columns": [
               {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
+                "parameters": [],
+                "type": "function"
               }
-            ]
-          ],
-          "table": "VJobRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
-      "title": "Average Accelerator Core Usage by Activity",
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "tMp74aQ7k"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "id": 14,
-      "options": {
-        "displayLabels": [],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "values": [
-            "value",
-            "percent"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "mysql",
-            "uid": "tMp74aQ7k"
-          },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(MeasurementYear,'-',MeasurementMonth,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/5000000000000 as value,\n  SiteName as metric\nFROM AcceleratorRecords\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VJobRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Average Accelerator Core Usage by Site",
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "tMp74aQ7k"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 22
-      },
-      "id": 15,
-      "options": {
-        "displayLabels": [],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "values": [
-            "value",
-            "percent"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "mysql",
-            "uid": "tMp74aQ7k"
-          },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(MeasurementYear,'-',MeasurementMonth,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/5000000000000 as value,\n  Type as metric\nFROM AcceleratorRecords\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VJobRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Relative Type Popularity",
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "tMp74aQ7k"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 22
-      },
-      "id": 16,
-      "options": {
-        "displayLabels": [],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "values": [
-            "value",
-            "percent"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "mysql",
-            "uid": "tMp74aQ7k"
-          },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT \n  TIMESTAMP(STR_TO_DATE(CONCAT(MeasurementYear,'-',MeasurementMonth,'-',1,' 00:00:00'),'%Y-%m-%d %T')) as time,\n  AVG(Cores*Count*AvailableDuration)/5000000000000 as value,\n  Model as metric\nFROM AcceleratorRecords\nWHERE \n  FQAN IN ($Activity) AND\n  SiteName IN ($Site) AND\n  Type IN ($Type)\nGROUP BY time, metric\nHAVING $__timeFilter(time)\nORDER BY time\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "WallDuration"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "VJobRecords",
-          "timeColumn": "UpdateTime",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Relative Model Popularity",
-      "type": "piechart"
+      "title": "Panel Title",
+      "type": "table"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 36,
-  "style": "dark",
-  "tags": [],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "main"
+  ],
   "templating": {
     "list": [
       {
@@ -517,16 +754,16 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "tMp74aQ7k"
+          "uid": "P41F96484D8966BAD"
         },
-        "definition": "SELECT UNIQUE FQAN FROM AcceleratorRecords;",
+        "definition": "SELECT DISTINCT FQAN FROM VAcceleratorSummaries;",
         "hide": 0,
         "includeAll": true,
         "label": "Activity",
         "multi": true,
         "name": "Activity",
         "options": [],
-        "query": "SELECT UNIQUE FQAN FROM AcceleratorRecords;",
+        "query": "SELECT DISTINCT FQAN FROM VAcceleratorSummaries;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -545,16 +782,16 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "tMp74aQ7k"
+          "uid": "P41F96484D8966BAD"
         },
-        "definition": "SELECT UNIQUE SiteName FROM AcceleratorRecords;",
+        "definition": "SELECT DISTINCT SiteName FROM VAcceleratorSummaries;",
         "hide": 0,
         "includeAll": true,
         "label": "Site",
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "SELECT UNIQUE SiteName FROM AcceleratorRecords;",
+        "query": "SELECT DISTINCT SiteName FROM VAcceleratorSummaries;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -573,9 +810,9 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "tMp74aQ7k"
+          "uid": "P41F96484D8966BAD"
         },
-        "definition": "SELECT UNIQUE Type FROM AcceleratorRecords;",
+        "definition": "SELECT DISTINCT Type FROM VAcceleratorSummaries;",
         "description": "Select the accelerator type (e.g. GPU, FPGA)",
         "hide": 0,
         "includeAll": true,
@@ -583,12 +820,67 @@
         "multi": true,
         "name": "Type",
         "options": [],
-        "query": "SELECT UNIQUE Type FROM AcceleratorRecords;",
+        "query": "SELECT DISTINCT Type FROM VAcceleratorSummaries;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "vis"
+          ],
+          "value": [
+            "vis"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "P41F96484D8966BAD"
+        },
+        "definition": "SELECT DISTINCT Category FROM VAcceleratorSummaries WHERE Category IS NOT NULL;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Category",
+        "options": [],
+        "query": "SELECT DISTINCT Category FROM VAcceleratorSummaries WHERE Category IS NOT NULL;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "None",
+          "value": "None"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Line Graph",
+        "multi": false,
+        "name": "LineSeries",
+        "options": [
+          {
+            "selected": true,
+            "text": "None",
+            "value": "None"
+          },
+          {
+            "selected": false,
+            "text": "Allocation",
+            "value": "Allocation"
+          }
+        ],
+        "query": "None,Allocation",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -598,9 +890,9 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "New dashboard",
+  "title": "Accelerator Dashboard",
   "uid": "h4vSOaw7z",
-  "version": 13,
+  "version": 22,
   "weekStart": ""
-} 
+}
 
