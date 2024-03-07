@@ -41,7 +41,7 @@ providers:
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/iris/guide.json
-- name: IRIS Accelerator Accounting Dashboard
+- name: IRIS Accelerator Accounting
   folder: 'IRIS'
   type: file
   disableDeletion: true
