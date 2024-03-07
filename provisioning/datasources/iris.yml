@@ -28,3 +28,10 @@ datasources:
     database: iris_shared
     user:
     password:
+
+  - name: IRIS Accelerator MySQL Database
+    type: mysql
+    url:
+    database: iris_accelerator
+    user:
+    password:
