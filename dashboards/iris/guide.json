@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 24,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -50,7 +50,7 @@
         "content": "# IRIS Accounting Portal Guide\n\n\nThe IRIS Accounting Portal consists of three dashboards:\n\n1. *Accounting Dashboard*': a 'home' view containing the main graph showing VO usage per month, along with cumulative usage pie charts for Site and VO.\n\n2. *Activity View*: an Activity (VO)-centric dashboard that, in addition to the main graph, shows charts for pure elapsed time and CPU time. \n\n3. *Provider View*: a Provider (Site)-centric dashboard that shows the main graph with Sites rather than VO series along with charts for elapsed time and CPU time.\n\n   ",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "targets": [
         {
           "datasource": {
@@ -85,7 +85,7 @@
         "content": "\n## Navigation\n\nThe easiest way to navigate between these three dashboards is through the buttons in the top right. \n\n![nav](/public/img/nav.png)\n\nIf you are on the main Accounting Dashboard view, and would like to view the Activity View focused on one specific VO, one option is to left click on the appropriate coloured bar on the main graph, and select 'Activity Drilldown' which will open a new tab with the Activity View focused on that VO.\n\n![drilldown](/public/img/drilldown.png)",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "targets": [
         {
           "datasource": {
@@ -103,32 +103,24 @@
         "type": "datasource",
         "uid": "grafana"
       },
+      "description": "",
       "gridPos": {
-        "h": 12,
+        "h": 29,
         "w": 12,
         "x": 12,
         "y": 6
       },
-      "id": 6,
+      "id": 15,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n## Variables\n\nGrafana variables can be used to filter the data shown on the dashboard. You can filter by Project, Site, Activity, Sub-Activity and Data-Source, as well as specifying if the Line Series (Allocation and Capacity) and the Estimated Total Usage Bar are shown.\n\n![variablesImg](/public/img/variables.png)\n\nYou can make multiple selections in each variable and combine different variables to customise the data shown.\n\n![variableDropDown](/public/img/variabledropdown.png)\n",
+        "content": "# Series Exclusion\n\nYou can filter the Average Core Usage graph by clicking or control clicking on the series you want to filter by.\n\nYou can ctrl+click (CMD+click on MAC) to remove a series from the graph. You can do this on multiple series at the same time.\n\n![removedseries](/public/img/removedseries.png)\n\nIn the above graph, Capacity and Allocation were removed.\n\nYou can click on an individual series to show only that series on the graph, and then ctrl+click (CMD+click on MAC) on other series to add them back to the graph.\n\n![addedseries](/public/img/addedseries.png)\n\nIn the above graph, Capacity, Allocation and Diamond were selected.\n\nTo reset the graph, refresh or double click on a series.",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
+      "pluginVersion": "9.5.3",
       "transparent": true,
       "type": "text"
     },
@@ -153,7 +145,7 @@
         "content": "\n## Refreshing the dashboard\n\nBy default, the dashboard will not update unless you refresh the page. You can change this with the refresh button and dropdown at the top right.\n\n![refresh](/public/img/refresh.png)\n\n",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "targets": [
         {
           "datasource": {
@@ -163,32 +155,6 @@
           "refId": "A"
         }
       ],
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
-      "description": "",
-      "gridPos": {
-        "h": 14,
-        "w": 12,
-        "x": 12,
-        "y": 18
-      },
-      "id": 15,
-      "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "# Series Exclusion\n\nYou can filter the Average Core Usage graph by clicking or control clicking on the series you want to filter by.\n\nYou can ctrl+click (CMD+click on MAC) to remove a series from the graph. You can do this on multiple series at the same time.\n\n![removedseries](/public/img/removedseries.png)\n\nIn the above graph, Capacity and Allocation were removed.\n\nYou can click on an individual series to show only that series on the graph, and then ctrl+click (CMD+click on MAC) on other series to add them back to the graph.\n\n![addedseries](/public/img/addedseries.png)\n\nIn the above graph, Capacity, Allocation and Diamond were selected.\n\nTo reset the graph, refresh or double click on a series.",
-        "mode": "markdown"
-      },
-      "pluginVersion": "9.4.3",
       "transparent": true,
       "type": "text"
     },
@@ -213,7 +179,7 @@
         "content": "## Allocation and Capacity lines\n\nThe green line on the main graphs of the home view and the Provider View shows IRIS Capacity over time. \n\n![capacity](/public/img/capacity.png)\n\nThe purple line on the main graph in the Activity View shows the allocation for the currently selected Activities. By default this is showing the sum of the allocation across all Activities, but the total will adjust depending on which Activities are selected using the filter.\n\n![allocation](/public/img/allocation.png)\n",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "targets": [
         {
           "datasource": {
@@ -232,10 +198,10 @@
         "uid": "grafana"
       },
       "gridPos": {
-        "h": 12,
-        "w": 11,
+        "h": 19,
+        "w": 12,
         "x": 12,
-        "y": 36
+        "y": 35
       },
       "id": 17,
       "options": {
@@ -247,7 +213,7 @@
         "content": "# Estimated Total Usage\n\nEstimated Total Usage is a bar on the 'Average Core Usage by Activity and Month' graph on the IRIS accounting dashboard. It estimates and shows what the total usage for all activities will be in the current month, based on the month's usage so far and how long is left in the month. It's the transparent blue bar in the image below.\n\n![estimatedtotalusagegraph](/public/img/estimatedtotalusagegraph.png)\n\nThe Estimated Total Usage bar can be turned on and off by a variable. It looks as below and can be found with the other drop-down variables near the top of the screen.\n\n![estimatedtotalusagevariable](/public/img/showestimatedtotalusagevariable.png)",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "transparent": true,
       "type": "text"
     },
@@ -272,7 +238,41 @@
         "content": "\n## Time Range\n\nBy default, the dashboards are set to a custom time period of 01/01/2018 to now. This means the graphs on the page will show data for that period. This can be changed in the time selector at the top: \n\n![time](/public/img/time.png)",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 0,
+        "y": 45
+      },
+      "id": 6,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n## Variables\n\nGrafana variables can be used to filter the data shown on the dashboard. You can filter by Project, Site, Activity, Sub-Activity and Data-Source, as well as specifying if the Line Series (Allocation and Capacity) and the Estimated Total Usage Bar are shown.\n\n![variablesImg](/public/img/variables.png)\n\nYou can make multiple selections in each variable and combine different variables to customise the data shown.\n\n![variableDropDown](/public/img/variabledropdown.png)\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.5.3",
       "targets": [
         {
           "datasource": {
@@ -294,8 +294,8 @@
       "gridPos": {
         "h": 3,
         "w": 12,
-        "x": 0,
-        "y": 45
+        "x": 12,
+        "y": 54
       },
       "id": 13,
       "options": {
@@ -307,7 +307,7 @@
         "content": "# Contact\n\nNeed help? Contact the Apel Admins at the following email address: apel-admins@stfc.ac.uk.",
         "mode": "markdown"
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "9.5.3",
       "transparent": true,
       "type": "text"
     }
@@ -342,6 +342,6 @@
   "timezone": "",
   "title": "Guide",
   "uid": "3FEa2VaZz",
-  "version": 8,
+  "version": 4,
   "weekStart": ""
 }
