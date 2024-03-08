@@ -1,0 +1,10 @@
+apiVersion: 1
+
+datasources:
+  - name: InterTwin Cloud MySQL Database
+    type: mysql
+    url:
+    database:
+    user: intertwin
+    secureJsonData:
+        password: $__file{/etc/grafana/secrets/apel_db_pwd}
