@@ -26,6 +26,28 @@ parser.add_argument("filepath", help="filepath of JSON file that will be edited"
 args = parser.parse_args()
 
 
+def create_override_dict(name, code):
+    return {
+        "matcher": {
+            "id": "byName",
+            "options": name
+        },
+        "properties": [
+            {
+                "id": "color",
+                "value": {
+                    "fixedColor": code,
+                    "mode": "fixed"
+                }
+            }
+        ]
+    }
+
+override_list = []
+for name, code in alias_colors.items():
+    override_list.append(create_override_dict(name, code))
+
+
 def main():
     """Update the desired JSON file with predefined colors."""
     filename = args.filepath[:-5]  # get filename
@@ -35,7 +57,10 @@ def main():
         data = json.load(reader)  # load file into data variable
 
         for i in range(len(data['panels'])):  # cycle through panels in JSON file
-            data['panels'][i]['aliasColors'] = alias_colors
+            try:
+                data['panels'][i]['fieldConfig']['overrides'] = override_list
+            except KeyError:
+                pass
 
         json.dump(data, writer, indent=2, sort_keys=True)  # write to new file
     os.replace(new_path, args.filepath)  # replace original file with new file
