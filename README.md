@@ -20,7 +20,13 @@ if you have set up the VM with Grafana properly then there should be a `grafana.
 Now you need to open the `grafana.ini` config file and make note of the domain which should look like this:
 `domain=host-(`Hostname`).nubes.stfc.ac.uk`.
 
-You will need a self signed certificate and key to put in `/etc/grid-security/hostcert.pem` and `/etc/grid-security/hostkey.pem` respectively.
+For development a self-signed certificate is useful.
+You can create it by running this command:<br>
+>`openssl req -x509 -newkey rsa:4096 -keyout hostkey.pem -out hostcert.pem -sha256 -days 180 -nodes -subj "/C=XX/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"`<br>
+
+But, this is only for development and a properly issued
+certificate is required for production.
+Put it in `/etc/grid-security/hostcert.pem` and add your private key to `/etc/grid-security/hostkey.pem`.
 
 Check the configuration of the datasources and set the password in `secrets/apel_db_pwd`. The details for that would come from whoever manages the database your using.
 
