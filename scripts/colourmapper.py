@@ -57,6 +57,7 @@ def main():
         data = json.load(reader)  # load file into data variable
 
         for i in range(len(data['panels'])):  # cycle through panels in JSON file
+            data['panels'][i]['aliasColors'] = alias_colors
             try:
                 data['panels'][i]['fieldConfig']['overrides'] = override_list
             except KeyError:
