@@ -27,6 +27,10 @@ args = parser.parse_args()
 
 
 def create_override_dict(name, code):
+    """
+    This function is called during a loop over all mappings in colourmapper.ini
+    This creates a long dictionary that will go into the "overrides" parts of the JSON files
+    """
     return {
         "matcher": {
             "id": "byName",
@@ -57,6 +61,8 @@ def main():
         data = json.load(reader)  # load file into data variable
 
         for i in range(len(data['panels'])):  # cycle through panels in JSON file
+            # uses two different methods of colour mapping (aliasColours and overrides)
+            # as grafana needs both on the JSON to display all colours
             data['panels'][i]['aliasColors'] = alias_colors
             try:
                 data['panels'][i]['fieldConfig']['overrides'] = override_list
