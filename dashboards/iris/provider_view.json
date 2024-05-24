@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 7,
   "links": [
     {
       "asDropdown": false,
@@ -48,617 +48,69 @@
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Elapsed time * Number of Processors (Months)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "lsst"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8bbaf0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "lz"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#E0B400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "skatelescope.eu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dune"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F2323",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cta"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vo.cta.in2p3.fr"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "virgo"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F6A23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ISIS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Diamond"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#737373",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CLF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF00AA",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ccfe"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CCFE"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "EUCLID"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eucliduk.net"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "plato"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B713D0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fermilab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#37F7E2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "AENEAS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f58231",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eMERLIN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#ffd8b1",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "LSST"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8bbaf0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dirac"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFA6B0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "jintrac"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#E24D42",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "casu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#F0FFFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "gaia"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B7DBAB",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "gaia-core"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B7DBAB",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "gaia-dev"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B7DBAB",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "gaia-prod"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B7DBAB",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "gaia-test"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B7DBAB",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CCP4"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#42dbb7",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "DAFNI"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#3144d4",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "clas12"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#e04848",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ska"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vcycle"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8A2BE2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "iris.ac.uk"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6D1F62",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ral-cloud"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#E02F44",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-IC-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFF899",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-MAN-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#00EAFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UK-CAM-CUMULUS"
+              "options": "DiRAC"
             },
             "properties": [
               {
@@ -673,13 +125,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "RAL-LCG2"
+              "options": "GridPP"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#AA00FF",
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -688,208 +140,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "UKI-LT2-QMUL"
+              "options": "SCD"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#FF7F00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LIV-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#BFFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-ECDF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0095FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-RALPP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-OX-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6B238F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-SHEF-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFD400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BRIS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6AFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LANCS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EDB9B9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-Brunel"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#aaffc3",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-GLASGOW"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#000075",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BHAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f032e6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-CAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#808000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-RHUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#800000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Allocation"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B877D9",
+                  "fixedColor": "semi-dark-red",
                   "mode": "fixed"
                 }
               }
@@ -902,61 +159,52 @@
             },
             "properties": [
               {
-                "id": "color",
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "custom.stacking",
                 "value": {
-                  "fixedColor": "#629E51",
-                  "mode": "fixed"
+                  "group": "A",
+                  "mode": "none"
                 }
               }
             ]
           }
         ]
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "hiddenSeries": false,
       "id": 13,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "nullPointMode": "null as zero",
       "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:163",
-          "alias": "Capacity",
-          "bars": false,
-          "fill": 0,
-          "lines": true,
-          "linewidth": 2,
-          "stack": false,
-          "steppedLine": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
         }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": true,
+      },
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -1061,117 +309,79 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Average Core Usage by Provider Project and Month",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:180",
-          "format": "short",
-          "label": "Elapsed time * Number of Processors (Months)",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:181",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Elapsed Time * Number of Processors (Months)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "lsst"
+              "options": "AENEAS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#8bbaf0",
+                  "fixedColor": "#f58231",
                   "mode": "fixed"
                 }
               }
@@ -1180,148 +390,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "lz"
+              "options": "Allocation"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E0B400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "skatelescope.eu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dune"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F2323",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cta"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vo.cta.in2p3.fr"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "virgo"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F6A23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ISIS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Diamond"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#737373",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CLF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF00AA",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ccfe"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
+                  "fixedColor": "#B877D9",
                   "mode": "fixed"
                 }
               }
@@ -1345,6 +420,55 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "CLF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF00AA",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Capacity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#629E51",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "stepAfter"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diamond"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#737373",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "EUCLID"
             },
             "properties": [
@@ -1360,73 +484,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "eucliduk.net"
+              "options": "ISIS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "plato"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B713D0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fermilab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#37F7E2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "AENEAS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f58231",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eMERLIN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#ffd8b1",
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -1450,13 +514,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "dirac"
+              "options": "RAL-LCG2"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#FFA6B0",
+                  "fixedColor": "#AA00FF",
                   "mode": "fixed"
                 }
               }
@@ -1465,13 +529,238 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "jintrac"
+              "options": "UK-CAM-CUMULUS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E24D42",
+                  "fixedColor": "#35586C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-Brunel"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#aaffc3",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-IC-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFF899",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-QMUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF7F00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-RHUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#800000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LANCS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EDB9B9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LIV-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#BFFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-MAN-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00EAFF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-SHEF-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFD400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-ECDF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#0095FF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-GLASGOW"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#000075",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BHAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f032e6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BRIS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6AFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-CAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#808000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-OX-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6B238F",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-RALPP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -1495,13 +784,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia"
+              "options": "dirac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#B7DBAB",
+                  "fixedColor": "#FFA6B0",
                   "mode": "fixed"
                 }
               }
@@ -1510,7 +799,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia-core"
+              "options": "dune"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#8F2323",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eMERLIN"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffd8b1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "gaia"
             },
             "properties": [
               {
@@ -1570,13 +889,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CCP4"
+              "options": "iris.ac.uk"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#42dbb7",
+                  "fixedColor": "#6D1F62",
                   "mode": "fixed"
                 }
               }
@@ -1585,13 +904,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DAFNI"
+              "options": "jintrac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#3144d4",
+                  "fixedColor": "#E24D42",
                   "mode": "fixed"
                 }
               }
@@ -1600,13 +919,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "clas12"
+              "options": "lsst"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#e04848",
+                  "fixedColor": "#8bbaf0",
                   "mode": "fixed"
                 }
               }
@@ -1615,7 +934,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ska"
+              "options": "lz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E0B400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ral-cloud"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E02F44",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "skatelescope.eu"
             },
             "properties": [
               {
@@ -1645,13 +994,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "iris.ac.uk"
+              "options": "virgo"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#6D1F62",
+                  "fixedColor": "#8F6A23",
                   "mode": "fixed"
                 }
               }
@@ -1660,283 +1009,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ral-cloud"
+              "options": "vo.cta.in2p3.fr"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E02F44",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-IC-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFF899",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-MAN-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#00EAFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UK-CAM-CUMULUS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#35586C",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAL-LCG2"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#AA00FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-QMUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF7F00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LIV-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#BFFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-ECDF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0095FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-RALPP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-OX-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6B238F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-SHEF-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFD400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BRIS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6AFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LANCS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EDB9B9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-Brunel"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#aaffc3",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-GLASGOW"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#000075",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BHAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f032e6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-CAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#808000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-RHUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#800000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Allocation"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B877D9",
+                  "fixedColor": "#23628F",
                   "mode": "fixed"
                 }
               }
@@ -1949,67 +1028,52 @@
             },
             "properties": [
               {
-                "id": "color",
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "custom.stacking",
                 "value": {
-                  "fixedColor": "#629E51",
-                  "mode": "fixed"
+                  "group": "A",
+                  "mode": "none"
                 }
               }
             ]
           }
         ]
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 24,
         "x": 0,
         "y": 12
       },
-      "hiddenSeries": false,
       "id": 10,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null as zero",
       "options": {
-        "alertThreshold": true
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:276",
-          "alias": "Capacity",
-          "bars": false,
-          "fill": 0,
-          "lines": true,
-          "linewidth": 2,
-          "stack": false,
-          "steppedLine": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
         }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
+      },
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -2094,118 +1158,79 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Average Core Usage by Site and Month",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:293",
-          "format": "short",
-          "label": "Elapsed Time * Number of Processors (Months)",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:294",
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Elapsed time (months)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "lsst"
+              "options": "AENEAS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#8bbaf0",
+                  "fixedColor": "#f58231",
                   "mode": "fixed"
                 }
               }
@@ -2214,148 +1239,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "lz"
+              "options": "Allocation"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E0B400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "skatelescope.eu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dune"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F2323",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cta"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vo.cta.in2p3.fr"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "virgo"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F6A23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ISIS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Diamond"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#737373",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CLF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF00AA",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ccfe"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
+                  "fixedColor": "#B877D9",
                   "mode": "fixed"
                 }
               }
@@ -2379,6 +1269,51 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "CLF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF00AA",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Capacity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#629E51",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diamond"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#737373",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "EUCLID"
             },
             "properties": [
@@ -2394,73 +1329,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "eucliduk.net"
+              "options": "ISIS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "plato"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B713D0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fermilab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#37F7E2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "AENEAS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f58231",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eMERLIN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#ffd8b1",
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -2484,13 +1359,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "dirac"
+              "options": "RAL-LCG2"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#FFA6B0",
+                  "fixedColor": "#AA00FF",
                   "mode": "fixed"
                 }
               }
@@ -2499,13 +1374,238 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "jintrac"
+              "options": "UK-CAM-CUMULUS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E24D42",
+                  "fixedColor": "#35586C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-Brunel"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#aaffc3",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-IC-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFF899",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-QMUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF7F00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-RHUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#800000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LANCS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EDB9B9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LIV-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#BFFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-MAN-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00EAFF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-SHEF-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFD400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-ECDF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#0095FF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-GLASGOW"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#000075",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BHAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f032e6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BRIS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6AFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-CAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#808000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-OX-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6B238F",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-RALPP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -2529,13 +1629,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia"
+              "options": "dirac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#B7DBAB",
+                  "fixedColor": "#FFA6B0",
                   "mode": "fixed"
                 }
               }
@@ -2544,7 +1644,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia-core"
+              "options": "dune"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#8F2323",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eMERLIN"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffd8b1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "gaia"
             },
             "properties": [
               {
@@ -2604,13 +1734,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CCP4"
+              "options": "iris.ac.uk"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#42dbb7",
+                  "fixedColor": "#6D1F62",
                   "mode": "fixed"
                 }
               }
@@ -2619,13 +1749,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DAFNI"
+              "options": "jintrac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#3144d4",
+                  "fixedColor": "#E24D42",
                   "mode": "fixed"
                 }
               }
@@ -2634,13 +1764,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "clas12"
+              "options": "lsst"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#e04848",
+                  "fixedColor": "#8bbaf0",
                   "mode": "fixed"
                 }
               }
@@ -2649,7 +1779,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ska"
+              "options": "lz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E0B400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ral-cloud"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E02F44",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "skatelescope.eu"
             },
             "properties": [
               {
@@ -2679,13 +1839,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "iris.ac.uk"
+              "options": "virgo"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#6D1F62",
+                  "fixedColor": "#8F6A23",
                   "mode": "fixed"
                 }
               }
@@ -2694,298 +1854,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ral-cloud"
+              "options": "vo.cta.in2p3.fr"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E02F44",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-IC-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFF899",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-MAN-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#00EAFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UK-CAM-CUMULUS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#35586C",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAL-LCG2"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#AA00FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-QMUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF7F00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LIV-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#BFFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-ECDF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0095FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-RALPP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-OX-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6B238F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-SHEF-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFD400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BRIS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6AFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LANCS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EDB9B9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-Brunel"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#aaffc3",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-GLASGOW"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#000075",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BHAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f032e6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-CAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#808000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-RHUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#800000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Allocation"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B877D9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Capacity"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#629E51",
+                  "fixedColor": "#23628F",
                   "mode": "fixed"
                 }
               }
@@ -2993,44 +1868,26 @@
           }
         ]
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 24
       },
-      "hiddenSeries": false,
       "id": 4,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null as zero",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -3083,117 +1940,79 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Elapsed time (months) by Site and Month",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:381",
-          "format": "short",
-          "label": "Elapsed time (months)",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:382",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "CPU time (months)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "lsst"
+              "options": "AENEAS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#8bbaf0",
+                  "fixedColor": "#f58231",
                   "mode": "fixed"
                 }
               }
@@ -3202,148 +2021,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "lz"
+              "options": "Allocation"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E0B400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "skatelescope.eu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dune"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F2323",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cta"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vo.cta.in2p3.fr"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "virgo"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F6A23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ISIS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Diamond"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#737373",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CLF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF00AA",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ccfe"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
+                  "fixedColor": "#B877D9",
                   "mode": "fixed"
                 }
               }
@@ -3367,6 +2051,51 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "CLF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF00AA",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Capacity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#629E51",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diamond"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#737373",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "EUCLID"
             },
             "properties": [
@@ -3382,73 +2111,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "eucliduk.net"
+              "options": "ISIS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "plato"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B713D0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fermilab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#37F7E2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "AENEAS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f58231",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eMERLIN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#ffd8b1",
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -3472,13 +2141,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "dirac"
+              "options": "RAL-LCG2"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#FFA6B0",
+                  "fixedColor": "#AA00FF",
                   "mode": "fixed"
                 }
               }
@@ -3487,13 +2156,238 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "jintrac"
+              "options": "UK-CAM-CUMULUS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E24D42",
+                  "fixedColor": "#35586C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-Brunel"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#aaffc3",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-IC-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFF899",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-QMUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF7F00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-RHUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#800000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LANCS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EDB9B9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LIV-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#BFFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-MAN-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00EAFF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-SHEF-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFD400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-ECDF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#0095FF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-GLASGOW"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#000075",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BHAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f032e6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BRIS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6AFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-CAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#808000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-OX-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6B238F",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-RALPP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -3517,13 +2411,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia"
+              "options": "dirac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#B7DBAB",
+                  "fixedColor": "#FFA6B0",
                   "mode": "fixed"
                 }
               }
@@ -3532,7 +2426,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia-core"
+              "options": "dune"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#8F2323",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eMERLIN"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffd8b1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "gaia"
             },
             "properties": [
               {
@@ -3592,13 +2516,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CCP4"
+              "options": "iris.ac.uk"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#42dbb7",
+                  "fixedColor": "#6D1F62",
                   "mode": "fixed"
                 }
               }
@@ -3607,13 +2531,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DAFNI"
+              "options": "jintrac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#3144d4",
+                  "fixedColor": "#E24D42",
                   "mode": "fixed"
                 }
               }
@@ -3622,13 +2546,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "clas12"
+              "options": "lsst"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#e04848",
+                  "fixedColor": "#8bbaf0",
                   "mode": "fixed"
                 }
               }
@@ -3637,7 +2561,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ska"
+              "options": "lz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E0B400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ral-cloud"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E02F44",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "skatelescope.eu"
             },
             "properties": [
               {
@@ -3667,13 +2621,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "iris.ac.uk"
+              "options": "virgo"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#6D1F62",
+                  "fixedColor": "#8F6A23",
                   "mode": "fixed"
                 }
               }
@@ -3682,298 +2636,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ral-cloud"
+              "options": "vo.cta.in2p3.fr"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E02F44",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-IC-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFF899",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-MAN-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#00EAFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UK-CAM-CUMULUS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#35586C",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAL-LCG2"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#AA00FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-QMUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF7F00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LIV-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#BFFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-ECDF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0095FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-RALPP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-OX-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6B238F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-SHEF-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFD400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BRIS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6AFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LANCS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EDB9B9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-Brunel"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#aaffc3",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-GLASGOW"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#000075",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BHAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f032e6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-CAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#808000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-RHUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#800000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Allocation"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B877D9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Capacity"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#629E51",
+                  "fixedColor": "#23628F",
                   "mode": "fixed"
                 }
               }
@@ -3981,42 +2650,26 @@
           }
         ]
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 24
       },
-      "hiddenSeries": false,
       "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null as zero",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -4069,117 +2722,80 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "CPU time (months) by Site and Month",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:469",
-          "format": "short",
-          "label": "CPU time (months)",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:470",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Total Jobs",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "lsst"
+              "options": "AENEAS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#8bbaf0",
+                  "fixedColor": "#f58231",
                   "mode": "fixed"
                 }
               }
@@ -4188,148 +2804,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "lz"
+              "options": "Allocation"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E0B400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "skatelescope.eu"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#DCB9ED",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dune"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F2323",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cta"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vo.cta.in2p3.fr"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#23628F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "virgo"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#8F6A23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ISIS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Diamond"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#737373",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CLF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF00AA",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ccfe"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#469990",
+                  "fixedColor": "#B877D9",
                   "mode": "fixed"
                 }
               }
@@ -4353,6 +2834,51 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "CLF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF00AA",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Capacity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#629E51",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Diamond"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#737373",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "EUCLID"
             },
             "properties": [
@@ -4368,73 +2894,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "eucliduk.net"
+              "options": "ISIS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#bfef45",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "plato"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B713D0",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fermilab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#37F7E2",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "AENEAS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f58231",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "eMERLIN"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#ffd8b1",
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -4458,13 +2924,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "dirac"
+              "options": "RAL-LCG2"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#FFA6B0",
+                  "fixedColor": "#AA00FF",
                   "mode": "fixed"
                 }
               }
@@ -4473,13 +2939,238 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "jintrac"
+              "options": "UK-CAM-CUMULUS"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E24D42",
+                  "fixedColor": "#35586C",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-Brunel"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#aaffc3",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-IC-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFF899",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-QMUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FF7F00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-LT2-RHUL"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#800000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LANCS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#EDB9B9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-LIV-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#BFFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-MAN-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00EAFF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-NORTHGRID-SHEF-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#FFD400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-ECDF"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#0095FF",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SCOTGRID-GLASGOW"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#000075",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BHAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f032e6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-BRIS-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6AFF00",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-CAM-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#808000",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-OX-HEP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6B238F",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "UKI-SOUTHGRID-RALPP"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4F8F23",
                   "mode": "fixed"
                 }
               }
@@ -4503,13 +3194,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia"
+              "options": "dirac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#B7DBAB",
+                  "fixedColor": "#FFA6B0",
                   "mode": "fixed"
                 }
               }
@@ -4518,7 +3209,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "gaia-core"
+              "options": "dune"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#8F2323",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eMERLIN"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffd8b1",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "gaia"
             },
             "properties": [
               {
@@ -4578,13 +3299,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CCP4"
+              "options": "iris.ac.uk"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#42dbb7",
+                  "fixedColor": "#6D1F62",
                   "mode": "fixed"
                 }
               }
@@ -4593,13 +3314,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "DAFNI"
+              "options": "jintrac"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#3144d4",
+                  "fixedColor": "#E24D42",
                   "mode": "fixed"
                 }
               }
@@ -4608,13 +3329,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "clas12"
+              "options": "lsst"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#e04848",
+                  "fixedColor": "#8bbaf0",
                   "mode": "fixed"
                 }
               }
@@ -4623,7 +3344,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ska"
+              "options": "lz"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E0B400",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ral-cloud"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#E02F44",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "skatelescope.eu"
             },
             "properties": [
               {
@@ -4653,13 +3404,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "iris.ac.uk"
+              "options": "virgo"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#6D1F62",
+                  "fixedColor": "#8F6A23",
                   "mode": "fixed"
                 }
               }
@@ -4668,298 +3419,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "ral-cloud"
+              "options": "vo.cta.in2p3.fr"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#E02F44",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-IC-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFF899",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-MAN-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#00EAFF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UK-CAM-CUMULUS"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#35586C",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAL-LCG2"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#AA00FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-QMUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FF7F00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LIV-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#BFFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-ECDF"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0095FF",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-RALPP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#4F8F23",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-OX-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6B238F",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-SHEF-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#FFD400",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BRIS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#6AFF00",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-NORTHGRID-LANCS-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#EDB9B9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-Brunel"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#aaffc3",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SCOTGRID-GLASGOW"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#000075",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-BHAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#f032e6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-SOUTHGRID-CAM-HEP"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#808000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "UKI-LT2-RHUL"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#800000",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Allocation"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#B877D9",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Capacity"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#629E51",
+                  "fixedColor": "#23628F",
                   "mode": "fixed"
                 }
               }
@@ -4967,46 +3433,26 @@
           }
         ]
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 15,
         "w": 12,
         "x": 0,
         "y": 33
       },
-      "hiddenSeries": false,
       "id": 7,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null as zero",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -5059,97 +3505,10 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "SubmitHost Job Count (Grid)",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:643",
-          "decimals": 0,
-          "format": "short",
-          "label": "Total Jobs",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:644",
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
       "columns": [],
       "datasource": {
         "type": "datasource",
@@ -5163,7 +3522,6 @@
         "y": 33
       },
       "id": 8,
-      "links": [],
       "pageSize": 16,
       "scroll": true,
       "showHeader": true,
@@ -5286,8 +3644,7 @@
   ],
   "refresh": "",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "main"
   ],
@@ -5387,7 +3744,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -5469,6 +3826,6 @@
   "timezone": "",
   "title": "Provider View",
   "uid": "TEXgjgJZk",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
