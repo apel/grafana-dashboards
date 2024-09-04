@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-- name: InterTwin Accounting Dashboard
+- name: interTwin Accounting Dashboard
   folder: 'intertwin'
   type: file
   disableDeletion: true
@@ -9,3 +9,11 @@ providers:
   updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
   options:
     path: /var/lib/grafana/dashboards/intertwin/intertwin.json
+- name: interTwin Accelerator Dashboard
+  folder: 'intertwin'
+  type: file
+  disableDeletion: true
+  allowUiUpdates: false
+  updateIntervalSeconds: 60 #how often Grafana will scan for changed dashboards
+  options:
+    path: /var/lib/grafana/dashboards/intertwin/accelerator_accounting.json
