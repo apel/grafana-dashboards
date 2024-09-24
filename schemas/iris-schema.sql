@@ -29,69 +29,69 @@ CREATE TABLE Projects (
 
 CREATE VIEW VCombinedSummaries AS
 SELECT
-  iris_grid.HybridSuperSummaries.UpdateTime,
-  iris_grid.site.name Site,
+  apel_iris_grid.HybridSuperSummaries.UpdateTime,
+  apel_iris_grid.site.name Site,
   STR_TO_DATE(
-          CONCAT(iris_grid.HybridSuperSummaries.Year, "-", iris_grid.HybridSuperSummaries.Month, "-01 00:00:00"),
+          CONCAT(apel_iris_grid.HybridSuperSummaries.Year, "-", apel_iris_grid.HybridSuperSummaries.Month, "-01 00:00:00"),
           "%Y-%m-%d %H:%i:%s"
       ) Date,
-  iris_grid.userdn.name GlobalUserName,
-  iris_grid.vos.name VO,
-  iris_grid.vogroup.name VOGroup,
-  iris_grid.vorole.name VORole,
-  iris_grid.HybridSuperSummaries.Processors as CpuCount,
-  iris_grid.HybridSuperSummaries.WallDuration,
-  iris_grid.HybridSuperSummaries.CpuDuration,
+  apel_iris_grid.userdn.name GlobalUserName,
+  apel_iris_grid.vos.name VO,
+  apel_iris_grid.vogroup.name VOGroup,
+  apel_iris_grid.vorole.name VORole,
+  apel_iris_grid.HybridSuperSummaries.Processors as CpuCount,
+  apel_iris_grid.HybridSuperSummaries.WallDuration,
+  apel_iris_grid.HybridSuperSummaries.CpuDuration,
   'Grid' SourceSchema,
-  iris_shared.Projects.Project
-FROM iris_grid.HybridSuperSummaries,
-  iris_grid.Sites site,
-  iris_grid.DNs userdn,
-  iris_grid.VORoles vorole,
-  iris_grid.VOs vos,
-  iris_grid.VOGroups vogroup,
-  iris_shared.Projects
+  apel_iris_shared.Projects.Project
+FROM apel_iris_grid.HybridSuperSummaries,
+  apel_iris_grid.Sites site,
+  apel_iris_grid.DNs userdn,
+  apel_iris_grid.VORoles vorole,
+  apel_iris_grid.VOs vos,
+  apel_iris_grid.VOGroups vogroup,
+  apel_iris_shared.Projects
 WHERE
-  iris_grid.HybridSuperSummaries.SiteID = iris_grid.site.id
-  AND iris_grid.HybridSuperSummaries.GlobalUserNameID = iris_grid.userdn.id
-  AND iris_grid.HybridSuperSummaries.VORoleID = iris_grid.vorole.id
-  AND iris_grid.HybridSuperSummaries.VOID = iris_grid.vos.id
-  AND iris_grid.HybridSuperSummaries.VOGroupID = iris_grid.vogroup.id
-  AND iris_shared.Projects.Site = iris_grid.site.name
+  apel_iris_grid.HybridSuperSummaries.SiteID = apel_iris_grid.site.id
+  AND apel_iris_grid.HybridSuperSummaries.GlobalUserNameID = apel_iris_grid.userdn.id
+  AND apel_iris_grid.HybridSuperSummaries.VORoleID = apel_iris_grid.vorole.id
+  AND apel_iris_grid.HybridSuperSummaries.VOID = apel_iris_grid.vos.id
+  AND apel_iris_grid.HybridSuperSummaries.VOGroupID = apel_iris_grid.vogroup.id
+  AND apel_iris_shared.Projects.Site = apel_iris_grid.site.name
 
 UNION
 
 SELECT
-  iris_cloud.CloudSummaries.UpdateTime,
-  iris_cloud.site.name Site,
+  apel_iris_cloud.CloudSummaries.UpdateTime,
+  apel_iris_cloud.site.name Site,
   STR_TO_DATE(
-          CONCAT(iris_cloud.CloudSummaries.Year, "-", iris_cloud.CloudSummaries.Month, "-01 00:00:00"),
+          CONCAT(apel_iris_cloud.CloudSummaries.Year, "-", apel_iris_cloud.CloudSummaries.Month, "-01 00:00:00"),
           "%Y-%m-%d %H:%i:%s"
       ) Date,
-  iris_cloud.userdn.name GlobalUserName,
-  iris_cloud.vos.name VO,
-  iris_cloud.vogroup.name VOGroup,
-  iris_cloud.vorole.name VORole,
-  iris_cloud.CloudSummaries.CpuCount,
-  iris_cloud.CloudSummaries.WallDuration,
-  iris_cloud.CloudSummaries.CpuDuration,
+  apel_iris_cloud.userdn.name GlobalUserName,
+  apel_iris_cloud.vos.name VO,
+  apel_iris_cloud.vogroup.name VOGroup,
+  apel_iris_cloud.vorole.name VORole,
+  apel_iris_cloud.CloudSummaries.CpuCount,
+  apel_iris_cloud.CloudSummaries.WallDuration,
+  apel_iris_cloud.CloudSummaries.CpuDuration,
   'Cloud' SourceSchema,
-  iris_shared.Projects.Project
-FROM iris_cloud.CloudSummaries,
-  iris_cloud.Sites site,
-  iris_cloud.DNs userdn,
-  iris_cloud.VORoles vorole,
-  iris_cloud.VOs vos,
-  iris_cloud.VOGroups vogroup,
-  iris_shared.Projects
+  apel_iris_shared.Projects.Project
+FROM apel_iris_cloud.CloudSummaries,
+  apel_iris_cloud.Sites site,
+  apel_iris_cloud.DNs userdn,
+  apel_iris_cloud.VORoles vorole,
+  apel_iris_cloud.VOs vos,
+  apel_iris_cloud.VOGroups vogroup,
+  apel_iris_shared.Projects
 WHERE
-  iris_cloud.CloudSummaries.SiteID = iris_cloud.site.id
-  AND iris_cloud.CloudSummaries.GlobalUserNameID = iris_cloud.userdn.id
-  AND iris_cloud.CloudSummaries.VORoleID = iris_cloud.vorole.id
-  AND iris_cloud.CloudSummaries.VOID = iris_cloud.vos.id
-  AND iris_cloud.CloudSummaries.VOGroupID = iris_cloud.vogroup.id
-  AND iris_shared.Projects.Site = iris_cloud.site.name
-  AND iris_cloud.CloudSummaries.Month <> 0;
+  apel_iris_cloud.CloudSummaries.SiteID = apel_iris_cloud.site.id
+  AND apel_iris_cloud.CloudSummaries.GlobalUserNameID = apel_iris_cloud.userdn.id
+  AND apel_iris_cloud.CloudSummaries.VORoleID = apel_iris_cloud.vorole.id
+  AND apel_iris_cloud.CloudSummaries.VOID = apel_iris_cloud.vos.id
+  AND apel_iris_cloud.CloudSummaries.VOGroupID = apel_iris_cloud.vogroup.id
+  AND apel_iris_shared.Projects.Site = apel_iris_cloud.site.name
+  AND apel_iris_cloud.CloudSummaries.Month <> 0;
 
 CREATE VIEW VMonthlyAllocations AS
 SELECT
