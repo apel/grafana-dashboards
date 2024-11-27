@@ -4,34 +4,34 @@ datasources:
   - name: IRIS Grid MySQL Database
     type: mysql
     url:
-    database: iris_grid
+    database: apel_iris_grid
     user:
     password:
 
   - name: IRIS Cloud MySQL Database
     type: mysql
     url:
-    database: iris_cloud
+    database: apel_iris_cloud
     user:
     password:
 
   - name: IRIS Storage MySQL Database
     type: mysql
     url:
-    database: iris_storage
+    database: apel_iris_storage
     user:
     password:
 
   - name: IRIS Shared MySQL Database
     type: mysql
     url:
-    database: iris_shared
+    database: apel_iris_shared
     user:
     password:
 
   - name: IRIS Accelerator MySQL Database
     type: mysql
     url:
-    database: iris_accelerator
+    database: apel_iris_accelerator
     user:
     password:
