@@ -1288,6 +1288,7 @@
           "format": "short",
           "label": "Elapsed time * Number of Processors (months)",
           "logBase": 1,
+          "min": 0,
           "show": true
         },
         {
@@ -2276,6 +2277,7 @@
           "format": "short",
           "label": "Elapsed time (months)",
           "logBase": 1,
+          "min": 0,
           "show": true
         },
         {
@@ -3261,6 +3263,7 @@
           "format": "short",
           "label": "CPU time (months)",
           "logBase": 1,
+          "min": 0,
           "show": true
         },
         {
