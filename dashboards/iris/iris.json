@@ -1216,6 +1216,7 @@
           "format": "short",
           "label": "Elapsed Time * Number of Processors (Months)",
           "logBase": 1,
+          "min": 0,
           "show": true
         },
         {
