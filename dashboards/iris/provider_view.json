@@ -279,11 +279,14 @@
         "CLF": "#FF00AA",
         "Capacity": "#629E51",
         "DAFNI": "#3144d4",
+        "DiRAC": "#35586C",
         "Diamond": "#737373",
         "EUCLID": "#bfef45",
+        "GridPP": "#5794F2",
         "ISIS": "#4F8F23",
         "LSST": "#8bbaf0",
         "RAL-LCG2": "#AA00FF",
+        "SCD": "#E02F44",
         "UK-CAM-CUMULUS": "#35586C",
         "UKI-LT2-Brunel": "#aaffc3",
         "UKI-LT2-IC-HEP": "#FFF899",
@@ -5671,7 +5674,7 @@
     ]
   },
   "time": {
-    "from": "now-2y",
+    "from": "2018-01-01T00:00:00.000Z",
     "to": "now"
   },
   "timepicker": {
