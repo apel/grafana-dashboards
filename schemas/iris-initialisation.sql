@@ -3,7 +3,7 @@ INSERT INTO IrisVOs VALUES
     ('dirac'),('eMERLIN'),('EUCLID'),('eucliduk.net'),('fermilab'),
     ('gaia'),('gaia-core'),('gaia-dev'),('gaia-prod'),('gaia-test'),
     ('ISIS'),('jintrac'),('lz'),('plato'),('ska'),('skatelescope.eu'),
-    ('ccfe'),('clas12'),('dune'),('lsst'),
+    ('ccfe'),('clas12'),('dune'),('glueX'),('lsst'),
     ('virgo'),('vo.cta.in2p3.fr'),('cta');
 
 INSERT INTO Capacity VALUES
