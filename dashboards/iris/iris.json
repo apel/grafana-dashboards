@@ -208,6 +208,10 @@
                   "fixedColor": "#629E51",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "stepAfter"
               }
             ]
           },
@@ -268,6 +272,14 @@
                   "fixedColor": "#13cbe780",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "custom.barAlignment",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 50
               }
             ]
           },
@@ -990,6 +1002,10 @@
                   "group": false,
                   "mode": "none"
                 }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "stepAfter"
               }
             ]
           },
@@ -3428,6 +3444,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 7,
+  "version": 9,
   "weekStart": ""
 }

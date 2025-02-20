@@ -1471,6 +1471,10 @@
                   "fixedColor": "#629E51",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "stepAfter"
               }
             ]
           },
@@ -5487,6 +5491,6 @@
   "timezone": "",
   "title": "Provider View",
   "uid": "TEXgjgJZk",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
