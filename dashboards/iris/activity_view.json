@@ -350,6 +350,10 @@
                   "fixedColor": "#B877D9",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "stepAfter"
               }
             ]
           },
@@ -4264,6 +4268,6 @@
   "timezone": "",
   "title": "Activity View",
   "uid": "TfxgjgJZk",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
