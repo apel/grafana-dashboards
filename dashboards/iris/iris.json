@@ -275,7 +275,7 @@
               },
               {
                 "id": "custom.barAlignment",
-                "value": 1
+                "value": 0
               },
               {
                 "id": "custom.fillOpacity",
@@ -3444,6 +3444,6 @@
   "timezone": "",
   "title": "IRIS Accounting Dashboard",
   "uid": "feTpkMumk",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
