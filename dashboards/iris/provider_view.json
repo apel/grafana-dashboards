@@ -60,6 +60,12 @@
           },
           "custom": {
             "fillOpacity": 100,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
             "lineWidth": 0,
             "spanNulls": false
           },
@@ -277,6 +283,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "Elapsed time * Number of Processors (Months)",
@@ -290,6 +297,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1336,6 +1344,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "Elapsed Time * Number of Processors (Months)",
@@ -1349,6 +1358,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2334,6 +2344,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "Elapsed time (months)",
@@ -2347,6 +2358,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3265,6 +3277,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "CPU time (months)",
@@ -3278,6 +3291,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -4196,6 +4210,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "Total Jobs",
@@ -4209,6 +4224,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -5118,67 +5134,76 @@
       "type": "timeseries"
     },
     {
-      "aliasColors": {
-        "AENEAS": "#f58231",
-        "Allocation": "#B877D9",
-        "CCFE": "#469990",
-        "CCP4": "#42dbb7",
-        "CLF": "#FF00AA",
-        "Capacity": "#629E51",
-        "DAFNI": "#3144d4",
-        "Diamond": "#737373",
-        "EUCLID": "#bfef45",
-        "ISIS": "#4F8F23",
-        "LSST": "#8bbaf0",
-        "RAL-LCG2": "#AA00FF",
-        "UK-CAM-CUMULUS": "#35586C",
-        "UKI-LT2-Brunel": "#aaffc3",
-        "UKI-LT2-IC-HEP": "#FFF899",
-        "UKI-LT2-QMUL": "#FF7F00",
-        "UKI-LT2-RHUL": "#800000",
-        "UKI-NORTHGRID-LANCS-HEP": "#EDB9B9",
-        "UKI-NORTHGRID-LIV-HEP": "#BFFF00",
-        "UKI-NORTHGRID-MAN-HEP": "#00EAFF",
-        "UKI-NORTHGRID-SHEF-HEP": "#FFD400",
-        "UKI-SCOTGRID-ECDF": "#0095FF",
-        "UKI-SCOTGRID-GLASGOW": "#000075",
-        "UKI-SOUTHGRID-BHAM-HEP": "#f032e6",
-        "UKI-SOUTHGRID-BRIS-HEP": "#6AFF00",
-        "UKI-SOUTHGRID-CAM-HEP": "#808000",
-        "UKI-SOUTHGRID-OX-HEP": "#6B238F",
-        "UKI-SOUTHGRID-RALPP": "#4F8F23",
-        "casu": "#F0FFFF",
-        "ccfe": "#469990",
-        "clas12": "#e04848",
-        "cta": "#23628F",
-        "dirac": "#FFA6B0",
-        "dune": "#8F2323",
-        "eMERLIN": "#ffd8b1",
-        "eucliduk.net": "#bfef45",
-        "fermilab": "#37F7E2",
-        "gaia": "#B7DBAB",
-        "gaia-core": "#B7DBAB",
-        "gaia-dev": "#B7DBAB",
-        "gaia-prod": "#B7DBAB",
-        "gaia-test": "#B7DBAB",
-        "iris.ac.uk": "#6D1F62",
-        "jintrac": "#E24D42",
-        "lsst": "#8bbaf0",
-        "lz": "#E0B400",
-        "plato": "#B713D0",
-        "ral-cloud": "#E02F44",
-        "ska": "#DCB9ED",
-        "skatelescope.eu": "#DCB9ED",
-        "vcycle": "#8A2BE2",
-        "virgo": "#8F6A23",
-        "vo.cta.in2p3.fr": "#23628F"
-      },
-      "columns": [],
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "fontSize": "90%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "displayName": "",
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 15,
         "w": 12,
@@ -5186,69 +5211,25 @@
         "y": 44
       },
       "id": 8,
-      "pageSize": 16,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
       },
-      "styles": [
-        {
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD",
-          "link": false,
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 0,
-          "mappingType": 1,
-          "pattern": "Count",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        },
-        {
-          "alias": "Time",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "time",
-          "thresholds": [],
-          "type": "number",
-          "unit": "dateTimeAsIso"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "10.4.14",
       "targets": [
         {
           "datasource": {
@@ -5302,14 +5283,20 @@
         }
       ],
       "title": "SubmitHost Job Count (Grid)",
-      "transform": "table",
-      "type": "table-old"
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {
+            "reducers": []
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
   "refresh": "",
   "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "main"
   ],
