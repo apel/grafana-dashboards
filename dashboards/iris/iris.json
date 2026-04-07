@@ -1021,6 +1021,10 @@
                   "group": false,
                   "mode": "normal"
                 }
+              },
+              {
+                "id": "custom.barAlignment",
+                "value": 1
               }
             ]
           }
