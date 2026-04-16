@@ -1031,7 +1031,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "GlueX"
+              "options": "Gluex"
             },
             "properties": [
               {
@@ -2177,7 +2177,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "GlueX"
+              "options": "Gluex"
             },
             "properties": [
               {
@@ -3191,7 +3191,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "GlueX"
+              "options": "Gluex"
             },
             "properties": [
               {
