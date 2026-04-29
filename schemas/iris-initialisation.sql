@@ -3,8 +3,8 @@ INSERT INTO IrisVOs VALUES
     ('Diamond'), ('dirac'), ('dune'), ('eMERLIN'), ('EUCLID'), ('eucliduk.net'),
     ('fermilab'), ('gaia'), ('gaia-core'), ('gaia-dev'), ('gaia-prod'),
     ('gaia-test'), ('Gluex'), ('ISIS'), ('jetscape'), ('jintrac'), ('lsst'),
-    ('lz'), ('plato'), ('ska'), ('skatelescope.eu'), ('uksrc'), ('virgo'),
-    ('vo.cta.in2p3.fr');
+    ('lz'), ('OCTOPUS'), ('plato'), ('ska'), ('skatelescope.eu'), ('uksrc'),
+    ('virgo'), ('vo.cta.in2p3.fr');
 
 INSERT INTO Capacity VALUES
     ('2018-01-01 00:00:00', 'SCD', 0),('2018-01-01 00:00:00', 'GridPP', 0),
