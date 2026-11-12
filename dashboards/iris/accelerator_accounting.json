@@ -181,7 +181,7 @@
       },
       "datasource": {
         "type": "mysql",
-        "uid": "P41F96484D8966BAD"
+        "uid": "P73563267E5B5F458"
       },
       "description": "",
       "fieldConfig": {
@@ -1058,7 +1058,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -1109,7 +1109,7 @@
           "dataset": "iris_accelerator",
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "table",
@@ -1265,7 +1265,7 @@
       },
       "datasource": {
         "type": "mysql",
-        "uid": "P41F96484D8966BAD"
+        "uid": "P73563267E5B5F458"
       },
       "description": "",
       "fieldConfig": {
@@ -2142,7 +2142,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -2193,7 +2193,7 @@
           "dataset": "iris_accelerator",
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "table",
@@ -2281,7 +2281,7 @@
       },
       "datasource": {
         "type": "mysql",
-        "uid": "P41F96484D8966BAD"
+        "uid": "P73563267E5B5F458"
       },
       "description": "",
       "fieldConfig": {
@@ -3132,7 +3132,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -3241,7 +3241,7 @@
       },
       "datasource": {
         "type": "mysql",
-        "uid": "P41F96484D8966BAD"
+        "uid": "P73563267E5B5F458"
       },
       "description": "",
       "fieldConfig": {
@@ -4092,7 +4092,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "time_series",
@@ -4269,7 +4269,7 @@
       },
       "datasource": {
         "type": "mysql",
-        "uid": "P41F96484D8966BAD"
+        "uid": "P73563267E5B5F458"
       },
       "fieldConfig": {
         "defaults": {
@@ -5120,7 +5120,7 @@
           "dataset": "iris_accelerator",
           "datasource": {
             "type": "mysql",
-            "uid": "P41F96484D8966BAD"
+            "uid": "P73563267E5B5F458"
           },
           "editorMode": "code",
           "format": "table",
@@ -5170,7 +5170,7 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "P41F96484D8966BAD"
+          "uid": "P73563267E5B5F458"
         },
         "definition": "SELECT DISTINCT FQAN FROM VAcceleratorSummaries;",
         "hide": 0,
@@ -5198,7 +5198,7 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "P41F96484D8966BAD"
+          "uid": "P73563267E5B5F458"
         },
         "definition": "SELECT DISTINCT SiteName FROM VAcceleratorSummaries;",
         "hide": 0,
@@ -5226,7 +5226,7 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "P41F96484D8966BAD"
+          "uid": "P73563267E5B5F458"
         },
         "definition": "SELECT DISTINCT Type FROM VAcceleratorSummaries;",
         "description": "Select the accelerator type (e.g. GPU, FPGA)",
@@ -5255,7 +5255,7 @@
         },
         "datasource": {
           "type": "mysql",
-          "uid": "P41F96484D8966BAD"
+          "uid": "P73563267E5B5F458"
         },
         "definition": "SELECT DISTINCT Category FROM VAcceleratorSummaries WHERE Category IS NOT NULL;",
         "hide": 0,
